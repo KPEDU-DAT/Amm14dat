@@ -8,12 +8,27 @@
   </head>
   <body>
     <form>
-      <input type="date" name="pvm" placeholder="">
-      <input type="text" name="kos" placeholder="Kiinteistön osoite">
+      <div class="form-group">
+        <input type="date" name="pvm" placeholder="">
+      </div>
+      <div class="form-group">
+        <input type="text" name="kos" placeholder="Kiinteistön osoite">
+      </div>
+      <div class="form-group">
       <input type="text" name="ttyyppi" placeholder="Talotyyppi">
+      </div>
+      <div class="form-group">
       <input type="text" name="ktark" placeholder="Käyttötarkoitus">
-      <input type="text" name="pAla" placeholder="Kiinteistön pinta-ala">
-      <input type="text" name="hlkm" placeholder="Huoneiden lukumäärä">
+      </div>
+      <div class="form-group">
+      <input type="text" name="pAla" placeholder="Kiinteistön pinta-ala neliömetreissä">
+      </div>
+      <div class="form-group">
+      <input type="text" name="hlkm" placeholder="Huoneet">
+      </div>
+      <div class="form-group">
+      <input type="text" name="muut" placeholder="Muut tilat">
+      </div>
     </form>
   </body>
 </html>
