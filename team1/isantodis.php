@@ -17,7 +17,7 @@ table{
   }
   $my->set_charset("utf8");
   //Suoritetaan SQL-kysely ja tarkistetaan onnistuiko se
-   $huoneistonum = 001;
+   $huoneistonum = $_GET['hid'];
   if($result = $my->query('SELECT * FROM team1_asukkaat, team1_asunnot WHERE team1_asukkaat.hid = team1_asunnot.id AND hid = '.$huoneistonum.';')){
   //Onnistui - tulostetaan kaikki rivit
   while($d = $result->fetch_object()){
