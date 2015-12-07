@@ -5,7 +5,7 @@
     }
     $my->set_charset("utf8");
     
-    $tnro = $_GET['n'];
+    $tnro = $_GET['aid'];
     
     $sql = "SELECT osoite,pnro,kaupunki,pintaala,hinta,kerros,asuntonro,esittely,rakennusvuosi FROM asuntotieto WHERE aid='$tnro';";
     

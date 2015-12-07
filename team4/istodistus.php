@@ -7,8 +7,11 @@
       <title>Luo isännöitsijäntodistus</title>
   </head>
   <body>
-    <form>
-      <div class="form-group">
+    <form action="istodistust.php">
+      <label>Asunnon numero</label>
+      <input type="number" name="aid">
+      <button>Tulosta</button>
+     <!-- <div class="form-group">
         <input type="date" name="pvm" placeholder="">
       </div>
       <div class="form-group">
@@ -29,6 +32,8 @@
       <div class="form-group">
       <input type="text" name="muut" placeholder="Muut tilat">
       </div>
+    </form> -->
     </form>
+    
   </body>
 </html>
