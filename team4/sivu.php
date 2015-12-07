@@ -15,7 +15,7 @@
     <link href="/~ronipohjonen/BS2015/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <link href="starter-template.css" rel="stylesheet">
+    <link href="navbar.css" rel="stylesheet">
 
     <script src="../../assets/js/ie8-responsive-file-warning.js"></script>
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
@@ -42,7 +42,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Etusivu</a></li>
-            <li><a href="#about">Tiedot</a></li>
+            <li><a href="toinen.php">Tiedot</a></li>
           </ul>
         </div>
       </div>
@@ -51,7 +51,7 @@
     <div class="container">
 
       <div class="jumbotron">
-      <table border="1">
+      <table border="solid">
     </div>
     </div>
         <?php
@@ -64,7 +64,7 @@
 
   if($result = $my->query('SELECT * FROM asuntotieto')) {
     while($d = $result->fetch_object()) {
-      echo "<td>".$d->osoite."</td>"."<td>".$d->pnro."</td>"."<td>".$d->kaupunki."</td>"."<td>".$d->pintaala."</td>"."<td>".$d->hinta."</td>"."<td>".$d->tyyppi."</td>"."<td>".$d->kerros."</td>"."<td>".$d->asuntonro."</td>"."<td>".$d->esittely."</td>"."<td>".$d->rakennusvuosi."</td>";
+      echo "<tr>"."<td>".$d->osoite."</td>"."<td>".$d->pnro."</td>"."<td>".$d->kaupunki."</td>"."<td>".$d->pintaala."</td>"."<td>".$d->hinta."</td>"."<td>".$d->tyyppi."</td>"."<td>".$d->kerros."</td>"."<td>".$d->asuntonro."</td>"."<td>".$d->esittely."</td>"."<td>".$d->rakennusvuosi."</td>"."</tr>";
   }
   } else {
     echo "Virhe SQL-kyselyssä!";
