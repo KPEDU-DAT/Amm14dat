@@ -1,4 +1,3 @@
-<br><br><br>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +12,7 @@
     <link href="/~ronipohjonen/BS2015/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <link href="starter-template.css" rel="stylesheet">
+    <link href="navbar.css" rel="stylesheet">
 
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -48,6 +47,7 @@
 
     </div>
     <div class="container">
+    <table>
       <?php   
      $my=mysqli_connect("localhost","data15","aJrHfybLxsLU76rV","data15");
     if ($my->mysql_errno) {
@@ -58,7 +58,7 @@
 
   if($result = $my->query('SELECT * FROM asuntotieto')) {
     while($d = $result->fetch_object()) {
-      echo "".$d->osoite."".$d->pnro."".$d->kaupunki."".$d->pintaala."".$d->hinta."".$d->tyyppi."".$d->kerros."".$d->.""..""..""..""
+      echo "<tr>".$d->osoite."".$d->pnro."".$d->kaupunki."".$d->pintaala."".$d->hinta."".$d->tyyppi."".$d->kerros."".$d->osoite."";
   }        
   } else {
     echo "Virhe SQL-kyselyssä!";
