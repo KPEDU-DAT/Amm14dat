@@ -30,12 +30,34 @@
     <![endif]-->
   <head>
   <body>
-  <form><button name="nappi" value="1">Lisä asunto</button><button name="nappi" value="2">Poista asunto</button></form>
+  
  <?php
    $my=new mysqli("localhost", "data15", "aJrHfybLxsLU76rV", "data15");
    if($my->mysql_errno) {
    die("MySQL virhe (#".$my->mysql_errno.") yhteyden luonnissa: ". $my->connect_error);}
    $my->set_charset('utf8');
+   if($result = $my->query('
+                SELECT *
+                FROM asuntotieto;')){
+       echo "<table class=\"table table-bordered\">";
+       echo "<thead><tr><th></th><th>AID</th><th>Osoite</th><th>Pnro</th><th>Kaupunki</th><th>Pinta-ala</th><th>Hinta</th><th>Tyyppi</th><th>Kerros</th><th>Asuntonro</th><th>esittely</th><th>Rakennusvuosi</th></tr><form action=\"test.php\" method=\"get\">";
+     while($d = $result->fetch_object()){
+     echo "<tr><td><button type=\"submit\" name=\"poista\" value=\"$d->aid\">Poista</a></td><td>".$d->aid."</td><td>".$d->osoite."</td><td>".$d->pnro."</td><td>".$d->kaupunki."</td><td>".$d->pintaala."</td><td>".$d->hinta."</td><td>".$d->tyyppi."</td><td>".$d->kerros."</td><td>".$d->asuntonro."</td><td>".$d->esittely."</td><td>".$d->rakennusvuosi."</td></tr>";
+     }
+   echo "</form></table>";
+    }else {
+      echo "Virhe SQL-kyselyssä!";
+    }
+    $poista = $_GET['poista'];
+    $sql = "DELETE FROM asuntotieto WHERE aid=\"$poista\";";
+    if($result = $my->query($sql)) {
+        echo "Onnistu";
+    } else {
+        echo "Epäonnistu";
+    }
+ ?>
+ <form><button name="nappi" value="1">Lisä asunto</button></form>
+ <?php  
        $nappi = $_GET['nappi'];
 	    $laheta == $_GET['laheta'];
         if($result = $my->query('SELECT * FROM asuntotieto')) {
