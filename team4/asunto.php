@@ -56,7 +56,7 @@
     if($result = $my->query('
                 SELECT *
                 FROM asuntotieto;')){
-       echo "<table calss=\"table tabel-default\">";
+       echo "<table calss=\"table\">;
        echo "<tr><th>Asunto ID</th><th>Osoite</th><th>Posti nro</th><th>Kaupunki</th><th>Pinta-ala</th><th>Hinta</th><th>Tyyppi</th><th>Kerros</th><th>Asuntonro</th><th>esittely</th><th>Rakennusvuosi</th></tr>";
      while($d = $result->fetch_object()){
      echo "<tr><td>".$d->aid."</td><td>".$d->osoite."</td><td>".$d->pnro."</td><td>".$d->kaupunki."</td><td>".$d->pintaala."</td><td>".$d->hinta."</td><td>".$d->tyyppi."</td><td>".$d->kerros."</td><td>".$d->asuntonro."</td><td>".$d->esittely."</td><td>".$d->rakennusvuosi."</td></tr>";
