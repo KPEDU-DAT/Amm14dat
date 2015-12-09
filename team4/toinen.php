@@ -56,39 +56,17 @@
       <label>Asunnon numero</label>
       <input type="number" name="aid">
       <button>Tulosta</button>
-
-     <div class="form-group">
-        <input type="date" name="pvm" placeholder="">
-      </div>
-      <div class="form-group">
-        <input type="text" name="kos" placeholder="Kiinteistön osoite">
-      </div>
-      <div class="form-group">
-      <input type="text" name="ttyyppi" placeholder="Talotyyppi">
-      </div>
-      <div class="form-group">
-      <input type="text" name="ktark" placeholder="Käyttötarkoitus">
-      </div>
-      <div class="form-group">
-      <input type="text" name="pAla" placeholder="Kiinteistön pinta-ala neliömetreissä">
-      </div>
-      <div class="form-group">
-      <input type="text" name="hlkm" placeholder="Huoneet">
-      </div>
-      <div class="form-group">
-      <input type="text" name="muut" placeholder="Muut tilat">
-      </div>
     </form>
     </div>
     </div>
 
         <div class="container" style="padding-top:2cm;">
 <div class="col-md-12 col-xs-12 col-lg-12 table-responsive" style="padding-top:2cm;">
-<form action="" method="POST">
-</label>Haku parametri</label>
-<input type="text" name="hakua"></input>
+<form action="toinen.php" method="POST">
+<label>Haku parametri</label>
+<input type="text" name="hakua">
 <label>Haku indeksi</label>
-<input type="text" name="hakub"></input>
+<input type="text" name="hakub">
 <button type="submit" name="nappi">Haku</button>
 </form>
 <table class="table">
@@ -114,7 +92,6 @@ $my->close();
 ?>
 </table></div>
     </div>
-    </div>
     <div class="container">
     <div class="jumbotron">
     <div class="col-md-12 col-lg-12 col-xs-12 table-responsive" style="padding-top: 1cm;">
@@ -133,6 +110,7 @@ $my->close();
   } else {
     echo "Virhe SQL-kyselyssä!";
     }
+    $my->close();
 ?>
 </tbody>
 </table>
