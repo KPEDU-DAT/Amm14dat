@@ -30,19 +30,19 @@
     <![endif]-->
   <head>
   <body>
-  <form><button name="nappi" value="1">Lisä asunto</button></form>
+  <form><button name="nappi" value="1">Lisä asunto</button><button name="nappi" value="2">Poista asunto</button></form>
  <?php
    $my=new mysqli("localhost", "data15", "aJrHfybLxsLU76rV", "data15");
    if($my->mysql_errno) {
    die("MySQL virhe (#".$my->mysql_errno.") yhteyden luonnissa: ". $my->connect_error);}
    $my->set_charset('utf8');
+       $nappi = $_GET['nappi'];
+	    $laheta == $_GET['laheta'];
         if($result = $my->query('SELECT * FROM asuntotieto')) {
             while($d = $result->fetch_object()) {
                 $aid = $d->aid + 1;
             }
         }
-	    $nappi = $_GET['nappi'];
-	    $laheta == $_GET['laheta'];
 	    $osoite 	= $_GET['osoite'];
 	    $pnro 		= $_GET['pnro'];
 	    $kaupunki 	= $_GET['kaupunki'];
@@ -55,7 +55,6 @@
 	    $rakennusvuosi = $_GET['rakennusvuosi'];
 	    if($aid && $osoite && $pnro && $kaupunki && $pintaala && $hinta && $tyyppi && $esittely && $rakennusvuosi) {
         $sql = "INSERT INTO asuntotieto VALUES('$aid', '$osoite', '$pnro', '$kaupunki', '$pintaala', '$hinta', '$tyyppi', '$kerros', '$asuntonro', '$esittely', '$rakennusvuosi');";
-        if($laheta == 1){
             if($result = $my->query($sql)){
                 $msg = "Onnistu";
             } else {
@@ -63,10 +62,10 @@
             }
         } else {
             echo "Täytäkä kaikki tietot tarkasti";
-        }}      
+        }
 	if($nappi == 1) {
-	  echo "<form action=\"asuntomuoka.php\" method=\"get\">
-	        <label>Osoite</label><br><input type=\"text\" name=\"osoite\"><br>
+	  echo "<form action=\"test.php\" method=\"get\">
+	        <label>Asunto ID</label><br><input type=\"number\" name=\"aid\"><br><label>Osoite</label><br><input type=\"text\" name=\"osoite\"><br>
             <label>Posti nro</label><br><input type=\"number\" name=\"pnro\"><br><label>Kaupunki</label><br><input type=\"text\" name=\"kaupunki\"><br>
 	        <label>Pinta-ala</label><br><input type=\"number\" name=\"pintaala\"><br><label>Hinta</label><br><input type=\"number\" name=\"hinta\"><br>
 	        <label>Tyyppi</label><br><input type=\"text\" name=\"tyyppi\"><br><label>kerros</label><br><input type=\"number\" name=\"kerros\"><br>
@@ -76,9 +75,7 @@
 	        </form>";
        echo "$msg";
 	}
-	if($nappi == 2)
    $my->close;
- 
  ?>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/~jiamingtian/bs2015/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
