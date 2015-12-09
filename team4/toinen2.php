@@ -89,6 +89,7 @@ WHERE $hakua LIKE \"$hakub\";";
     <div class="container">
     <div class="col-md-12 col-lg-12 col-xs-12 table-responsive" style="padding-top: 1cm;">
     <div class="jumbotron">
+       <form action="toinen2.php" method="get">
         <table class="table table-bordered">
         <tbody>
         <?php
@@ -111,9 +112,10 @@ WHERE $hakua LIKE \"$hakub\";";
 	
 </tbody>
 </table>
+</form>
 	<form><button name="nappi" value="1">Lisä asunto</button></form>
 	<?php  
-		$poista = $_GET['poista'];
+    $poista = $_GET['poista'];
     $sql = "DELETE FROM asuntotieto WHERE aid=\"$poista\";";
     if($result = $my->query($sql)) {
         echo "Onnistu";
@@ -149,8 +151,8 @@ WHERE $hakua LIKE \"$hakub\";";
             echo "Täytäkä kaikki tietot tarkasti";
         }
 	if($nappi == 1) {
-	  echo "<form action=\"test.php\" method=\"get\">
-	        <label>Asunto ID</label><br><input type=\"number\" name=\"aid\"><br><label>Osoite</label><br><input type=\"text\" name=\"osoite\"><br>
+	  echo "<form action=\"toinen2.php\" method=\"get\">
+	        <label>Osoite</label><br><input type=\"text\" name=\"osoite\"><br>
             <label>Posti nro</label><br><input type=\"number\" name=\"pnro\"><br><label>Kaupunki</label><br><input type=\"text\" name=\"kaupunki\"><br>
 	        <label>Pinta-ala</label><br><input type=\"number\" name=\"pintaala\"><br><label>Hinta</label><br><input type=\"number\" name=\"hinta\"><br>
 	        <label>Tyyppi</label><br><input type=\"text\" name=\"tyyppi\"><br><label>kerros</label><br><input type=\"number\" name=\"kerros\"><br>
