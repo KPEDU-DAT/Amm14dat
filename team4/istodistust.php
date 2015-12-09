@@ -1,5 +1,5 @@
 <?php
-    $my=mysqli_connect("localhost","data15","aJrHfybLxsLU76rV","data15");
+    $my=mysqli_connect("localhost","data15","rHfybLxsLU76rV","data15");
     if($my->mysql_errno) {
         die("MySQL, virhe yhteyden luonnissa:" . $my->connect_error);
     }
