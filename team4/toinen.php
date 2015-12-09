@@ -56,7 +56,7 @@
       <label>Asunnon numero</label>
       <input type="number" name="aid">
       <button>Tulosta</button>
-      
+
      <div class="form-group">
         <input type="date" name="pvm" placeholder="">
       </div>
@@ -81,9 +81,9 @@
     </form>
     </div>
     </div>
-    
+
         <div class="container" style="padding-top:2cm;">
-<div class="col-md-12 col-xs-12 col-lg-12 table-responsive" style="padding-top:2cm;">    
+<div class="col-md-12 col-xs-12 col-lg-12 table-responsive" style="padding-top:2cm;">
 <form action="" method="POST">
 </label>Haku parametri</label>
 <input type="text" name="hakua"></input>
@@ -113,15 +113,15 @@ if($tulos = $my->query($sql)){
 $my->close();
 ?>
 </table></div>
-      <div class="jumbotron">
-      <table border="solid">
     </div>
     </div>
+    <div class="container">
+    <div class="jumbotron">
     <div class="col-md-12 col-lg-12 col-xs-12 table-responsive" style="padding-top: 1cm;">
         <table>
         <tbody>
         <?php
-		     $my=mysqli_connect("localhost","data15","aJrHfybLxsLU76rV","data15");
+             $my=mysqli_connect("localhost","data15","aJrHfybLxsLU76rV","data15");
     if ($my->mysql_errno) {
       die("MySQL, virhe yhteyden luonnisa:". $my->connect_error);
     }
@@ -136,8 +136,10 @@ $my->close();
 ?>
 </tbody>
 </table>
-</div>                         
-   
+</div>
+</div>
+</div>
+
     <script src="/~ronipohjonen/BS2015/bower_components/jquery/dist/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="/~ronipohjonen/BS2015/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

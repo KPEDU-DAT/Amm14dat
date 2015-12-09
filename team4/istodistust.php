@@ -7,8 +7,7 @@
     
     $tnro = $_GET['aid'];
     
-    $sql = "SELECT osoite,pnro,kaupunki,pintaala,hinta,kerros,asuntonro,esittely,rakennusvuosi FROM asuntotieto WHERE aid='$tnro';";
-    
+    $sql = "SELECT osoite,pnro,kaupunki,pintaala,hinta,kerros,asuntonro,esittely,rakennusvuosi FROM asuntotieto WHERE aid='$tnro';";    
     if($tulos = $my->query($sql)) {
       $t = $tulos->fetch_object();
       $tt[]=array($t->osoite,$t->pnro,$t->kaupunki,$t->pintaala,$t->hinta,$t->kerros,$t->asuntonro,$t->esittely,$t->rakennusvuosi);
