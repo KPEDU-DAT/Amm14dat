@@ -7,9 +7,7 @@
     
     $tnro = $_GET['aid'];
     
-<<<<<<< HEAD
     $sql = "SELECT osoite,pnro,kaupunki,pintaala,hinta,kerros,asuntonro,esittely,rakennusvuosi FROM asuntotieto WHERE aid='$tnro';";    
-=======
     $sql = "SELECT osoite,pnro,kaupunki,pintaala,hinta,kerros,asuntonro,esittely,rakennusvuosi FROM asuntotieto WHERE aid='$tnro';";
     
     $ea = 'Ei asukasta'; 
@@ -21,7 +19,6 @@
       $tt = $tuloss->fetch_object();
     } else { $ea = 'Ei asukasta'; };
     
->>>>>>> d35efb97abaa246e2ade8f6231f5c0ed190b2368
     if($tulos = $my->query($sql)) {
       $t = $tulos->fetch_object();
     }
