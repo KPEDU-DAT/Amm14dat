@@ -70,7 +70,7 @@
 <button type="submit" name="nappi">Haku</button>
 </form>
 <table class="table">
-<tr><th>Osoite</th><th>Pnro</th><th>Kaupunki</th><th>Pinta-ala</th><th>Hinta</th><th>Tyyppi</th><th>Kerros</th><th>Asunto numero</th><th>Esittely</th><th>Rakennusvuosi</th></tr>
+<tr><th></th><th>Osoite</th><th>Pnro</th><th>Kaupunki</th><th>Pinta-ala</th><th>Hinta</th><th>Tyyppi</th><th>Kerros</th><th>Asunto numero</th><th>Esittely</th><th>Rakennusvuosi</th></tr>
 <?php
 $nappi = $_POST['nappi'];
 $hakua = $_POST['hakua'];
@@ -99,16 +99,71 @@ WHERE $hakua LIKE \"$hakub\";";
   $my->set_charset('utf8');
   if($result = $my->query('SELECT * FROM asuntotieto')) {
     while($d = $result->fetch_object()) {
-      echo "<tr><td>".$d->osoite."</td>"."<td>".$d->pnro."</td>"."<td>".$d->kaupunki."</td>"."<td>".$d->pintaala."</td>"."<td>".$d->hinta."</td>"."<td>".$d->tyyppi."</td>"."<td>".$d->kerros."</td>"."<td>".$d->asuntonro."</td>"."<td>".$d->esittely."</td>"."<td>".$d->rakennusvuosi."</td>"."</tr>";
+      echo "<tr><td><button type=\"submit\" name=\"poista\" value=\"$d->aid\">Poista</button></td><td>".$d->osoite."</td>"."<td>".$d->pnro."</td>"."<td>".$d->kaupunki."</td>"."<td>".$d->pintaala."</td>"."<td>".$d->hinta."</td>"."<td>".$d->tyyppi."</td>"."<td>".$d->kerros."</td>"."<td>".$d->asuntonro."</td>"."<td>".$d->esittely."</td>"."<td>".$d->rakennusvuosi."</td>"."</tr>";
   }
   } else {
     echo "Virhe SQL-kyselyssä!";
     }
+	
+	?>
+	
+ 
+	
+</tbody>
+</table>
+	<form><button name="nappi" value="1">Lisä asunto</button></form>
+	<?php  
+		$poista = $_GET['poista'];
+    $sql = "DELETE FROM asuntotieto WHERE aid=\"$poista\";";
+    if($result = $my->query($sql)) {
+        echo "Onnistu";
+    } else {
+        echo "Epäonnistu";
+    }		
+
+       $nappi = $_GET['nappi'];
+	    $laheta == $_GET['laheta'];
+        if($result = $my->query('SELECT * FROM asuntotieto')) {
+            while($d = $result->fetch_object()) {
+	            $aid = $d->aid + 1;
+            }
+        }
+	    $osoite 	= $_GET['osoite'];
+	    $pnro 		= $_GET['pnro'];
+	    $kaupunki 	= $_GET['kaupunki'];
+	    $pintaala 	= $_GET['pintaala'];
+	    $hinta 		= $_GET['hinta'];
+	    $tyyppi 	= $_GET['tyyppi'];
+	    $kerros 	= $_GET['kerros'];
+	    $asuntonro 	= $_GET['asuntonro'];
+	    $esittely 	= $_GET['esittely'];
+	    $rakennusvuosi = $_GET['rakennusvuosi'];
+	    if($aid && $osoite && $pnro && $kaupunki && $pintaala && $hinta && $tyyppi && $esittely && $rakennusvuosi) {
+        $sql = "INSERT INTO asuntotieto VALUES('$aid', '$osoite', '$pnro', '$kaupunki', '$pintaala', '$hinta', '$tyyppi', '$kerros', '$asuntonro', '$esittely', '$rakennusvuosi');";
+            if($result = $my->query($sql)){
+                $msg = "Onnistu";
+            } else {
+                $msg = "Epäonnistu";
+            }
+        } else {
+            echo "Täytäkä kaikki tietot tarkasti";
+        }
+	if($nappi == 1) {
+	  echo "<form action=\"test.php\" method=\"get\">
+	        <label>Asunto ID</label><br><input type=\"number\" name=\"aid\"><br><label>Osoite</label><br><input type=\"text\" name=\"osoite\"><br>
+            <label>Posti nro</label><br><input type=\"number\" name=\"pnro\"><br><label>Kaupunki</label><br><input type=\"text\" name=\"kaupunki\"><br>
+	        <label>Pinta-ala</label><br><input type=\"number\" name=\"pintaala\"><br><label>Hinta</label><br><input type=\"number\" name=\"hinta\"><br>
+	        <label>Tyyppi</label><br><input type=\"text\" name=\"tyyppi\"><br><label>kerros</label><br><input type=\"number\" name=\"kerros\"><br>
+	        <label>asuntonro</label><br><input type=\"number\" name=\"asuntonro\"><br><label>Rakennusvuosi</label><br><input type=\"number\" name=\"rakennusvuosi\"><br>
+	        <label>Esittely</label><br><input type=\"text\" name=\"esittely\"><br>
+	        <button name=\"laheta\" value=\"1\">Lisä</button>
+	        </form>";
+       echo "$msg";
+	}
     
     $my->close();
 ?>
-</tbody>
-</table>
+	
 </div>
 </div>
 </div>
