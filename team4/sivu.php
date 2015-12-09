@@ -39,6 +39,9 @@
           </button>
           <a class="navbar-brand" href="#"></a>
         </div>
+        <div class="col-md-12 col-xs-12 col-lg-12">
+        <h3>JS Asunto Ou</h3>
+        </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Etusivu</a></li>
@@ -54,6 +57,9 @@
       <table border="solid">
     </div>
     </div>
+    <div class="col-md-6 col-lg-6 col-xs-12">
+    </div>
+    <div class="col-md-6 col-lg-6 col-xs-12">
         <?php
 		     $my=mysqli_connect("localhost","data15","aJrHfybLxsLU76rV","data15");
     if ($my->mysql_errno) {
@@ -70,6 +76,7 @@
     echo "Virhe SQL-kyselyssä!";
     }
 ?>
+</div>
 
 
     <!-- Bootstrap core JavaScript
