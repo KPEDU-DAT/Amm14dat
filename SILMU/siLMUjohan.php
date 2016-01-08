@@ -1,3 +1,17 @@
+<?php
+    $uploaddir = '/home/johanhandelin/public_html/Amm14dat/SILMU/';
+    $uploadfile = $uploaddir . basename($_FILES['aani']['name']);
+    
+    if (move_uploaded_file($_FILES['aani']['tmp_name'], $uploadfile)) {
+        $msg = 'OK';
+    } else {
+        $msg = 'Epäonnistui';
+    }
+    
+?>
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -26,7 +40,32 @@
 	        <!-- <h1>Pääjuttu</h1> -->
 	        <div class="row paa">
 	         <div class="col-md-2"><button class="btn btn-default">Lisää kuva</button></div>
-	         <div class="col-md-2"><button class="btn btn-default">Lisää ääni</button></div>
+	         <div class="col-md-2">
+				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#aaniModal">
+  				Lisää ääni
+				</button> <?=$msg?>			 
+				<div class="modal fade" id="aaniModal" tabindex="-1" role="dialog" aria-labelledby="aaniModalLabel">
+  					<div class="modal-dialog" role="document">
+    					<div class="modal-content">
+      						<div class="modal-body">
+	             				<form enctype="multipart/form-data" method="POST">
+	                 				<div class="form-group">
+	                 				    <label>Lisää ääni</label>
+	                 				    <input type="file" name="aani" class="btn btn-default aanil">
+	                 				    <br>
+	                 				    <input type="submit" value="Send File" class="btn btn-primary">
+                                    </div>
+                 				</form>
+                            </div>
+      						<div class="modal-footer">
+        						<button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+	
+             </div>
 	         <div class="col-md-2 col-md-offset-5"> <button class="btn-lg btn btn-primary al">Aloita esitys</button></div>
 	        </div>
 	        <div class="row">
@@ -35,6 +74,7 @@
 	        </div>
 	           
 	      </div>
+	    
 	        
 	
   
