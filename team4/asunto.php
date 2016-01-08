@@ -66,7 +66,7 @@
       echo "Virhe SQL-kyselyssä!";
     }
    ?>
-    <?php $my->close; ?>
+    <?php $my->close(); ?>
     </div>
 
     <!-- Bootstrap core JavaScript
