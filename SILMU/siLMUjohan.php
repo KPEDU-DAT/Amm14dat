@@ -5,7 +5,7 @@
     if (move_uploaded_file($_FILES['aani']['tmp_name'], $uploadfile)) {
         $msg = 'OK';
     } else {
-        $msg = 'Epäonnistui';
+        $msg = $_FILES['aani']['error'];
     }
     
 ?>
@@ -51,11 +51,12 @@
 	             				<form enctype="multipart/form-data" method="POST">
 	                 				<div class="form-group">
 	                 				    <label>Lisää ääni</label>
-	                 				    <input type="file" name="aani" class="btn btn-default aanil">
+	                 				    <input type="file" name="aani" class="btn btn-default aanil" accept="audio/*">
 	                 				    <br>
 	                 				    <input type="submit" value="Send File" class="btn btn-primary">
                                     </div>
                  				</form>
+                 				<div class="alert alert-info"><strong>Huom! </strong> Äänitiedoston maksimikoko on 2 MB.</div>
                             </div>
       						<div class="modal-footer">
         						<button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
@@ -66,7 +67,13 @@
 
 	
              </div>
-	         <div class="col-md-2 col-md-offset-5"> <button class="btn-lg btn btn-primary al">Aloita esitys</button></div>
+             <div class="col-md-3">
+                 <audio controls autoplay="autoplay" loop="loop">
+                     <source src="<?php echo $_FILES['aani']['name'];?>" type="audio/mpeg">
+                 </audio>
+            </div>
+            
+	         <div class="col-md-2 col-md-offset-2"> <button class="btn-lg btn btn-primary al">Aloita esitys</button></div>
 	        </div>
 	        <div class="row">
 	          <div class="ruutu">
@@ -75,9 +82,6 @@
 	           
 	      </div>
 	    
-	        
-	
-  
     
     
     
