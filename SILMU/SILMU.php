@@ -24,6 +24,7 @@
     <title>SILMU</title>
     <link href="jumbotron.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="kka.css">
+    <link rel="stylesheet" type="text/css" href="kek2.css">
     </head>
     <body>
     
@@ -46,13 +47,13 @@
 	<h2> Kuva 1</h2>
         <form enctype="multipart/form-data" role="form" action="SILMU.php" method="post">
     <div class="form-group">        
-    <input name="kuva" type="file" type="button"><br>
+    <input name="kuva" class="aanil btn btn-default" type="file" type="button"><br>
     </div>
 	</div> 
     <div class="col-xs-6">
     <h2> Kuva 2</h2>
     <div class="form-group">        
-    <input name="kuva2" type="file" type="button"><br>                           
+    <input class="aanil btn btn-default" name="kuva2" type="file" type="button"><br>                           
     <input type="submit" class="btn btn-primary btn-md" value="Send Files">
     </div>
     </form>
