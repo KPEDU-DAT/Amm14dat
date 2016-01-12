@@ -21,19 +21,15 @@ function launchFullscreen(element) {
   }
   //$("p").hide();
   //$("button").hide();
-}
-var fullscreenEnabled = document.fullscreenEnabled || document.mozFullScreenEnabled || document.webkitFullscreenEnabled;
+}/*fullscreen mode*/
 
-/*$( document ).ready(function() {
-  $("span").text(fullscreenEnabled);
-});*/
 function myF(){
   $("button").toggle();
-  $("p").toggle();
+  $("p").toggle(); /*toggle() piilotta <p> kun se on nakymassa, tai vastapai */
 }
 
 document.addEventListener("webkitfullscreenchange", function () {
-    myF();
+    myF(); /*alka kaytan myF() funktio, kun kayta fullscreen mode tai pois fullscreen modesta*/
 }, false);
 
 
