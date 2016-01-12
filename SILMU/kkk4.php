@@ -1,17 +1,21 @@
 <?php
-    $uploaddir = '/home/johanhandelin/public_html/Amm14dat/SILMU/';
-    $uploadfile = $uploaddir . basename($_FILES['aani']['name']);
-    
-    if (move_uploaded_file($_FILES['aani']['tmp_name'], $uploadfile)) {
-        $msg = 'OK';
-    } else {
-        $msg = $_FILES['aani']['error'];
+    $my=new mysqli("localhost", "data15", "aJrHfybLxsLU76rV", "data15");
+          if($my->mysql_errno){
+          die("MySQL virhe (#".$my->mysql_errno.") yhteyden luonnissa: ". $my->connect_error);
     }
-    
-?>
+    $my->set_charset('utf8');
+    $sql = "SELECT krid, kuva1, kuva2 FROM SILMU";
+    if($result = $my->query($sql)){
+        while($t=$result->fetch_object()) {
+            $rows[] = array($t->krid, $t->kuva1, $t->kuva2);
+    }
+    }
+    else {
+    $msg ="VIRHE";
+    }
+    $my->close();
 
-
-
+    ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -24,15 +28,34 @@
     <link href="/~jonashandelin/bs_2015/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>SILMU</title>
     <link href="jumbotron.css" rel="stylesheet">
-    <link rel="stylesheet" href="kek.css">
-    </head>
+    <link rel="stylesheet" href="kek2.css">
+	</head>
     <body>
         <div class="row">
 	      <div class="col-md-3">
 	        <div class="lista2">
 	        <div class="lista1">
-	         <!--  <h1>SIVU</h1> -->
-            </div>
+			<div class="table-responsive">
+	        <table class="table"> 
+			<thead>Kuveja</thead>
+			<tbody>
+			<!--  <h1>SIVU</h1> -->
+             <?php
+			echo "<form action='kkk4.php' method='post'>";
+        foreach($rows as $i) {
+            echo #"<div class='col-lg-3 col-md-4 col-xs-6 thumb'>
+                           "<tr><td> <a class='thumbnail' href='#'>
+               <input type='image'  src='$i[1]' alt='kuva' height='200' width='50%' name='kuva' value='$i[0]'><input type='image' src='$i[2]' alt='kuva' height='200' width='50%' name='kuva' value='$i[0]'> 
+                                 </a></td></tr>";
+            }
+    echo "</form>";
+	$kk = $_POST['kuva'];
+	$k = $kk-9;
+	?>
+		</tbody>
+		</table>
+			</div>
+			</div>
             </div>
           </div>
 	      <div class="col-md-9">
@@ -43,7 +66,7 @@
 	         <div class="col-md-2">
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#aaniModal">
   				Lisää ääni
-				</button> <?=$msg?>			 
+				</button> 			 
 				<div class="modal fade" id="aaniModal" tabindex="-1" role="dialog" aria-labelledby="aaniModalLabel">
   					<div class="modal-dialog" role="document">
     					<div class="modal-content">
@@ -69,7 +92,7 @@
              </div>
              <div class="col-md-3">
                  <audio controls autoplay="autoplay" loop="loop">
-                     <source src="<?php echo $_FILES['aani']['name'];?>" type="audio/mpeg">
+                     <source src="lelkek.mp3" type="audio/mpeg">
                  </audio>
             </div>
             
@@ -77,18 +100,11 @@
 	        </div>
 	        <div class="row">
 	          <div class="ruutu">
+			<img class="img" src='<?php echo $rows[$k][1];?>' alt="kuva"><img class="img" src='<?php echo $rows[$k][2];?>' alt="kuva2">
 	          </div>
 	        </div>
-	           
-	      </div>
-	    
-    
-    
-    
-    
-    
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/~jonashandelin/bs_2015/bower_components/bootstrap/dist/js//bootstrap.min.js"></script>
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-    </body>
-    </html>
+	       </body>
+		</html>    
