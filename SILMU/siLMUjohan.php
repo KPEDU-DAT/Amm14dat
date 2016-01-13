@@ -56,7 +56,7 @@
 	                 				    <input type="submit" value="Send File" class="btn btn-primary">
                                     </div>
                  				</form>
-                 				<div class="alert alert-info"><strong>Huom! </strong> Äänitiedoston maksimikoko on 2 MB.</div>
+                 				<div class="alert alert-info"><strong>Huom! </strong> Tiedoston maksimikoko on 2 MB.</div>
                             </div>
       						<div class="modal-footer">
         						<button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
@@ -79,7 +79,39 @@
 	          <div class="ruutu">
 	          </div>
 	        </div>
-	           
+	    <form enctype="multipart/form-data" role="form" action="kl.php" method="post">
+	        <div class="form-group">
+    <input name="kuva" type="file" type="button"><br>
+    <input type="submit" class="btn btn-primary-default" value="Send File">
+	</form>
+	</div>
+    </div>
+	<?php
+	$w = $_GET['name'];
+	echo $w;
+	$id = $l + 1;
+	$k = $_FILES['kuva']['name'];
+	$uploaddir = '/home/jonashandelin/public_html/Amm14dat/SILMU/pk/';
+	$uploadfile = $uploaddir . basename($_FILES['kuva']['name']);
+	if (move_uploaded_file($_FILES['kuva']['tmp_name'], $uploadfile)) {
+        echo "Kuva tallennettu";
+        } else if ($k){
+        echo "Tallennus epäonnistui";
+    }
+	  else if ($k) {
+      $sql="INSERT INTO SILMU(krid, pkuva1) VALUES('$id', 'http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/pk/'$k'')";
+       if($tulos = $my->query($sql)){
+      echo '<p> linki tallennettu</p>';
+  }
+      else{
+      echo '<p> linkin tallennus epäonnistui</p>';
+  }
+	if ($k) {
+		echo "<img src='' alt='kuva'>";
+		}
+	}
+	?>
+		<img src='http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/pk/<?php echo $k;?>' alt='kuva' class="dragme" id="joku" style="color:red;">
 	      </div>
 	    
     

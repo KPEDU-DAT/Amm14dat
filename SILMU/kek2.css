@@ -1,5 +1,5 @@
 .paa {
-  margin-top: 14%; }
+  margin-top: 5%; }
 
 .lista1 {
   min-height: 90%;
@@ -33,7 +33,7 @@
 
 .al {
   margin-bottom: 5px; }
-
+.klik {cursor: pointer;}
 .aanil {
   width: 100%;
   height: 100%;
@@ -43,3 +43,5 @@
 		height: 799px;
 		overflow: auto;
 		}
+.kek {margin-bottom: 5px;}
+.ala {width: 1000px; height: 250px; border: 1px solid gray; border-radius: 5px;}
