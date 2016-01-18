@@ -1,4 +1,4 @@
-<?php
+<?php 
     $my=new mysqli("localhost", "data15", "aJrHfybLxsLU76rV", "data15");
           if($my->mysql_errno){
           die("MySQL virhe (#".$my->mysql_errno.") yhteyden luonnissa: ". $my->connect_error);
@@ -18,16 +18,45 @@
 	$l = $rivi->krid;
 	}
 	
-	    $uploaddir = '/home/johanhandelin/public_html/Amm14dat/SILMU/';
-        $uploadfile = $uploaddir . basename($_FILES['aani']['name']);
+	    $auploaddir = '/home/johanhandelin/public_html/Amm14dat/SILMU/';
+        $auploadfile = $auploaddir . basename($_FILES['aani']['name']);
+	    
 	        
-        if (move_uploaded_file($_FILES['aani']['tmp_name'], $uploadfile)) {
-          $msg = 'OK';
-          } else {
-          $msg = $_FILES['aani']['error'];
-        }
-        
-	                                    
+        $sqlakg = "SELECT * FROM silmuaani";
+		$ak = $_FILES['aani']['name'];
+	    $sqlayi = "SELECT aaid FROM silmuaani ORDER BY aaid DESC;";
+	    	if($aktulos = $my->query($sqlakg)) {
+	   while($akt = $aktulos->fetch_object()) {
+	       $akrows[] = array($akt->pkid, $akt->pklink);
+	   }
+	}
+	
+	if($aattulos = $my->query($sqlayi)) {
+		$aatt = $aattulos->fetch_object();
+	    $ayy = $aatt->aaid; $ayi = $ayy+1; 
+	} else echo "aa";
+	
+	if (move_uploaded_file($_FILES['aani']['tmp_name'], $auploadfile)) {
+        echo "Kuva tallennettu";
+		$aa = 1;
+        } else if ($ak){
+        echo "Tallennus epäonnistui";
+    }
+    if($krows[$ayy][1] != "http://cosmo.kpedu.fi/~johanhandelin/Amm14dat/SILMU/$ak")
+	 if ($ak && $aa) {
+	   if($kopiot = $my->query("SELECT nimi FROM silmuaani WHERE nimi = '$ak'")) {
+	       $kopiota = $kopiot->fetch_object();
+	       if($kopiota == $ak) {
+	       echo "Kuva on jo tietokannassa"; echo $ak; } 
+        else {
+        echo "Kuvaa ei ole tietokannassa"; echo $ak;
+        $sqlaa = "INSERT INTO silmuaani(aaid, alink, nimi) VALUES('$ayi', 'http://cosmo.kpedu.fi/~johanhandelin/Amm14dat/SILMU/$ak','$ak')";
+          if($atulos = $my->query($sqlaa)){
+          echo '<p> linkki tallennettu</p>';
+          }
+          else{
+          echo '<p> linkin tallennus epäonnistui</p>'; echo $ak; echo $ayi; echo $ayy;
+  }}} } else echo "on jo";                                
 	
 	
 	
@@ -53,7 +82,7 @@
           }}
           $lol--;
           }
-    ?>
+           ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -199,7 +228,8 @@
 	</div>
 	         </div>
 
-	<?php
+	<?php 
+	$akrows= array();
 	$id = $l + 1;
 	$k1 = $_FILES['kuva']['name'];
 	$kk1 = $_FILES['kuva2']['name'];
@@ -259,19 +289,24 @@
     					        <h3>Lisää ääniä</h3>
                             </div>
       						<div class="modal-body">
-      						  <form action="silmuproto.php" method="post">
+      						  <form action="silmuproto.php" method="get">
       						  <?php
-      						          $sqlag = "SELECT DISTINCT alink, aaid FROM silmuaani;";
+      						          $sqlag = "SELECT DISTINCT alink, aaid, nimi FROM silmuaani;";
       						          
       						          if($aanitulos = $my->query($sqlag)) {
-      						              while($at = $ktulos->fetch_object()) {
-      						                  $krows[] = array($at->aaid, $at->alink, $at->nimi);
-                                          }
+      						              while($at = $aanitulos->fetch_object()) {
+      						                  $akrows[] = array($at->aaid, $at->alink, $at->nimi);
+                                            
                                           
-                                      foreach ($krows as $aii) {
-                                          echo "<label class='klik'><input type='radio' name='taani$aii[0]' value='$aii[0]'>$aii[2]</label>";                                                                                                                                                 
+                                          }
+                                      }    
+                                      foreach ($akrows as $aii) {
+                                           echo "<div><label class='aanilg'><input class='aanilg' type='radio' name='aanitoisto' value='$aii[0]'>&nbsp;$aii[2]</label></div>";                                
+                                           
+									  }
+									  echo "<input type='submit' class='btn btn-primary' value'Toista'>";
       						  ?>
-      						  </form><br>
+      						  </form><hr>
       						  
 	             				<form enctype="multipart/form-data" method="POST">
 	                 				<div class="form-group">
@@ -287,14 +322,19 @@
         						<button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    
+                </div></div>
 
 	
              </div>
              <div class="col-md-3">
                  <audio controls autoplay="autoplay" loop="loop">
-                     <source src="<?php echo $_FILES['aani']['name'];?>" type="audio/mpeg">
+                     <source src="<?php
+                                       $aanitoisto = $_GET['aanitoisto'] - 1;
+                                       if($_GET['aanitoisto']) {
+                                         echo $akrows[$aanitoisto][1];
+                                       } else { 
+                                       echo $_FILES['aani']['name'];}     ?>" type="audio/mpeg">
                  </audio>
             </div>
             
@@ -377,13 +417,13 @@
        if($tulos = $my->query($sqla)){
       echo '<p> linkki tallennettu</p>';
   }
-      else{
+      else {
       echo '<p> linkin tallennus epäonnistui</p>';
   }
 	}
 	
 	?>
-	    <?php
+	    <?php 
 	      $abk = $_FILES['pkuva']['name'];
 	      for($u=1;$u<100;$u++) {
 	      $uuu = 'pkuva'.$u;
@@ -397,10 +437,10 @@
 	          if($_COOKIE[$ok]) {
 	            $okok = $_COOKIE[$ok];
 	            echo "<img src='$okok' alt='kuva' class='dragme' id='joku'>";
-	            }
+	            }}
 	        }
 	      
-	      }?><!--
+	       ?><!--
 	      while($lol>0) { 
 	        
 	        $abc = "pkuva".$lol;
@@ -418,8 +458,8 @@
           $lol--;
           }
         } 
-          
-           
+        */  
+          ?> 
 			     debug  <?php 
 			                  
                             echo $_FILES['pkuva']['name']; echo " a ";
@@ -428,6 +468,7 @@
     <script src="/~jonashandelin/bs_2015/bower_components/bootstrap/dist/js//bootstrap.min.js"></script>
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 	       </body>
-		</html>  
+ 
 		
-		<?php $my->close();?>  
+		<?php $my->close();?>
+</html>  johanhandelin@cosmo:~/public_html/Amm14dat/SILMU$ 
