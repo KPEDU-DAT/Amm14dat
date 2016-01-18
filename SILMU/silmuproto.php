@@ -46,17 +46,23 @@
 	 if ($ak && $aa) {
 	   if($kopiot = $my->query("SELECT nimi FROM silmuaani WHERE nimi = '$ak'")) {
 	       $kopiota = $kopiot->fetch_object();
-	       if($kopiota == $ak) {
-	       echo "Kuva on jo tietokannassa"; echo $ak; } 
-        else {
-        echo "Kuvaa ei ole tietokannassa"; echo $ak;
-        $sqlaa = "INSERT INTO silmuaani(aaid, alink, nimi) VALUES('$ayi', 'http://cosmo.kpedu.fi/~johanhandelin/Amm14dat/SILMU/$ak','$ak')";
-          if($atulos = $my->query($sqlaa)){
-          echo '<p> linkki tallennettu</p>';
-          }
-          else{
-          echo '<p> linkin tallennus epäonnistui</p>'; echo $ak; echo $ayi; echo $ayy;
-  }}} } else echo "on jo";                                
+	       $kopiotaa = $kopiota->nimi;
+	       if($kopiotaa == $ak) {
+	         echo "Kuva on jo tietokannassa"; echo $ak; 
+           } else {
+             echo "Kuvaa ei ole tietokannassa"; echo $ak; echo $kopiotaa;
+             $sqlaa = "INSERT INTO silmuaani(aaid, alink, nimi) VALUES('$ayi', 'http://cosmo.kpedu.fi/~johanhandelin/Amm14dat/SILMU/$ak','$ak')";
+             if($atulos = $my->query($sqlaa)){
+             echo '<p> linkki tallennettu</p>';
+             }
+               else{
+             echo '<p> linkin tallennus epäonnistui</p>'; echo $ak; echo $ayi; echo $ayy;
+             }  
+             }
+       }
+     } 
+     else 
+       echo "on jo";                                
 	
 	
 	
