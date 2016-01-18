@@ -146,8 +146,10 @@
 				if (!e) { var e= window.event};
 				var targ=e.target?e.target:e.srcElement;
 				// move div element
-				targ.style.left=coordX+e.clientX-offsetX+'px';
-				targ.style.top=coordY+e.clientY-offsetY+'px';
+				if (targ.className == 'dragme') {
+				targ.style.left=coordX+e.clientX-offsetX+'px'; }
+				if (targ.className == 'dragme') {
+				targ.style.top=coordY+e.clientY-offsetY+'px'; }
 				return false;
 			}
 			function stopDrag() {
