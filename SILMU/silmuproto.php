@@ -376,7 +376,7 @@
     					       foreach ($krows as $i) {
     					           echo "<div class=\"col-xs-6 col-md-4\"><label class='klik'><input type='checkbox' name='pkuva$i[0]' value='$i[0]'style='background-image: url($i[1]); width: 500px; height: 50px;'> <img style='width: 200px; height: 200px;' class='klik' src='$i[1]' alt='kuva'></label></div>";
                                }
-                           ?></div><hr><button name="nappi" class="btn btn-default kek">Lisää kuvat</button></form>
+                           ?></div><hr><input type="submit" name="nappi" class="btn btn-default kek" value="Lisää kuvat"></form>
     					   
     					   
 							<form enctype="multipart/form-data" role="form" action="silmuproto.php" method="post">		
@@ -419,14 +419,22 @@
     }
     if($krows[$yy][1] != "http://cosmo.kpedu.fi/~johanhandelin/Amm14dat/SILMU/pkuva/$k")
 	 if ($k && $a) {
-      $sqla = "INSERT INTO silmuj(pkid, pklink) VALUES('$yi', 'http://cosmo.kpedu.fi/~johanhandelin/Amm14dat/SILMU/pkuva/$k')";
-       if($tulos = $my->query($sqla)){
-      echo '<p> linkki tallennettu</p>';
-  }
-      else {
-      echo '<p> linkin tallennus epäonnistui</p>';
-  }
-	}
+	   if($kopiotk = $my->query("SELECT pklink FROM silmuj WHERE pklink = 'http://cosmo.kpedu.fi/~johanhandelin/Amm14dat/SILMU/pkuva/$k'")) {
+	       $kopiotkk = $kopiotk->fetch_object();
+	       $kopiotkkk = $kopiotkk->pklink;
+	       if($kopiotkkk == "http://cosmo.kpedu.fi/~johanhandelin/Amm14dat/SILMU/pkuva/$k")
+	         echo "Kuva on jo tietokannassa";
+           } else {
+             $sqla = "INSERT INTO silmuj(pkid, pklink) VALUES('$yi', 'http://cosmo.kpedu.fi/~johanhandelin/Amm14dat/SILMU/pkuva/$k')";
+             if($tulos = $my->query($sqla)){
+                echo '<p> linkki tallennettu</p>';
+             }
+             else {
+                echo '<p> linkin tallennus epäonnistui</p>';
+             }
+             }
+      }
+     
 	
 	?>
 	    <?php 
@@ -466,10 +474,11 @@
         } 
         */  
           ?> 
-			     debug  <?php 
+			   <--   debug  <?php 
 			                  
-                            echo $_FILES['pkuva']['name']; echo " a ";
-                            echo " a "; echo $lol; echo " a "; echo $_COOKIE['pkuva1'];?> --></div>
+                         #   echo $_FILES['pkuva']['name']; echo " a ";
+                         #   echo " a "; echo $lol; echo " a "; echo $_COOKIE['pkuva1'];?> --> 
+                         </div>
 		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/~jonashandelin/bs_2015/bower_components/bootstrap/dist/js//bootstrap.min.js"></script>
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
@@ -477,4 +486,4 @@
  
 		
 		<?php $my->close();?>
-</html>  johanhandelin@cosmo:~/public_html/Amm14dat/SILMU$ 
+</html> 
