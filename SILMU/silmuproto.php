@@ -61,8 +61,7 @@
              }
        }
      } 
-     else 
-       echo "on jo";                                
+                                    
 	
 	
 	
@@ -160,10 +159,15 @@
 				document.onmouseup = stopDrag;
 			}
 			function mjf() {
-			var te = document.getElementById("joku").style.left;
-    		var be = document.getElementById("joku").style.top;
+			te = document.getElementById("joku").style.left;
+    		be = document.getElementById("joku").style.top;
     		window.location.assign("http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/testi.php?name=" + te + "&nimi=" + be)
     }
+            function styla() {
+            var yr = document.getElementById("joku").style.top;
+            var vr = document.getElementById("joku").style.left;
+            document.getElementById("testi").innerHTML = yr + vr;            }
+             
     </script>
 	
 
@@ -312,7 +316,7 @@
                                            echo "<div><label class='aanilg'><input class='aanilg' type='radio' name='aanitoisto' value='$aii[0]'>&nbsp;$aii[2]</label></div>";                                
                                            
 									  }
-									  echo "<input type='submit' class='btn btn-primary' value'Toista'>";
+									  echo "<input type='submit' class='btn btn-primary' value='Toista'>";
       						  ?>
       						  </form><hr>
       						  
@@ -480,7 +484,7 @@
 			                  
                          #   echo $_FILES['pkuva']['name']; echo " a ";
                          #   echo " a "; echo $lol; echo " a "; echo $_COOKIE['pkuva1'];?> --> 
-                         </div>
+                         </div><p id="testi" onclick="styla()">abcdefg</p>
 		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/~jonashandelin/bs_2015/bower_components/bootstrap/dist/js//bootstrap.min.js"></script>
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
