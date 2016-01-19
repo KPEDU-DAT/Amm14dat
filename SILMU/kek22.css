@@ -1,5 +1,5 @@
 .paa {
-  margin-top: 14%; }
+  margin-top: 1%; }
 
 .lista1 {
   min-height: 90%;
@@ -20,15 +20,14 @@
 
 .img {
 	position: relative;
-	width: 600px;               
-  height: 500px; 
+	width: 50%;               
+  height: 650px; 
   border: 2px solid #bbbbbb;
   border-radius: 5px;
   margin: 5px; 
 	margin-left: 0px;
 	margin-right: 0px;
-  border-right: 0px;
-  border-left: 0px;
+  
 	 } 
 
 .al {
@@ -46,12 +45,22 @@
 .kuva {
 	   position: relative;
     width: 1200px;
-  height: 675px;
+  height: 650px;
   border: 2px solid #bbbbbb;
-  border-radius: 5px;
-  margin: 5px;
+  border-radius: 3px;
+  
     margin-left: 0px;
     margin-right: 0px;
-  border-right: 0px;
-  border-left: 0px;
+  border-right: 1px;
+  border-left: 1px;
      }
+.bBox {border: 1px solid #bbbbbb; margin-bottom: 5px; width: 1000px; height:652px;}
+.aaaaa {margin-top: 5px;}
+#bBox :-webkit-fullscreen {
+  width: 100px;
+  height: 100%;
+}
+.img :-webkit-fullscreen {
+	width: 50%;
+	height: 100%;
+}
