@@ -6,7 +6,7 @@
 </head>
 <body>
 <button type="button"onclick="launchFullscreen(document.documentElement);">Start</button>
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Harvester_fire_-_geograph.org.uk_-_45145.jpg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Harvester_fire_-_geograph.org.uk_-_45145.jpg" style="width:100%;">
 <span><p>Hello</p></span>
 <script>
 function launchFullscreen(element) {
