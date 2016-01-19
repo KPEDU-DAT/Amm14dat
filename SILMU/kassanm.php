@@ -124,7 +124,7 @@
             <tbody>
             <!--  <h1>SIVU</h1> -->
              <?php
-            echo "<form action='v.php' method='post'>";
+            echo "<form action='kassanm.php' method='post'>";
         foreach($rows as $i) {
             echo #"<div class='col-lg-3 col-md-4 col-xs-6 thumb'>
                            "<tr><td> <a class='thumbnail' href='#'>
@@ -258,11 +258,9 @@
     </table>
     <!</div>
 </div> <!-- row mid -->
-<div class="row" style="">
+<div class="row">
     <div class="box" id="box">
-        <img class="dragme" id="kuva0" src="http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/IMG_0016.jpg" style="width:160px; height:120px; top:410px; left:0px;">    
-        <img class="dragme" id="kuva1" src="http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/IMG_0016.jpg" style="width:160px; height:120px; top:410px; left:0px;">
-        <span style="top:410px; position:absolute; width:100px; height:100px;"></span>
+        <img class="dragme" id="kuva" src="http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/IMG_0016.jpg" style="width:160px; height:120px; top:410px;">    
         <!--<div class="col-md-2" style="top:410px;">
 			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#pkmodal">Lisää kuvia</button>
 			</div>
@@ -308,50 +306,20 @@
     <script>
 $(document).ready(function(){
     $(document).click(function(event){
-        var x = [];
-        var y = [];
-        var kuvaid = [];
-        var i = 0;
-        var prox = [];
-        var proy = [];
-        var kuvawidth = [];
-        var kuvaheight = [];
-        var prowidth = [];
-        var proheight = [];
+        var x = document.getElementById("kuva").style.left;
+        var y = document.getElementById("kuva").style.top;
         var bBoxx = 1000;
         var bBoxy = 400;
-        /*for(var i = 0;i<10;i++) {
-            kuvaid[i] = "kuva" + i;
-            x[i] = document.getElementById(kuvaid[i]).style.left;
-        }*/
+        prox = parseInt(x) / bBoxx;
+        proy = parseInt(y) / bBoxy;
         
-        /*for(i = 0; i<2; i++) {
-            kuvaid[i] = "kuva" + i;
-            x[i] = document.getElementById(kuvaid[i]).style.left;
-            y[i] = document.getElementById(kuvaid[i]).style.top;
-            prox[i] = parseInt(x[i]) / bBoxx;
-            proy[i] = parseInt(y[i]) / bBoxy;
-            kuvawidth[i] = document.getElementById(kuvaid[i]).style.width;
-            kuvaheight[i] = document.getElementById(kuvaid[i]).style.height;
-            prowidth[i] = parseInt(kuvawidth[i]) / bBoxx;
-            proheight[i] = parseInt(kuvaheight[i]) / bBoxy;
-
-            $("span").text(kuvawidth[1] +", " + kuvaheight[1]);
-        }*/
+        $("dpan").text(prox + "," +proy);
+        var kuvawidth = document.getElementById("kuva").style.width;
+        var kuvaheight = document.getElementById("kuva").style.height;
         
-        
-        
-        //prox = parseInt(x) / bBoxx;
-        //proy = parseInt(y) / bBoxy;
-
-        
-
-
-        //var kuvawidth = document.getElementById("kuva0").style.width;
-        //var kuvaheight = document.getElementById("kuva0").style.height;
-        
-        //prowidth = parseInt(kuvawidth) / bBoxx;
-        //proheight = parseInt(kuvaheight) / bBoxy;
+        prowidth = parseInt(kuvawidth) / bBoxx;
+        proheight = parseInt(kuvaheight) / bBoxy;
+        $("kpan").text(prowidth + ", " + proheight);        
    });
    pre1src = document.getElementById("pre1").style.src;
    pre2src = document.getElementById("pre2").style.src;
@@ -401,29 +369,29 @@ function myF(){
       document.getElementById('bBox').style.width= window.innerWidth * 2 + "px";
       document.getElementById('bBox').style.height= window.innerHeight + "px";
       
-      document.getElementById('kuva0').style.left=window.innerWidth * prox * 2 + "px";
-      document.getElementById('kuva0').style.top=window.innerHeight * proy + "px";
-      document.getElementById('kuva0').style.width=window.innerWidth *prowidth * 2+"px";
-      document.getElementById('kuva0').style.height=window.innerHeight * proheight + 10 + "px";
+      document.getElementById('kuva').style.left=window.innerWidth * prox * 2 + "px";
+      document.getElementById('kuva').style.top=window.innerHeight * proy + "px";
+      document.getElementById('kuva').style.width=window.innerWidth *prowidth * 2+"px";
+      document.getElementById('kuva').style.height=window.innerHeight * proheight + 10 + "px";
       
   } else {
-      var x = document.getElementById("kuva0").style.left;
-      var y = document.getElementById("kuva0").style.top;
+      var x = document.getElementById("kuva").style.left;
+      var y = document.getElementById("kuva").style.top;
       var testx = parseInt(x) / window.innerWidth / 2;
       var testy = parseInt(y) / window.innerHeight;
-      var kuvawidth = document.getElementById("kuva0").style.width;
-      var kuvaheight = document.getElementById("kuva0").style.height;
+      var kuvawidth = document.getElementById("kuva").style.width;
+      var kuvaheight = document.getElementById("kuva").style.height;
       var testprowidth = parseInt(kuvawidth) / window.innerWidth / 2;
       var testproheight = parseInt(kuvaheight) / window.innerHeight;  
       
       document.getElementById('bBox').style.width = "1000px";
       document.getElementById('bBox').style.height = "400px";
-      document.getElementById('kuva0').style.height = 400 * testproheight+"px";
-      document.getElementById('kuva0').style.width = 1000 * testprowidth+"px";
+      document.getElementById('kuva').style.height = 400 * testproheight+"px";
+      document.getElementById('kuva').style.width = 1000 * testprowidth+"px";
       
       
-      document.getElementById('kuva0').style.left=1000 * testx + "px";
-      document.getElementById('kuva0').style.top=400 * testy+"px";
+      document.getElementById('kuva').style.left=1000 * testx + "px";
+      document.getElementById('kuva').style.top=400 * testy+"px";
   }
 }
  
@@ -443,8 +411,8 @@ document.addEventListener("webkitfullscreenchange", function () {
     });
 	function nappi() {
 	  document.getElementById('divID').style.left
-	  x = document.getElementById("kuva0").style.left;
-	  y = document.getElementById("kuva0").style.top;
+	  x = document.getElementById("kuva").style.left;
+	  y = document.getElementById("kuva").style.top;
       
       
 	}
