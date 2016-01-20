@@ -235,7 +235,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
             <tbody>
             <!--  <h1>SIVU</h1> -->
              <?php
-            echo "<form action='v.php' method='post'>";
+            echo "<form action='v2.php' method='post'>";
         foreach($rows as $i) {
             echo #"<div class='col-lg-3 col-md-4 col-xs-6 thumb'>
                            "<tr><td> <a class='thumbnail' href='#'>
@@ -266,7 +266,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
             </div>
             </div>
           </div>
-<div class="col-md-9">
+<div class="col-md-8">
 <div class="row paa" id="paa">
     <div class="col-md-4">
 	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#kuval">Lisää kuva</button>
@@ -421,10 +421,9 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
              <!--<div class="col-md-2 col-md-offset-2"> <p id="nappi">Aloita esitys</p></div>-->
 
 </div> <!-- row paa-->
-<div class="row" width="100">
+<div id="bBox">
+<div class="row bBox" id="toproflmao">
     <!<div class="ruutu">
-    <table id="bBox" style="width:1000px; height:400px; margin:0px; "> 
-    <tr>
              <?php
         $muuu = $rows[$num][1];
         $muuuk = $rows[$num][2];
@@ -432,24 +431,25 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
         if ($substr == 'v'){
         $telu = substr($num, 1);
         $muu = $rivit[$telu][1];
-        echo "<td><img class='kuva' src='$muu' alt='kuva'></td>";
+        echo "<img class='kuva' src='$muu' alt='kuva'>";
         }
         else if ($substr == 'o'){
         $telu = substr($num, 1);
         $muu = $rivii[$telu][1];
-         echo "<td><img class='kuva' src='$muu' alt='kuva'></td>";
+         echo "<img class='kuva' src='$muu' alt='kuva'>";
         }
         else if ($substr == 'k') {
         $telu = substr($num, 1);
         $muu = $rows[$telu][1];
         $muuk = $rows[$telu][2];
-        echo "<td><img class='img' src='$muu' alt='kuva'></td><td><img class='img' src='$muuk' alt='kuva'></td>";
+        echo "<img class='img' src='$muu' alt='kuva' id='xd'><img class='img' src='$muuk' alt='kuva' id='xdd'>";
         }
         ?>
     </tr>
     </table>
+	</div>
     <!</div>
-</div> <!-- row mid -->
+    <!-- row mid -->
 <div class="row">
 <!--    <div class="box" id="box">
         <img class="dragme" id="kuva" src="http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/IMG_0016.jpg" style="width:160px; height:120px;">    
@@ -494,22 +494,23 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 	
  --!> 	
     <script>
-$(document).ready(function(){
+    $(document).ready(function(){
     $(document).click(function(event){
-        var x = document.getElementById("kuva").style.left;
-        var y = document.getElementById("kuva").style.top;
-        var bBoxx = 1000;
-        var bBoxy = 400;
-        prox = parseInt(x) / bBoxx;
-        proy = parseInt(y) / bBoxy;
         
-        $("dpan").text(prox + "," +proy);
-        var kuvawidth = document.getElementById("kuva").style.width;
-        var kuvaheight = document.getElementById("kuva").style.height;
         
-        prowidth = parseInt(kuvawidth) / bBoxx;
-        proheight = parseInt(kuvaheight) / bBoxy;
-        $("kpan").text(prowidth + ", " + proheight);        
+        
+        
+        //prox = parseInt(x) / bBoxx;
+        //proy = parseInt(y) / bBoxy;
+
+        
+
+
+        //var kuvawidth = document.getElementById("kuva0").style.width;
+        //var kuvaheight = document.getElementById("kuva0").style.height;
+        
+        //prowidth = parseInt(kuvawidth) / bBoxx;
+        //proheight = parseInt(kuvaheight) / bBoxy;
    });
    pre1src = document.getElementById("pre1").style.src;
    pre2src = document.getElementById("pre2").style.src;
@@ -522,8 +523,69 @@ $(document).ready(function(){
     });
 });*/
 function launchFullscreen(element) {
-  document.getElementById("bBox").style.right = "0px";
-  document.getElementById("bBox").style.position = "absolute";
+var elem = document.getElementById("bBox");
+document.getElementById("bBox").style.width="100%";
+document.getElementById("bBox").style.height="100%";
+document.getElementById("toproflmao").style.width="100%";
+document.getElementById("toproflmao").style.height="100%";
+document.getElementById("xd").style.width="50%";
+document.getElementById("xd").style.height="100%";
+document.getElementById("xdd").style.width="50%";
+document.getElementById("xdd").style.height="100%";
+if (elem.requestFullscreen) {
+  elem.requestFullscreen();
+} else if (elem.msRequestFullscreen) {
+  elem.msRequestFullscreen();
+} else if (elem.mozRequestFullScreen) {
+  elem.mozRequestFullScreen();
+} else if (elem.webkitRequestFullscreen) {
+  elem.webkitRequestFullscreen();
+}
+
+        var x = [];
+        var y = [];
+        var kuvaid = [];
+        var i = 0;
+        var prox = [];
+        var proy = [];
+        var kuvawidth = [];
+        var kuvaheight = [];
+        var prowidth = [];
+        var proheight = [];
+        var bBoxx = 1000;
+        var bBoxy = 400;
+
+for(i = 2; i<10; i++) {
+            kuvaid[i] = "kuva" + i;
+            x[i] = document.getElementById(kuvaid[i]).style.left;
+            y[i] = document.getElementById(kuvaid[i]).style.top;
+            prox[i] = parseInt(x[i]) / bBoxx;
+            proy[i] = parseInt(y[i]) / bBoxy;
+            kuvawidth[i] = document.getElementById(kuvaid[i]).style.width;
+            kuvaheight[i] = document.getElementById(kuvaid[i]).style.height;
+            prowidth[i] = parseInt(kuvawidth[i]) / bBoxx;
+            proheight[i] = parseInt(kuvaheight[i]) / bBoxy;
+            
+            var swidth = "screen.width";
+            var sheight = "screen.height";
+            
+            
+            document.getElementById(kuvaid[i]).style.left=window.innerWidth * prox[i] * 6 + "px";
+            document.getElementById(kuvaid[i]).style.top=window.innerHeight * proy[i] + "px";
+            
+            document.getElementById(kuvaid[i]).style.width=window.innerWidth * prowidth[i] * 2+"px";
+            document.getElementById(kuvaid[i]).style.height=window.innerHeight * proheight[i] + 10 + "px";
+            
+            $("kpan").text(prox[1] + ", " + proy[1]);
+            $("span").text(window.innerWidth +", "+ window.outerHeight); 
+        }
+
+
+
+
+
+
+/*
   if(element.requestFullscreen) {
     element.requestFullscreen();
   } else if(element.mozRequestFullScreen) {
@@ -532,13 +594,14 @@ function launchFullscreen(element) {
     element.webkitRequestFullscreen();
   } else if(element.msRequestFullscreen) {
     element.msRequestFullscreen();
-  }
+  } */
      
 }
 function myF(){
   $("#parts").toggle();
   $("#paa").toggle();
   $("#nappibutton").toggle();
+  $("#okok").toggle();
   
   var w = window.innerWidth * prox * 2;
   var h = window.innerHeight * proy;
@@ -559,32 +622,103 @@ function myF(){
       document.getElementById('kuva').style.height=400 * proheight + "px";
   }*/
   if(document.getElementById('bBox').style.width == "1000px") {
+        var x = [];
+        var y = [];
+        var kuvaid = [];
+        var i = 0;
+        var prox = [];
+        var proy = [];
+        var kuvawidth = [];
+        var kuvaheight = [];
+        var prowidth = [];
+        var proheight = [];
+        var bBoxx = 1000;
+        var bBoxy = 400;
+        /*for(var i = 0;i<10;i++) {
+            kuvaid[i] = "kuva" + i;
+            x[i] = document.getElementById(kuvaid[i]).style.left;
+        }*/
+        
+        for(i = 0; i<2; i++) {
+            kuvaid[i] = "kuva" + i;
+            x[i] = document.getElementById(kuvaid[i]).style.left;
+            y[i] = document.getElementById(kuvaid[i]).style.top;
+            prox[i] = parseInt(x[i]) / bBoxx;
+            proy[i] = parseInt(y[i]) / bBoxy;
+            kuvawidth[i] = document.getElementById(kuvaid[i]).style.width;
+            kuvaheight[i] = document.getElementById(kuvaid[i]).style.height;
+            prowidth[i] = parseInt(kuvawidth[i]) / bBoxx;
+            proheight[i] = parseInt(kuvaheight[i]) / bBoxy;
+            
+            
+            document.getElementById(kuvaid[i]).style.left=window.innerWidth * prox[i] * 2 + "px";
+            document.getElementById(kuvaid[i]).style.top=window.innerHeight * proy[i] + "px";
+            document.getElementById(kuvaid[i]).style.width=window.innerWidth *prowidth[i] * 2+"px";
+            document.getElementById(kuvaid[i]).style.height=window.innerHeight * proheight[i] + 10 + "px";
+            
+            $("kpan").text(prox[1] + ", " + proy[1]);
+            $("span").text(window.innerWidth +", "+ window.innerHeight); 
+        }
+      
       document.getElementById('bBox').style.width= window.innerWidth * 2 + "px";
       document.getElementById('bBox').style.height= window.innerHeight + "px";
       
-      document.getElementById('kuva').style.left=window.innerWidth * prox * 2 + "px";
-      document.getElementById('kuva').style.top=window.innerHeight * proy + "px";
-      document.getElementById('kuva').style.width=window.innerWidth *prowidth * 2+"px";
-      document.getElementById('kuva').style.height=window.innerHeight * proheight + 10 + "px";
+      /*document.getElementById('kuva0').style.left=window.innerWidth * prox * 2 + "px";
+      document.getElementById('kuva0').style.top=window.innerHeight * proy + "px";
+      document.getElementById('kuva0').style.width=window.innerWidth *prowidth * 2+"px";
+      document.getElementById('kuva0').style.height=window.innerHeight * proheight + 10 + "px";*/
       
   } else {
-      var x = document.getElementById("kuva").style.left;
-      var y = document.getElementById("kuva").style.top;
-      var testx = parseInt(x) / window.innerWidth / 2;
-      var testy = parseInt(y) / window.innerHeight;
-      var kuvawidth = document.getElementById("kuva").style.width;
-      var kuvaheight = document.getElementById("kuva").style.height;
-      var testprowidth = parseInt(kuvawidth) / window.innerWidth / 2;
-      var testproheight = parseInt(kuvaheight) / window.innerHeight;  
+      var i = 0;
+      var x = [];
+      var y = [];
+      var kuvaid = [];
+      var prox = [];
+      var proy = [];
+      var kuvawidth = [];
+      var kuvaheight = [];
+      var prowidth = [];
+      var proheight = [];
+      
+      for(i=0; i<2; i++) {
+          //var test = document.getElementById(bBox).style.width;
+      
+          kuvaid[i] = "kuva" + i;
+          x[i] = document.getElementById(kuvaid[i]).style.left;
+          y[i] = document.getElementById(kuvaid[i]).style.top;
+          prox[i] = parseInt(x[i]) / window.innerWidth / 2;
+          proy[i] = parseInt(x[i]) / window.innerHeight;
+          kuvawidth[i] = document.getElementById(kuvaid[i]).style.width;
+          kuvaheight[i] = document.getElementById(kuvaid[i]).style.height; 
+          //prowidth[i] = parseInt(kuvawidth[i]) / window.innerWidth / 2;
+          //proheight[i] = parseInt(kuvaheight[i]) / window.innerHeight;
+          prowidth[i] = parseInt(kuvawidth[i]) / 2709.6;
+          proheight[i] = parseInt(kuvaheight[i]) / 976.8;
+          document.getElementById(kuvaid[i]).style.width = 1000 * prowidth[i]+"px";
+          document.getElementById(kuvaid[i]).style.height = 400 * proheight[i]+"px";
+          
+          document.getElementById(kuvaid[i]).style.left=1000 * prox[i] + "px";
+          document.getElementById(kuvaid[i]).style.top=400 * proy[i]+"px";
+          //$("kpan").text(test + ", " + test);
+          $("span").text(window.innerWidth +", "+ window.innerHeight); 
+        }
+      //var x = document.getElementById("kuva0").style.left;
+      //var y = document.getElementById("kuva0").style.top;
+      //var testx = parseInt(x) / window.innerWidth / 2;
+      //var testy = parseInt(y) / window.innerHeight;
+      //var kuvawidth = document.getElementById("kuva0").style.width;
+      //var kuvaheight = document.getElementById("kuva0").style.height;
+      //var testprowidth = parseInt(kuvawidth) / window.innerWidth / 2;
+      //var testproheight = parseInt(kuvaheight) / window.innerHeight;  
       
       document.getElementById('bBox').style.width = "1000px";
       document.getElementById('bBox').style.height = "400px";
-      document.getElementById('kuva').style.height = 400 * testproheight+"px";
-      document.getElementById('kuva').style.width = 1000 * testprowidth+"px";
+      //document.getElementById('kuva0').style.height = 400 * testproheight+"px";
+      //document.getElementById('kuva0').style.width = 1000 * testprowidth+"px";
       
       
-      document.getElementById('kuva').style.left=1000 * testx + "px";
-      document.getElementById('kuva').style.top=400 * testy+"px";
+      //document.getElementById('kuva0').style.left=1000 * testx + "px";
+      //document.getElementById('kuva0').style.top=400 * testy+"px";
   }
 }
  
@@ -604,8 +738,8 @@ document.addEventListener("webkitfullscreenchange", function () {
     });
 	function nappi() {
 	  document.getElementById('divID').style.left
-	  x = document.getElementById("kuva").style.left;
-	  y = document.getElementById("kuva").style.top;
+	  x = document.getElementById("kuva0").style.left;
+	  y = document.getElementById("kuva0").style.top;
       
       
 	}
@@ -658,7 +792,7 @@ document.addEventListener("webkitfullscreenchange", function () {
 				document.onmouseup = stopDrag;
 			}
     </script>
-	    <?php 
+<!--	    <?php 
 			$krows = array();
 	      $abk = $_FILES['pkuva']['name'];
 	      for($selaskurialussa=1;$selaskurialussa<100;$selaskurialussa++) {
@@ -670,14 +804,15 @@ document.addEventListener("webkitfullscreenchange", function () {
 		  if($_COOKIE['pkuva1'] || $_COOKIE['pkuva2'] || $_COOKIE['pkuva3'] || $_COOKIE['pkuva4'] || $_COOKIE['pkuva5'] || $_COOKIE['pkuva6'] || $_COOKIE['pkuva7'] || $_COOKIE['pkuva8'] || $_COOKIE['pkuva9'] || $_COOKIE['pkuva10'] ) {
 	        for($xy = 1; $xy < 20; $xy++) {
 	          $ok = 'pkuva'.$xy;
+			  $xx = $xy - 1;
 	          if($_COOKIE[$ok]) {
 	            $okok = $_COOKIE[$ok];
-	            echo "<img src='$okok' alt='kuva' class='dragme' id='joku'>";
+	            echo "<img src='$okok' alt='kuva' class='dragme' id='kuva$xx'>";
 	            }}
 	        }
 	      
-	       ?>
-	<div class="col-md-2">
+	       ?>-->
+	
             <button type="button" class="btn aaaaa btn-default" data-toggle="modal" data-target="#pkmodal" id="nappibutton">Lisää kuvia</button>
             </div>
                 <div class="modal fade" id="pkmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -688,7 +823,7 @@ document.addEventListener("webkitfullscreenchange", function () {
                            <h3>Lisää kuvaobjekteja</h3>
                           </div>                         
                           <div class="modal-body">
-                           <div class="row"><form action="v.php" method="post">
+                           <div class="row"><form action="v2.php" method="post">
                            <?php
                                    $sqlkg = "SELECT DISTINCT pklink, pkid FROM silmuj;";
                                     if($ktulos = $my->query($sqlkg)) {
@@ -704,17 +839,39 @@ document.addEventListener("webkitfullscreenchange", function () {
                            ?></div><hr><input type="submit" name="nappi" class="btn btn-default kek" value="Lisää kuvat"></form>
                            
                            
-                            <form enctype="multipart/form-data" role="form" action="v.php" method="post">       
+                            <form enctype="multipart/form-data" role="form" action="v2.php" method="post">       
                                 <input name="pkuva" type="file" class="aanil btn btn-default"> <br>
                                 <input type="submit" class="btn btn-default kek" value="Send File">
                             </form>
                          </div>
+
                         </div>
                     </div>
-                </div> 
+                </div>
+<?php
+            $krows = array();
+          $abk = $_FILES['pkuva']['name'];
+          for($selaskurialussa=1;$selaskurialussa<100;$selaskurialussa++) {
+          $uuu = 'pkuva'.$selaskurialuusa;
+
+            if($_POST[$uuu]) {
+                $lol = $selaskurialussa; } }
+          $lol++;
+          if($_COOKIE['pkuva1'] || $_COOKIE['pkuva2'] || $_COOKIE['pkuva3'] || $_COOKIE['pkuva4'] || $_COOKIE['pkuva5'] || $_COOKIE['pkuva6'] || $_COOKIE['pkuva7'] || $_COOKIE['pkuva8'] || $_COOKIE['pkuva9'] || $_COOKIE['pkuva10'] ) {
+            for($xy = 1; $xy < 20; $xy++) {
+              $ok = 'pkuva'.$xy;
+              $xx = $xy - 1; 
+              if($_COOKIE[$ok]) {
+                $okok = $_COOKIE[$ok];
+                echo "<img src='$okok' alt='kuva' class='dragme' id='kuva$xx'>";
+                }}
+            }
+
+           ?> 
 </div> 
 </div> <!-- md-9 -->
-</div> <!-- row -->   
+</div> <!-- row -->
+<div class="col-md-1" id="okok">   
 <script src="/~jonashandelin/bs_2015/bower_components/bootstrap/dist/js//bootstrap.min.js"></script>
 </body>
 </html>
