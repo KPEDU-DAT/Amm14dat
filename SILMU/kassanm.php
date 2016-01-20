@@ -235,7 +235,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
             <tbody>
             <!--  <h1>SIVU</h1> -->
              <?php
-            echo "<form action='v.php' method='post'>";
+            echo "<form action='kassanm.php' method='post'>";
         foreach($rows as $i) {
             echo #"<div class='col-lg-3 col-md-4 col-xs-6 thumb'>
                            "<tr><td> <a class='thumbnail' href='#'>
@@ -270,11 +270,6 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 <div class="row paa" id="paa">
     <div class="col-md-4">
 	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#kuval">Lisää kuva</button>
-	
-	<!--<span></span>
-	<dpan></dpan>
-	<kpan></kpan>-->
-
     </div>
     <div class="modal fade" id="kuval" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog">
@@ -421,7 +416,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
              <!--<div class="col-md-2 col-md-offset-2"> <p id="nappi">Aloita esitys</p></div>-->
 
 </div> <!-- row paa-->
-<div class="row" width="100">
+<div class="row" width="100%">
     <!<div class="ruutu">
     <table id="bBox" style="width:1000px; height:400px; margin:0px; "> 
     <tr>
@@ -432,18 +427,18 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
         if ($substr == 'v'){
         $telu = substr($num, 1);
         $muu = $rivit[$telu][1];
-        echo "<td><img class='kuva' src='$muu' alt='kuva'></td>";
+        echo "<td><img class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%;'></td>";
         }
         else if ($substr == 'o'){
         $telu = substr($num, 1);
         $muu = $rivii[$telu][1];
-         echo "<td><img class='kuva' src='$muu' alt='kuva'></td>";
+         echo "<td><img class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%;'></td>";
         }
         else if ($substr == 'k') {
         $telu = substr($num, 1);
         $muu = $rows[$telu][1];
         $muuk = $rows[$telu][2];
-        echo "<td><img class='img' src='$muu' alt='kuva'></td><td><img class='img' src='$muuk' alt='kuva'></td>";
+        echo "<td><img class='img' src='$muu' alt='kuva' style='width:100%;height:100%;'></td><td><img class='img' src='$muuk' alt='kuva' style='width:100%;height:100%;'></td>";
         }
         ?>
     </tr>
@@ -451,12 +446,18 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
     <!</div>
 </div> <!-- row mid -->
 <div class="row">
+<<<<<<< HEAD:SILMU/v.php
 <!--    <div class="box" id="box">
         <img class="dragme" id="kuva" src="http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/IMG_0016.jpg" style="width:160px; height:120px;">    
 </div> --!>
 
 <!--</div>  row bot
 <div class="col-md-2">
+=======
+    <div class="box" id="box">
+        <img class="dragme" id="kuva" src="http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/IMG_0016.jpg" style="width:160px; height:120px; top:410px;">    
+        <!--<div class="col-md-2" style="top:410px;">
+>>>>>>> 14c796768bf123b0491ac6f1d513f9d44d3609ed:SILMU/kassanm.php
 			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#pkmodal">Lisää kuvia</button>
 			</div>
 				<div class="modal fade" id="pkmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -470,6 +471,10 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
     					   <div class="row"><form action="v.php" method="post">
     					   <?php
     					           $sqlkg = "SELECT DISTINCT pklink, pkid FROM silmuj;";
+<<<<<<< HEAD:SILMU/v.php
+=======
+
+>>>>>>> 14c796768bf123b0491ac6f1d513f9d44d3609ed:SILMU/kassanm.php
     								if($ktulos = $my->query($sqlkg)) {
        									while($kt = $ktulos->fetch_object()) {
            									$krows[] = array($kt->pkid, $kt->pklink);
@@ -483,14 +488,26 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                            ?></div><hr><input type="submit" name="nappi" class="btn btn-default kek" value="Lisää kuvat"></form>
     					   
     					   
+<<<<<<< HEAD:SILMU/v.php
 							<form enctype="multipart/form-data" role="form" action="v.php" method="post">		
+=======
+							<form enctype="multipart/form-data" role="form" action="silmuproto.php" method="post">		
+>>>>>>> 14c796768bf123b0491ac6f1d513f9d44d3609ed:SILMU/kassanm.php
     							<input name="pkuva" type="file" type="button" class="aanil btn btn-default"> <br>
     							<input type="submit" class="btn btn-default kek" value="Send File">
 							</form>
                          </div>
 						</div>
                     </div>
+<<<<<<< HEAD:SILMU/v.php
                 </div>	
+=======
+                </div>-->
+	
+    </div>
+</div> <!-- row bot -->
+	
+>>>>>>> 14c796768bf123b0491ac6f1d513f9d44d3609ed:SILMU/kassanm.php
 	
  --!> 	
     <script>
