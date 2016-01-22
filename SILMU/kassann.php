@@ -344,8 +344,10 @@ function myF(){
             kuvaid[i] = "kuva" + i;
             x[i] = document.getElementById(kuvaid[i]).style.left;
             y[i] = document.getElementById(kuvaid[i]).style.top;
-            prox[i] = parseInt(x[i]) / bBoxx;
-            proy[i] = parseInt(y[i]) / bBoxy;
+            //x[i] = parseInt(xpx[i]);
+            //y[i] = parseInt(ypx[i]);
+            //prox[i] = parseInt(x[i]) / bBoxx;
+            //proy[i] = parseInt(y[i]) / bBoxy;
             kuvawidth[i] = document.getElementById(kuvaid[i]).style.width;
             kuvaheight[i] = document.getElementById(kuvaid[i]).style.height;
             prowidth[i] = parseInt(kuvawidth[i]) / bBoxx;
@@ -355,7 +357,8 @@ function myF(){
             document.getElementById(kuvaid[i]).style.top=window.innerHeight * proy[i] + "px";
             document.getElementById(kuvaid[i]).style.width=window.innerWidth *prowidth[i] * 2+"px";
             document.getElementById(kuvaid[i]).style.height=window.innerHeight * proheight[i]  + "px";          
-             
+            
+            //if(x[i]<0 || x[i]>1000) 
             
             //$("span").text(kuvawidth[0] +", "+ kuvaheight[0]);
             //$("kpan").text(prowidth[1] + ", " + proheight[1]);
