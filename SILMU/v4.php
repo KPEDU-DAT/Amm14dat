@@ -82,7 +82,7 @@
         echo "Kuva tallennettu";
 		$aa = 1;
         } else if ($ak){
-        echo "Tallennus epäonnistui";
+        echo "Tallennus epÃ¤onnistui";
     }
     if($krows[$ayy][1] != "http://cosmo.kpedu.fi/~johanhandelin/Amm14dat/SILMU/$ak")
 	 if ($ak && $aa) {
@@ -98,7 +98,7 @@
              echo '<p> linkki tallennettu</p>';
              }
                else{
-             echo '<p> linkin tallennus epäonnistui</p>'; echo $ak; echo $ayi; echo $ayy;
+             echo '<p> linkin tallennus epÃ¤onnistui</p>'; echo $ak; echo $ayi; echo $ayy;
              }  
              }
        }
@@ -148,7 +148,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
         echo "Kuva tallennettu";
 		$a = 1;
         } else if ($k){
-        echo "Tallennus epäonnistui";
+        echo "Tallennus epÃ¤onnistui";
     }
 	 if ($k && $a) {
 	   if($kopiotk = $my->query("SELECT pklink FROM silmuj WHERE pklink = 'http://cosmo.kpedu.fi/~johanhandelin/Amm14dat/SILMU/pkuva/$k'")) {
@@ -163,7 +163,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                 echo '<p> linkki tallennettu</p>';
              }
              else {
-                echo '<p> linkin tallennus epäonnistui</p>';
+                echo '<p> linkin tallennus epÃ¤onnistui</p>';
              }
            }
       } }
@@ -235,7 +235,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
             <tbody>
             <!--  <h1>SIVU</h1> -->
              <?php
-            echo "<form action='v2.php' method='post'>";
+            echo "<form action='v4.php' method='post'>";
         foreach($rows as $i) {
             echo #"<div class='col-lg-3 col-md-4 col-xs-6 thumb'>
                            "<tr><td> <a class='thumbnail' href='#'>
@@ -269,7 +269,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 <div class="col-md-8">
 <div class="row paa" id="paa">
     <div class="col-md-4">
-	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#kuval">Lisää kuva</button>
+	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#kuval">LisÃ¤Ã¤ kuva</button>
 	
 	<!--<span></span>
 	<dpan></dpan>
@@ -286,7 +286,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
     <div class="row">
     <div class="col-xs-6">
     <h2> Kuva 1</h2>
-        <form enctype="multipart/form-data" role="form" action="v2.php" method="post">
+        <form enctype="multipart/form-data" role="form" action="v.php" method="post">
     <div class="form-group">
     <input name="kuva" class="aanil btn btn-default" type="file" type="button"><br>
     </div>
@@ -317,14 +317,14 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
     if (move_uploaded_file($_FILES['kuva']['tmp_name'], $uploadfile)) {
         echo "Kuva tallennettu";
         } else if ($k){
-        echo "Tallennus epäonnistui";
+        echo "Tallennus epÃ¤onnistui";
     }
 
     $uploadfile2 = $uploaddir . basename($_FILES['kuva2']['name']);
     if (move_uploaded_file($_FILES['kuva2']['tmp_name'], $uploadfile2)) {
         echo "Kuva tallennettu";
         } else if ($kk) {
-        echo "Tallennus epäonnistui";
+        echo "Tallennus epÃ¤onnistui";
     }
     if ($k && $kk) {
         $sql = "INSERT INTO SILMU(krid, kuva1, kuva2) VALUES('$id','http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/$k', 'http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/$kk' )";
@@ -332,7 +332,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
       echo '<p> linkit tallennettu</p>';
   }
       else{
-      echo '<p> linkien tallennus epäonnistui</p>';
+      echo '<p> linkien tallennus epÃ¤onnistui</p>';
   }
   }
     else if ($k) {
@@ -341,7 +341,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
       echo '<p> linki tallennettu</p>';
   }
       else{
-      echo '<p> linkin tallennus epäonnistui</p>';
+      echo '<p> linkin tallennus epÃ¤onnistui</p>';
   }
   }
     else if ($kk) {
@@ -350,7 +350,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
       echo '<p> linki tallennettu</p>';
   }
       else{
-      echo '<p> linkin tallennus epäonnistui</p>';
+      echo '<p> linkin tallennus epÃ¤onnistui</p>';
   }
   }
     ?>
@@ -362,7 +362,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
   					<div class="modal-dialog" role="document">
     					<div class="modal-content">
     					    <div class="modal-header">
-    					        <h3>Lisää ääniä</h3>
+    					        <h3>Lisää ääniä¤</h3>
                             </div>
       						<div class="modal-body">
       						  <form action="v.php" method="get">
@@ -393,7 +393,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 	                 				    <input type="submit" value="Send File" class="btn btn-primary">
                                     </div>
                  				</form>
-                 				<div class="alert alert-info"><strong>Huom! </strong> Äänitiedoston maksimikoko on 2 MB.</div>
+                 				<div class="alert alert-info"><strong>Huom! </strong> Ãänitiedoston maksimikoko on 2 MB.</div>
                             </div>
       						<div class="modal-footer">
         						<button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
@@ -416,7 +416,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
             </div>
         <div class="col-md-1">
             <!--<button id="nappi" style="margin:0px;" class="btn btn-default">Start</button>-->
-            <button onclick="launchFullscreen(document.documentElement);" type="button" class="btn btn-default">Nayta</button>
+            <button onclick="launchFullscreen(document.documentElement);" type="button" class="btn btn-default">Näyta</button>
 		</div>
              <!--<div class="col-md-2 col-md-offset-2"> <p id="nappi">Aloita esitys</p></div>-->
 
@@ -431,12 +431,12 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
         if ($substr == 'v'){
         $telu = substr($num, 1);
         $muu = $rivit[$telu][1];
-        echo "<img class='kuva' src='$muu' alt='kuva'>";
+        echo "<img class='kuva' src='$muu' alt='kuva' id='topkek'>";
         }
         else if ($substr == 'o'){
         $telu = substr($num, 1);
         $muu = $rivii[$telu][1];
-         echo "<img class='kuva' src='$muu' alt='kuva'>";
+         echo "<img class='kuva' src='$muu' alt='kuva' id='topkekk'>";
         }
         else if ($substr == 'k') {
         $telu = substr($num, 1);
@@ -457,14 +457,14 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 
 <!--</div>  row bot
 <div class="col-md-2">
-			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#pkmodal">Lisää kuvia</button>
+			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#pkmodal">LisÃ¤Ã¤ kuvia</button>
 			</div>
 				<div class="modal fade" id="pkmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   					<div class="modal-dialog modal-lg" role="document">
     					<div class="modal-content" style="padding: 5px"> 
     					  <div class="modal-header">
     					   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    					   <h3>Lisää kuvaobjekteja</h3>
+    					   <h3>LisÃ¤Ã¤ kuvaobjekteja</h3>
     					  </div>    					 
     					  <div class="modal-body">
     					   <div class="row"><form action="v.php" method="post">
@@ -476,11 +476,10 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
        										}
     								}
     					       
-    					       
     					       foreach ($krows as $i) {
     					           echo "<div class=\"col-xs-6 col-md-4\"><label class='klik'><input type='checkbox' name='pkuva$i[0]' value='$i[0]'style='background-image: url($i[1]); width: 500px; height: 50px;'> <img style='width: 200px; height: 200px;' class='klik' src='$i[1]' alt='kuva'></label></div>";
                                }
-                           ?></div><hr><input type="submit" name="nappi" class="btn btn-default kek" value="Lisää kuvat"></form>
+                           ?></div><hr><input type="submit" name="nappi" class="btn btn-default kek" value="LisÃ¤Ã¤ kuvat"></form>
     					   
     					   
 							<form enctype="multipart/form-data" role="form" action="v.php" method="post">		
@@ -494,44 +493,55 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 	
  --!> 	
     <script>
-    $(document).ready(function(){
+ $(document).ready(function(){
     $(document).click(function(event){
-        
-        
-        
-        
+
+
+
+
         //prox = parseInt(x) / bBoxx;
         //proy = parseInt(y) / bBoxy;
 
-        
+
 
 
         //var kuvawidth = document.getElementById("kuva0").style.width;
         //var kuvaheight = document.getElementById("kuva0").style.height;
-        
+
         //prowidth = parseInt(kuvawidth) / bBoxx;
         //proheight = parseInt(kuvaheight) / bBoxy;
    });
    pre1src = document.getElementById("pre1").style.src;
    pre2src = document.getElementById("pre2").style.src;
-   
-   
+
+
 });
 /*$(document).ready(function(){
     $(document).mousemove(function(event){
         $("span").text(event.pageX + ", " + event.pageY);
     });
 });*/
+var testi = '<?php echo $substr;?>';
 function launchFullscreen(element) {
 var elem = document.getElementById("bBox");
 document.getElementById("bBox").style.width="100%";
 document.getElementById("bBox").style.height="100%";
 document.getElementById("toproflmao").style.width="100%";
 document.getElementById("toproflmao").style.height="100%";
+if (testi == 'k') {
 document.getElementById("xd").style.width="50%";
 document.getElementById("xd").style.height="100%";
 document.getElementById("xdd").style.width="50%";
 document.getElementById("xdd").style.height="100%";
+}
+else if (testi == 'v') {
+document.getElementById("topkek").style.height="100%";
+document.getElementById("topkek").style.width="100%";
+}
+else if (testi = 'o') {
+document.getElementById("topkekk").style.width="100%";
+document.getElementById("topkekk").style.height="100%";
+}
 if (elem.requestFullscreen) {
   elem.requestFullscreen();
 } else if (elem.msRequestFullscreen) {
@@ -541,7 +551,8 @@ if (elem.requestFullscreen) {
 } else if (elem.webkitRequestFullscreen) {
   elem.webkitRequestFullscreen();
 }
-
+        
+       
         var x = [];
         var y = [];
         var kuvaid = [];
@@ -555,7 +566,11 @@ if (elem.requestFullscreen) {
         var bBoxx = 1000;
         var bBoxy = 400;
 
-for(i = 1; i<10; i++) {
+for(i = 0; i<100; i++) {
+                /*   var sw = screen.width;
+            var las = sw / 1155;
+            var sh = screen.height;
+            vas lask = sh / 650;*/
             kuvaid[i] = "kuva" + i;
             x[i] = document.getElementById(kuvaid[i]).style.left;
             y[i] = document.getElementById(kuvaid[i]).style.top;
@@ -565,50 +580,42 @@ for(i = 1; i<10; i++) {
             kuvaheight[i] = document.getElementById(kuvaid[i]).style.height;
             prowidth[i] = parseInt(kuvawidth[i]) / bBoxx;
             proheight[i] = parseInt(kuvaheight[i]) / bBoxy;
-            
+            var lev = document.getElementById(kuvaid[i]).style.width;
+            var kor = document.getElementById(kuvaid[i]).style.height;
+            var sw = screen.width;
+           var las = (sw / 1155) * 200;
+            var sh = screen.height;
+            var lask = (sh / 650) * 200;
+                                                             
             var swidth = "screen.width";
             var sheight = "screen.height";
-            
-            
-            document.getElementById(kuvaid[i]).style.left=window.innerWidth * prox[i] *1.15 + "px";
-            document.getElementById(kuvaid[i]).style.top=window.innerHeight * proy[i] / 1.5 + "px";
-            
-            document.getElementById(kuvaid[i]).style.width=window.innerWidth * prowidth[i] * 2+"px";
-            document.getElementById(kuvaid[i]).style.height=window.innerHeight * proheight[i] + 10 + "px";
-            
+
+
+            document.getElementById(kuvaid[i]).style.left = 1994 * prox[i] / 1.05 + "px";
+            document.getElementById(kuvaid[i]).style.top = window.innerHeight * proy[i] / 1.24 + 250 + "px";
+  /*          document.getElementById(kuvaid[i]).style.width=window.innerWidth * prowidth[i] * 2+"px";
+            document.getElementById(kuvaid[i]).style.height=window.innerHeight * proheight[i] + 10 + "px";*/
+            document.getElementById(kuvaid[i]).style.width = las + "px";
+            document.getElementById(kuvaid[i]).style.height = lask + "px";
+}}
             $("kpan").text(prox[1] + ", " + proy[1]);
-            $("span").text(window.innerWidth +", "+ window.outerHeight); 
-        }
+            $("#span").text(window.innerWidth +", "+ window.outerHeight);
 
 
 
 
-
-
-/*
-  if(element.requestFullscreen) {
-    element.requestFullscreen();
-  } else if(element.mozRequestFullScreen) {
-    element.mozRequestFullScreen();
-  } else if(element.webkitRequestFullscreen) {
-    element.webkitRequestFullscreen();
-  } else if(element.msRequestFullscreen) {
-    element.msRequestFullscreen();
-  } */
-     
-}
 function myF(){
   $("#parts").toggle();
   $("#paa").toggle();
   $("#nappibutton").toggle();
   $("#okok").toggle();
-  
+
   var w = window.innerWidth * prox * 2;
   var h = window.innerHeight * proy;
-      
-  
-  
-  
+
+
+
+
   /*if(document.getElementById('box').style.border == "0px"){
       document.getElementById('box').style.border = "2px solid #bbbbbb";
       document.getElementById('bBox').style.border = "2px solid #bbbbbb";
@@ -638,7 +645,7 @@ function myF(){
             kuvaid[i] = "kuva" + i;
             x[i] = document.getElementById(kuvaid[i]).style.left;
         }*/
-        
+
         for(i = 0; i<2; i++) {
             kuvaid[i] = "kuva" + i;
             x[i] = document.getElementById(kuvaid[i]).style.left;
@@ -649,25 +656,25 @@ function myF(){
             kuvaheight[i] = document.getElementById(kuvaid[i]).style.height;
             prowidth[i] = parseInt(kuvawidth[i]) / bBoxx;
             proheight[i] = parseInt(kuvaheight[i]) / bBoxy;
-            
-            
+
+
             document.getElementById(kuvaid[i]).style.left=window.innerWidth * prox[i] * 2 + "px";
             document.getElementById(kuvaid[i]).style.top=window.innerHeight * proy[i] + "px";
             document.getElementById(kuvaid[i]).style.width=window.innerWidth *prowidth[i] * 2+"px";
             document.getElementById(kuvaid[i]).style.height=window.innerHeight * proheight[i] + 10 + "px";
-            
+
             $("kpan").text(prox[1] + ", " + proy[1]);
-            $("span").text(window.innerWidth +", "+ window.innerHeight); 
+            $("#span").text(window.innerWidth +", "+ window.innerHeight);
         }
-      
+
       document.getElementById('bBox').style.width= window.innerWidth * 2 + "px";
       document.getElementById('bBox').style.height= window.innerHeight + "px";
-      
+
       /*document.getElementById('kuva0').style.left=window.innerWidth * prox * 2 + "px";
       document.getElementById('kuva0').style.top=window.innerHeight * proy + "px";
       document.getElementById('kuva0').style.width=window.innerWidth *prowidth * 2+"px";
       document.getElementById('kuva0').style.height=window.innerHeight * proheight + 10 + "px";*/
-      
+
   } else {
       var i = 0;
       var x = [];
@@ -679,28 +686,28 @@ function myF(){
       var kuvaheight = [];
       var prowidth = [];
       var proheight = [];
-      
+
       for(i=0; i<2; i++) {
           //var test = document.getElementById(bBox).style.width;
-      
+
           kuvaid[i] = "kuva" + i;
           x[i] = document.getElementById(kuvaid[i]).style.left;
           y[i] = document.getElementById(kuvaid[i]).style.top;
           prox[i] = parseInt(x[i]) / window.innerWidth / 2;
           proy[i] = parseInt(x[i]) / window.innerHeight;
           kuvawidth[i] = document.getElementById(kuvaid[i]).style.width;
-          kuvaheight[i] = document.getElementById(kuvaid[i]).style.height; 
-          //prowidth[i] = parseInt(kuvawidth[i]) / window.innerWidth / 2;
+          kuvaheight[i] = document.getElementById(kuvaid[i]).style.height;
+		 //prowidth[i] = parseInt(kuvawidth[i]) / window.innerWidth / 2;
           //proheight[i] = parseInt(kuvaheight[i]) / window.innerHeight;
           prowidth[i] = parseInt(kuvawidth[i]) / 2709.6;
           proheight[i] = parseInt(kuvaheight[i]) / 976.8;
           document.getElementById(kuvaid[i]).style.width = 1000 * prowidth[i]+"px";
           document.getElementById(kuvaid[i]).style.height = 400 * proheight[i]+"px";
-          
+
           document.getElementById(kuvaid[i]).style.left=1000 * prox[i] + "px";
           document.getElementById(kuvaid[i]).style.top=400 * proy[i]+"px";
           //$("kpan").text(test + ", " + test);
-          $("span").text(window.innerWidth +", "+ window.innerHeight); 
+          $("span").text(window.innerWidth +", "+ window.innerHeight);
         }
       //var x = document.getElementById("kuva0").style.left;
       //var y = document.getElementById("kuva0").style.top;
@@ -710,45 +717,48 @@ function myF(){
       //var kuvaheight = document.getElementById("kuva0").style.height;
       //var testprowidth = parseInt(kuvawidth) / window.innerWidth / 2;
       //var testproheight = parseInt(kuvaheight) / window.innerHeight;  
-      
+
       document.getElementById('bBox').style.width = "1000px";
       document.getElementById('bBox').style.height = "400px";
       //document.getElementById('kuva0').style.height = 400 * testproheight+"px";
       //document.getElementById('kuva0').style.width = 1000 * testprowidth+"px";
-      
-      
+
+
       //document.getElementById('kuva0').style.left=1000 * testx + "px";
       //document.getElementById('kuva0').style.top=400 * testy+"px";
   }
 }
- 
+            document.getElementById("hid").innerHTML=window.innerWidth;
+            document.getELementById("hud").innerHTML=window.innerHeight;
 document.addEventListener("webkitfullscreenchange", function () {
     myF(); /*alka kaytan myF() funktio, kun kayta fullscreen mode tai pois fullscreen modesta*/
 }, false);
-       
+
     $(document).ready(function(){
         $("#nappi").click(function(){
-            
+
             //var x = document.getElementById('kuva').style.left;
             //var y = document.getElementById('kuva').style.top;
             var osoite = document.getElementById('kuva').src;
             window.open("kassax.php?x="+x+"&y="+y+"&osoite="+osoite );
-            
+
          });
     });
-	function nappi() {
-	  document.getElementById('divID').style.left
-	  x = document.getElementById("kuva0").style.left;
-	  y = document.getElementById("kuva0").style.top;
-      
-      
-	}
-	/*function md(image) {
-	    document.getElementById(image).style.zIndex = "3";    
-	}
-	function mu(image) {
-	    document.getElementById(image).style.zIndex = "2";
-	}*/
+    function nappi() {
+      document.getElementById('divID').style.left
+      x = document.getElementById("kuva0").style.left;
+      y = document.getElementById("kuva0").style.top;
+
+
+    }
+    /*function md(image) {
+        document.getElementById(image).style.zIndex = "3";    
+    }
+    function mu(image) {
+        document.getElementById(image).style.zIndex = "2";
+    }*/
+</script>
+	<script>
     function startDrag(e) {
 				if (!e) {
 					var e = window.event;
@@ -756,7 +766,7 @@ document.addEventListener("webkitfullscreenchange", function () {
 				
 				var targ = e.target ? e.target : e.srcElement;
 				if (targ.className != 'dragme') {return};
-				
+			
 					offsetX = e.clientX;
 					offsetY = e.clientY;
 				
@@ -813,17 +823,17 @@ document.addEventListener("webkitfullscreenchange", function () {
 	      
 	       ?>-->
 	
-            <button type="button" class="btn aaaaa btn-default" data-toggle="modal" data-target="#pkmodal" id="nappibutton">Lisää kuvia</button>
+            <button type="button" class="btn aaaaa btn-default" data-toggle="modal" data-target="#pkmodal" id="nappibutton">LisÃ¤Ã¤ kuvia</button>
             </div>
                 <div class="modal fade" id="pkmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content" style="padding: 5px"> 
                           <div class="modal-header">
                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                           <h3>Lisää kuvaobjekteja</h3>
+                           <h3>LisÃ¤Ã¤ kuvaobjekteja</h3>
                           </div>                         
                           <div class="modal-body">
-                           <div class="row"><form action="v2.php" method="post">
+                           <div class="row"><form action="v4.php" method="post">
                            <?php
                                    $sqlkg = "SELECT DISTINCT pklink, pkid FROM silmuj;";
                                     if($ktulos = $my->query($sqlkg)) {
@@ -836,10 +846,10 @@ document.addEventListener("webkitfullscreenchange", function () {
                                foreach ($krows as $i) {
                                    echo "<div class=\"col-xs-6 col-md-4\"><label class='klik'><input type='checkbox' name='pkuva$i[0]' value='$i[0]'style='background-image: url($i[1]); width: 500px; height: 50px;'> <img style='width: 200px; height: 200px;' class='klik' src='$i[1]' alt='kuva'></label></div>";
                                }
-                           ?></div><hr><input type="submit" name="nappi" class="btn btn-default kek" value="Lisää kuvat"></form>
+                           ?></div><hr><input type="submit" name="nappi" class="btn btn-default kek" value="LisÃ¤Ã¤ kuvat"></form>
                            
                            
-                            <form enctype="multipart/form-data" role="form" action="v2.php" method="post">       
+                            <form enctype="multipart/form-data" role="form" action="v4.php" method="post">       
                                 <input name="pkuva" type="file" class="aanil btn btn-default"> <br>
                                 <input type="submit" class="btn btn-default kek" value="Send File">
                             </form>
