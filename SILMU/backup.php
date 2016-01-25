@@ -171,7 +171,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 <html>
     <head>
         <meta charset="utf-8">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
     <link rel="stylesheet" href="kek22.css">
     <style>
         .paa {
@@ -209,6 +209,9 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 	    width:90%;   
 	    }*/
     </style>
+
+    <link rel="stylesheet" href="resizetest.css">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -219,6 +222,10 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
     
     </head>
     <body>
+
+    <script type="text/javascript" src="resize.js"></script>
+    <script type="text/javascript" src="drag22.js"></script>
+
      <div dragable="false"class="row" style="margin:0px; height:100%;">
           <div dragable="false"class="col-md-3" id="parts">
             <div dragable="false"class="lista2">
@@ -228,7 +235,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
             <tbody dragable="false">
             <!--  <h1>SIVU</h1> -->
              <?php
-            echo "<form action='wow.php' method='post'>";
+            echo "<form action='backup.php' method='post'>";
         foreach($rows as $i) {
             echo #"<div class='col-lg-3 col-md-4 col-xs-6 thumb'>
                            "<tr><td> <a class='thumbnail' href='#'>
@@ -408,6 +415,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 </div> <!-- row paa-->
 <div class="row">
     <!<div class="ruutu">
+    
     <div id="bBox" style="width:1000px; position:absolute; height:400px; margin:0px; left:0px; "> 
         <?php
         $muuu = $rows[$num][1];
@@ -432,14 +440,31 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
         ?>
     </div>
 </div> <!-- row mid -->
+
 <div class="row" style="margin:0px; ">
     <div class="box" id="box">
-        <img class="dragme" id="kuva0" src="http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/IMG_0016.jpg" style="width:160px; height:120px; top:410px; left:165px;">    
-        <img class="dragme" id="kuva1" src="http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/IMG_0016.jpg" style="width:160px; height:120px; top:410px; left:0px; left:330px;">
-
-		<span style="top:410px; left:100px;"></span>
-        <kpan style="top:410px; left:300px;"></kpan>
-        <hpan></hpan>
+	    <div id="dragDiv0" style="width:160px; height:120px;position:absolute;">
+	        <div id="rRightDown0"> </div>
+            <div id="rLeftDown0"> </div>
+            <div id="rRightUp0"> </div>
+            <div id="rLeftUp0"> </div>
+            <div id="rRight0"> </div>
+            <div id="rLeft0"> </div>
+            <div id="rUp0"> </div>
+            <div id="rDown0"></div>
+            <img id="kuva0" src="http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/IMG_0016.jpg" style="width:100%;height:100%;">                               
+	    </div> 
+	    <div id="dragDiv1" style="width:160px; height:120px;position:absolute;">     
+            <div id="rRightDown1"> </div>
+            <div id="rLeftDown1"> </div>
+            <div id="rRightUp1"> </div>
+            <div id="rLeftUp1"> </div>
+            <div id="rRight1"> </div>
+            <div id="rLeft1"> </div>
+            <div id="rUp1"> </div>
+            <div id="rDown1"></div>
+            <img id="kuva1" src="http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/IMG_0016.jpg" style="width:100%;height:100%;">                               
+	    </div>	
 		<button id="lknappi" type="button" class="btn aaaaa btn-default" data-toggle="modal" data-target="#pkmodal" id="nappibutton" style="left:0px;position:absolute;top:410px;">Lisää kuvia</button>
             </div>
                 <div class="modal fade" id="pkmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -475,7 +500,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                         </div>
                     </div>
                 </div>
-		<?php
+		<?php/*
             $krows = array();
           $abk = $_FILES['pkuva']['name'];
           for($selaskurialussa=1;$selaskurialussa<100;$selaskurialussa++) {
@@ -491,7 +516,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                 $okok = $_COOKIE[$ok];
                 echo "<img src='$okok' alt='kuva' class='dragme' id='kuva$xx'>";
                 }}
-            }
+            }*/
            ?> 
     </div>
 </div> <!-- row bot -->
@@ -501,9 +526,6 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 	
   	
     <script>
-$( document ).ready(function() {
-});    
-
 function launchFullscreen(element) {
   if(element.requestFullscreen) {
     element.requestFullscreen();
@@ -524,13 +546,16 @@ bBoxy=400;
 
 
 function myF(){
-  $("#parts").toggle();
-  $("#paa").toggle();
-  $("#lknappi").toggle();
+  //$("#parts").toggle();
+  //$("#paa").toggle();
+  //$("#lknappi").toggle();
+  document.getElementById("parts").style.display="none";
+  document.getElementById("paa").style.display="none";
+  document.getElementById("lknappi").style.display="none";
     if(document.getElementById('bBox').style.width == "1000px") {
         var x = [];
         var y = [];
-        var kuvaid = [];
+        var divid = [];
         var i = 0;
         var prox = [];
         var proy = [];
@@ -539,18 +564,18 @@ function myF(){
         var prowidth = [];
         var proheight = [];
         
-      document.getElementById('row1').style.width= "100%";
+      document.getElementById('row1').style.width= "200%";
       document.getElementById('row1').style.height="100%";
-      document.getElementById('bBox').style.width= window.innerWidth * 2 + "px";
+      document.getElementById('bBox').style.width= "100%";
       document.getElementById('bBox').style.height= "100%";
-        for(i = 0; i<10; i++) {
-            kuvaid[i] = "kuva" + i;
-            x[i] = document.getElementById(kuvaid[i]).style.left;
-            y[i] = document.getElementById(kuvaid[i]).style.top;
+        for(i = 0; i<3; i++) {
+            divid[i] = "dragDiv" + i;
+            x[i] = document.getElementById(divid[i]).style.left;
+            y[i] = document.getElementById(divid[i]).style.top;
             prox[i] = parseInt(x[i]) / bBoxx;
             proy[i] = parseInt(y[i]) / bBoxy;
-            kuvawidth[i] = document.getElementById(kuvaid[i]).style.width;
-            kuvaheight[i] = document.getElementById(kuvaid[i]).style.height;
+            kuvawidth[i] = document.getElementById(divid[i]).style.width;
+            kuvaheight[i] = document.getElementById(divid[i]).style.height;
             prowidth[i] = parseInt(kuvawidth[i]) / bBoxx;
             proheight[i] = parseInt(kuvaheight[i]) / bBoxy;
             
@@ -558,25 +583,19 @@ function myF(){
             oheight[i] = kuvaheight[i];
             
             if(parseInt(x[i])>"-100" && parseInt(x[i])<"1100" && parseInt(y[i])>"-100" && parseInt(y[i])<"500"){
-                document.getElementById(kuvaid[i]).style.left=window.innerWidth * prox[i] * 2 + "px";
-                document.getElementById(kuvaid[i]).style.top=window.innerHeight * proy[i] + "px";
-                document.getElementById(kuvaid[i]).style.width=window.innerWidth *prowidth[i] * 2+"px";
-                document.getElementById(kuvaid[i]).style.height=window.innerHeight * proheight[i]  + "px";
+                document.getElementById(divid[i]).style.left=window.innerWidth * prox[i] * 2 + "px";
+                document.getElementById(divid[i]).style.top=(screen.height-17) * proy[i] + "px";
+                document.getElementById(divid[i]).style.width=window.innerWidth *prowidth[i] * 2+"px";
+                document.getElementById(divid[i]).style.height=(screen.height-17) * proheight[i]  + "px";
             } else {
-                document.getElementById(kuvaid[i]).style.height = "0px";
+                document.getElementById(divid[i]).style.height = "0px";
             }     
-                      
-             
-            
-            $("span").text(x[0] +", "+ x[0]);
-            $("kpan").text(prox[0] + ", " + proy[0]);
-            //$("hpan").text(window.innerWidth * 2 +", "+ get.ElementById(bBox).style.height);	
         }
   } else {	
       var i = 0;
       var x = [];
       var y = [];
-      var kuvaid = [];
+      var divid = [];
       var prox = [];
       var proy = [];
       var kuvawidth = [];
@@ -585,34 +604,39 @@ function myF(){
       var proheight = [];
       var uusix = [];
       var uusiy = [];
-
+	  document.getElementById("parts").style.display="block";
+  	  document.getElementById("paa").style.display="block";
+ 	  document.getElementById("lknappi").style.display="block";  
+	
       document.getElementById('row1').style.width = "1000px";
       document.getElementById('bBox').style.width = "1000px";
       document.getElementById('bBox').style.height = "400px";
       
-      for(i=0; i<10; i++) {
-          kuvaid[i] = "kuva" + i;
-          x[i] = document.getElementById(kuvaid[i]).style.left;
-          y[i] = document.getElementById(kuvaid[i]).style.top;
+      for(i=0; i<3; i++) {
+          divid[i] = "dragDiv" + i;
+          
+          
+          y[i] = document.getElementById(divid[i]).style.top;
+          x[i] = document.getElementById(divid[i]).style.left;
           prox[i] = parseInt(x[i]) / (window.innerWidth * 2);
-          proy[i] = parseInt(y[i]) / window.innerHeight;
-          kuvawidth[i] = document.getElementById(kuvaid[i]).style.width;
-          kuvaheight[i] = document.getElementById(kuvaid[i]).style.height; 
+          proy[i] = parseInt(y[i]) / (screen.height -17);
+          kuvawidth[i] = document.getElementById(divid[i]).style.width;
+          kuvaheight[i] = document.getElementById(divid[i]).style.height; 
           prowidth[i]  = parseInt(kuvawidth[i]) / window.innerWidth / 2;
           proheight[i] = parseInt(kuvaheight[i]) / window.innerHeight;
           uusix[i] = bBoxx * prox[i];
           uusiy[i] = bBoxy * proy[i];
           
           
-          if(document.getElementById(kuvaid[i]).style.height == "0px"){
-              document.getElementById(kuvaid[i]).style.height = oheight[i];
+          if(document.getElementById(divid[i]).style.height == "0px"){
+              document.getElementById(divid[i]).style.height = oheight[i];
           } else {
-              document.getElementById(kuvaid[i]).style.left =  uusix[i] + "0px";
-              document.getElementById(kuvaid[i]).style.top = uusiy[i] + "px";
-              document.getElementById(kuvaid[i]).style.width="160px";
-              document.getElementById(kuvaid[i]).style.height="120px";
-              //document.getElementById(kuvaid[i]).style.left = uusix[i]+"px";
-              //document.getElementById(kuvaid[i]).style.top = uusiy[i]+"px";
+              document.getElementById(divid[i]).style.left =  uusix[i] + "0px";
+              document.getElementById(divid[i]).style.top = uusiy[i] + "px";
+              document.getElementById(divid[i]).style.width="160px";
+              document.getElementById(divid[i]).style.height="120px";
+              //document.getElementById(divid[i]).style.left = uusix[i]+"px";
+              //document.getElementById(divid[i]).style.top = uusiy[i]+"px";
           }
           
           
@@ -628,48 +652,6 @@ function myF(){
 document.addEventListener("webkitfullscreenchange", function () {
     myF(); /*alka kaytan myF() funktio, kun kayta fullscreen mode tai pois fullscreen modesta*/
 }, false);
-       
-   function startDrag(e) {
-				if (!e) {
-					var e = window.event;
-				}
-				
-				var targ = e.target ? e.target : e.srcElement;
-				if (targ.className != 'dragme') {return};
-				
-					offsetX = e.clientX;
-					offsetY = e.clientY;
-				
-				if(!targ.style.left) { targ.style.left= "0px"};
-				if (!targ.style.top) { targ.style.top= "0px"};
-			 
-				
-				coordX = parseInt(targ.style.left);
-				coordY = parseInt(targ.style.top);
-				drag = true;
-				
-				
-					document.onmousemove=dragDiv;
-				
-			}
-    
-    function dragDiv(e) {
-				if (!drag) {return};
-				if (!e) { var e= window.event};
-				var targ=e.target?e.target:e.srcElement;
-				
-				
-				targ.style.left=coordX+e.clientX-offsetX+'px';
-				targ.style.top=coordY+e.clientY-offsetY+'px';
-				return false;
-			}
-    function stopDrag() {
-				drag=false;
-			}
-    window.onload = function() {
-				document.onmousedown = startDrag;
-				document.onmouseup = stopDrag;
-			}
     </script>
 </div> <!-- md-9 -->
 </div> <!-- row -->    
@@ -677,5 +659,44 @@ document.addEventListener("webkitfullscreenchange", function () {
 <?php
 	$my->close();
 ?>
+<script>
+var ia = 0;
+var dragnimi = [];
+var rRightDown = [];
+var rLeftDown = [];
+var rRightUp = [];
+var rLeftUp = [];
+var rRight = [];
+var rLeft = [];
+var rUp = [];
+var rDown = [];
+
+for(ia=0; ia<2; ia++) {
+dragnimi[ia] = "dragDiv" + ia;
+rRightDown[ia]= "rRightDown" + ia;
+rLeftDown[ia]= "rLeftDown" + ia;
+rRightUp[ia]= "rRightUp" + ia;
+rLeftUp[ia]= "rLeftUp" + ia;
+rRight[ia]= "rRight" + ia;
+rLeft[ia]= "rLeft" + ia;
+rUp[ia]= "rUp" + ia;
+rDown[ia]= "rDown" + ia;
+var rs = new Resize(dragnimi[ia], { Max: true, mxContainer: "bgDiv" });
+
+rs.Set(rRightDown[ia], "right-down");
+rs.Set(rLeftDown[ia], "left-down");
+
+rs.Set(rRightUp[ia], "right-up");
+rs.Set(rLeftUp[ia], "left-up");
+
+rs.Set(rRight[ia], "right");
+rs.Set(rLeft[ia], "left");
+
+rs.Set(rUp[ia], "up");
+rs.Set(rDown[ia], "down");
+new Drag(dragnimi[ia], { Limit: true, mxContainer: "bgDiv" });
+}
+</script>
+
 </body>
 </html>
