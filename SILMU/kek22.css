@@ -44,7 +44,7 @@
 		}
 .kuva {
 	   position: relative;
-    width: 1200px;
+    width: 100%;
   height: 650px;
   border: 2px solid #bbbbbb;
   border-radius: 3px;
@@ -54,7 +54,7 @@
   border-right: 1px;
   border-left: 1px;
      }
-.bBox {border: 1px solid #bbbbbb; margin-bottom: 5px; width: 1000px; height:652px;}
+.bBox {border: 1px solid #bbbbbb; margin-bottom: 5px; width: 1155px; height:652px;}
 .aaaaa {margin-top: 5px;}
 #bBox :-webkit-fullscreen {
   width: 100px;
@@ -64,3 +64,7 @@
 	width: 50%;
 	height: 100%;
 }
+.kuva : -webkit-fullscreen {
+	width: 100%;
+	heigth: 100%;
+	}
