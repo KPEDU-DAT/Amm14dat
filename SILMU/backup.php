@@ -424,12 +424,12 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
         if ($substr == 'v'){
         $telu = substr($num, 1);
         $muu = $rivit[$telu][1];
-        echo "<img class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%; margin:0px;'>";
+        echo "<img class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%; margin:0px;border:0px;'>";
         }
         else if ($substr == 'o'){
         $telu = substr($num, 1);
         $muu = $rivii[$telu][1];
-         echo "<img class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%; margin:0px;'>";
+         echo "<img class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%; margin:0px;border:0px;'>";
         }
         else if ($substr == 'k') {
         $telu = substr($num, 1);
@@ -444,17 +444,6 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 
 <div class="row" style="margin:0px; ">
     <div class="box" id="box"><!--
-	    <div id="dragDiv0" style="width:160px; height:120px;position:absolute;">
-	        <div id="rRightDown0"> </div>
-            <div id="rLeftDown0"> </div>
-            <div id="rRightUp0"> </div>
-            <div id="rLeftUp0"> </div>
-            <div id="rRight0"> </div>
-            <div id="rLeft0"> </div>
-            <div id="rUp0"> </div>
-            <div id="rDown0"></div>
-            <img id="kuva0" src="http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/IMG_0016.jpg" style="width:100%;height:100%;">                               
-	    </div> 
 	    <div id="dragDiv1" style="width:160px; height:120px;position:absolute;">     
             <div id="rRightDown1"> </div>
             <div id="rLeftDown1"> </div>
@@ -594,14 +583,18 @@ function myF(){
 	if (windows) {
 	    var screenheight= window.outerHeight;
 		var fullheight= screen.height;
+		var screenwidth = screen.width;
+		var fullwidth = screen.width;
 	}
 	else if (mac) {
 		var screenheight= window.outerHeight;
 		var fullheight=window.innerHeight;
 	}
 	else {
-		var screenheight = window.innerHeight + 60;
-		var fullheight = window.innerHeight + 10;	
+		var screenheight = window.innerHeight + 77;
+		var fullheight = window.innerHeight + 0;	
+		var screenwidth = window.outerWidth - 60;
+		var fullwidth = window.innerWidth;
 	}
 
     if(document.getElementById('bBox').style.width == "1000px") {
@@ -638,9 +631,9 @@ function myF(){
             oheight[i] = kuvaheight[i];
             
             if(parseInt(x[i])>"-100" && parseInt(x[i])<"1000" && parseInt(y[i])>"-50" && parseInt(y[i])<"450"){
-                document.getElementById(divid[i]).style.left=screen.width * 2 * prox[i] + "px";
+                document.getElementById(divid[i]).style.left=screenwidth* 2 * prox[i] + "px";
                 document.getElementById(divid[i]).style.top=screenheight * proy[i] + "px";
-                document.getElementById(divid[i]).style.width=screen.width *prowidth[i] * 2+"px";
+                document.getElementById(divid[i]).style.width=screenwidth *prowidth[i] * 2+"px";
                 document.getElementById(divid[i]).style.height=screenheight * proheight[i]  + "px";
             } else {
                 document.getElementById(divid[i]).style.height = "0px";
