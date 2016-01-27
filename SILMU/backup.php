@@ -359,7 +359,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                                 <h3>Lisää ääniä</h3>
                             </div>
                             <div class="modal-body">
-                              <form action="testn.php" method="get">
+                              <form action="backup.php" method="get">
                               <?php
                                 $akrows= array();
                                       $sqlag = "SELECT DISTINCT alink, aaid, nimi FROM silmuaani;";
@@ -415,7 +415,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 </div> <!-- row paa-->
 <div class="row">
     <!<div class="ruutu">
-    
+    <div id="hBox">
     <div id="bBox" style="width:1000px; position:absolute; height:400px; margin:0px; left:0px; "> 
         <?php
         $muuu = $rows[$num][1];
@@ -439,10 +439,11 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
         }
         ?>
     </div>
+    </div>
 </div> <!-- row mid -->
 
 <div class="row" style="margin:0px; ">
-    <div class="box" id="box">
+    <div class="box" id="box"><!--
 	    <div id="dragDiv0" style="width:160px; height:120px;position:absolute;">
 	        <div id="rRightDown0"> </div>
             <div id="rLeftDown0"> </div>
@@ -464,8 +465,50 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
             <div id="rUp1"> </div>
             <div id="rDown1"></div>
             <img id="kuva1" src="http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/IMG_0016.jpg" style="width:100%;height:100%;">                               
-	    </div>	
-		<button id="lknappi" type="button" class="btn aaaaa btn-default" data-toggle="modal" data-target="#pkmodal" id="nappibutton" style="left:0px;position:absolute;top:410px;">Lisää kuvia</button>
+	    </div>	-->
+		<?php
+          $krows = array();
+          $abk = $_FILES['pkuva']['name'];
+          for($selaskurialussa=1;$selaskurialussa<100;$selaskurialussa++) {
+          $uuu = 'pkuva'.$selaskurialuusa;
+            if($_POST[$uuu]) {
+                $lol = $selaskurialussa; } }
+          $lol++;
+          $i = 0;
+          
+          $dragdivleft = 110;
+          $dragdivtop = 451;
+          
+          if($_COOKIE['pkuva1'] || $_COOKIE['pkuva2'] || $_COOKIE['pkuva3'] || $_COOKIE['pkuva4'] || $_COOKIE['pkuva5'] || $_COOKIE['pkuva6'] || $_COOKIE['pkuva7'] || $_COOKIE['pkuva8'] || $_COOKIE['pkuva9'] || $_COOKIE['pkuva10'] ) {
+            for($xy = 1; $xy < 20; $xy++) {
+              $ok = 'pkuva'.$xy;
+              $xx = $xy - 1; 
+              
+              if($_COOKIE[$ok]) {
+                $okok = $_COOKIE[$ok];
+                    echo "<div onmousedown=\"changeZIndex(this.id)\" id=\"dragDiv$i\"style=\"width:160px; height:120px;position:absolute; left: ".$dragdivleft."px; top: ".$dragdivtop."px; z-index:1;\">";
+                    echo "<div id=\"rRightDown$i\"></div>";
+                    echo "<div id=\"rLeftDown$i\"></div>";
+                    echo "<div id=\"rRightUp$i\"></div>";
+                    echo "<div id=\"rLeftUp$i\"></div>";
+                    echo "<div id=\"rRight$i\"></div>";
+                    echo "<div id=\"rLeft$i\"></div>";
+                    echo "<div id=\"rUp$i\"></div>";
+                    echo "<div id=\"rDown$i\"></div>";
+                    echo "<img src='$okok' alt='kuva'style='width:100%;height:100%;'>";
+                    echo "</div>";
+                    
+                    $i++;  
+                    $dragdivleft += 170;
+                    if($i % 5 == 0) {
+                         $dragdivtop += 130;
+                         $dragdivleft = 110;
+                    }
+                }
+            }
+            }
+           ?>
+		<button id="lknappi" type="button" class="btn aaaaa btn-default" data-toggle="modal" data-target="#pkmodal" id="nappibutton" style="left:0px;position:absolute;top:450px;">Lisää kuvia</button>
             </div>
                 <div class="modal fade" id="pkmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
@@ -475,7 +518,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                            <h3>Lisää kuvaobjekteja</h3>
                           </div>
                           <div class="modal-body">
-                           <div class="row"><form action="testn.php" method="post">
+                           <div class="row"><form action="backup.php" method="post">
                            <?php
                                    $sqlkg = "SELECT DISTINCT pklink, pkid FROM silmuj;";
                                     if($ktulos = $my->query($sqlkg)) {
@@ -483,48 +526,23 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                                             $krows[] = array($kt->pkid, $kt->pklink);
                                             }
                                     }
-
-
                                foreach ($krows as $i) {
-                                  echo "<div class=\"col-xs-6 col-md-4\"><label class='klik'><input type='checkbox' name='pkuva$i[0]' value='$i[0]'style='background-image: url($i[1]); width: 500px; height: 50px;'> <img style='width: 200px; height: 200px;' class='klik' src='$i[1]' alt='kuva'></label></div>";
+                                  echo "<div class=\"col-xs-4 col-md-4\"><label class='klik'><input type='checkbox' name='pkuva$i[0]' value='$i[0]'style='background-image: url($i[1]); width: 500px; height: 50px;'> <img style='width: 200px; height: 200px;' class='klik' src='$i[1]' alt='kuva'></label></div>";
                               }
                            ?></div><hr><input type="submit" name="nappi" class="btn btn-default kek" value="Lisää kuvat"></form>
-
-
-                            <form enctype="multipart/form-data" role="form" action="testn.php" method="post">
+                            <form enctype="multipart/form-data" role="form" action="backup.php" method="post">
                                 <input name="pkuva" type="file" class="aanil btn btn-default"> <br>
                                 <input type="submit" class="btn btn-default kek" value="Send File">
                             </form>
                          </div>
-
                         </div>
                     </div>
                 </div>
-		<?php/*
-            $krows = array();
-          $abk = $_FILES['pkuva']['name'];
-          for($selaskurialussa=1;$selaskurialussa<100;$selaskurialussa++) {
-          $uuu = 'pkuva'.$selaskurialuusa;
-            if($_POST[$uuu]) {
-                $lol = $selaskurialussa; } }
-          $lol++;
-          if($_COOKIE['pkuva1'] || $_COOKIE['pkuva2'] || $_COOKIE['pkuva3'] || $_COOKIE['pkuva4'] || $_COOKIE['pkuva5'] || $_COOKIE['pkuva6'] || $_COOKIE['pkuva7'] || $_COOKIE['pkuva8'] || $_COOKIE['pkuva9'] || $_COOKIE['pkuva10'] ) {
-            for($xy = 1; $xy < 20; $xy++) {
-              $ok = 'pkuva'.$xy;
-              $xx = $xy - 1; 
-              if($_COOKIE[$ok]) {
-                $okok = $_COOKIE[$ok];
-                echo "<img src='$okok' alt='kuva' class='dragme' id='kuva$xx'>";
-                }}
-            }*/
-           ?> 
+		 
     </div>
 </div> <!-- row bot -->
-
-  
-	
-	
-  	
+<script>
+</script>
     <script>
 function launchFullscreen(element) {
   if(element.requestFullscreen) {
@@ -536,22 +554,48 @@ function launchFullscreen(element) {
   } else if(element.msRequestFullscreen) {
     element.msRequestFullscreen();
   }
-     
 }
 owidth = [];
 oheight = [];
 bBoxx=1000;
 bBoxy=400;
 
-
-
+function changeZIndex(element) {
+    var i  = 0;
+    var dragnimi;
+    var maxindex = 0;
+    for(i=0; i<20; i++){
+        dragnimi = "dragDiv"+i;
+        if(document.getElementById(dragnimi))
+            if(maxindex <= document.getElementById(dragnimi).style.zIndex) 
+                maxindex = parseInt(document.getElementById(dragnimi).style.zIndex)+1;
+    }
+    document.getElementById(element).style.zIndex = maxindex;
+}
 function myF(){
-  //$("#parts").toggle();
-  //$("#paa").toggle();
-  //$("#lknappi").toggle();
   document.getElementById("parts").style.display="none";
   document.getElementById("paa").style.display="none";
   document.getElementById("lknappi").style.display="none";
+  
+
+	windows = (navigator.userAgent.indexOf("Windows",0) != -1)?1:0;
+	mac = (navigator.userAgent.indexOf("mac",0) != -1)?1:0;
+	linux = (navigator.userAgent.indexOf("Linux",0) != -1)?1:0;
+	unix = (navigator.userAgent.indexOf("X11",0) != -1)?1:0;
+ 
+	if (windows) {
+	    var screenheight= window.outerHeight;
+		var fullheight= window.innerHeight;
+	}
+	else if (mac) {
+		var screenheight= window.outerHeight;
+		var fullheight=window.innerHeight;
+	}
+	else {
+		var screenheight = window.innerHeight + 60;
+		var fullheight = window.innerHeight + 10;	
+	}
+
     if(document.getElementById('bBox').style.width == "1000px") {
         var x = [];
         var y = [];
@@ -568,28 +612,32 @@ function myF(){
       document.getElementById('row1').style.height="100%";
       document.getElementById('bBox').style.width= "100%";
       document.getElementById('bBox').style.height= "100%";
-        for(i = 0; i<3; i++) {
+        for(i = 0; i<20; i++) {
             divid[i] = "dragDiv" + i;
+            
+            if(document.getElementById(divid[i])){
             x[i] = document.getElementById(divid[i]).style.left;
             y[i] = document.getElementById(divid[i]).style.top;
             prox[i] = parseInt(x[i]) / bBoxx;
             proy[i] = parseInt(y[i]) / bBoxy;
             kuvawidth[i] = document.getElementById(divid[i]).style.width;
             kuvaheight[i] = document.getElementById(divid[i]).style.height;
+
             prowidth[i] = parseInt(kuvawidth[i]) / bBoxx;
             proheight[i] = parseInt(kuvaheight[i]) / bBoxy;
             
             owidth[i] = kuvawidth[i];
             oheight[i] = kuvaheight[i];
             
-            if(parseInt(x[i])>"-100" && parseInt(x[i])<"1100" && parseInt(y[i])>"-100" && parseInt(y[i])<"500"){
-                document.getElementById(divid[i]).style.left=window.innerWidth * prox[i] * 2 + "px";
-                document.getElementById(divid[i]).style.top=(screen.height-17) * proy[i] + "px";
-                document.getElementById(divid[i]).style.width=window.innerWidth *prowidth[i] * 2+"px";
-                document.getElementById(divid[i]).style.height=(screen.height-17) * proheight[i]  + "px";
+            if(parseInt(x[i])>"-100" && parseInt(x[i])<"1000" && parseInt(y[i])>"-50" && parseInt(y[i])<"450"){
+                document.getElementById(divid[i]).style.left=screen.width * 2 * prox[i] + "px";
+                document.getElementById(divid[i]).style.top=screenheight * proy[i] + "px";
+                document.getElementById(divid[i]).style.width=screen.width *prowidth[i] * 2+"px";
+                document.getElementById(divid[i]).style.height=screenheight * proheight[i]  + "px";
             } else {
                 document.getElementById(divid[i]).style.height = "0px";
             }     
+            }	
         }
   } else {	
       var i = 0;
@@ -612,18 +660,18 @@ function myF(){
       document.getElementById('bBox').style.width = "1000px";
       document.getElementById('bBox').style.height = "400px";
       
-      for(i=0; i<3; i++) {
+      for(i=0; i<20; i++) {
           divid[i] = "dragDiv" + i;
           
-          
+          if(document.getElementById(divid[i])){          
           y[i] = document.getElementById(divid[i]).style.top;
           x[i] = document.getElementById(divid[i]).style.left;
           prox[i] = parseInt(x[i]) / (window.innerWidth * 2);
-          proy[i] = parseInt(y[i]) / (screen.height -17);
+          proy[i] = parseInt(y[i]) / (fullheight);
           kuvawidth[i] = document.getElementById(divid[i]).style.width;
           kuvaheight[i] = document.getElementById(divid[i]).style.height; 
           prowidth[i]  = parseInt(kuvawidth[i]) / window.innerWidth / 2;
-          proheight[i] = parseInt(kuvaheight[i]) / window.innerHeight;
+          proheight[i] = parseInt(kuvaheight[i]) / fullheight;
           uusix[i] = bBoxx * prox[i];
           uusiy[i] = bBoxy * proy[i];
           
@@ -640,22 +688,16 @@ function myF(){
           }
           
           
-          
-          //$("kpan").text(bBoxx + ", " + x[0]);
-          //$("span").text(prox[0] + ", pro," + proy[0]); 
-          //$("hpan").text(uusix[0] + ",jisuan" + uusiy[0])
+          }
         }
-      
   }
 }
- 
 document.addEventListener("webkitfullscreenchange", function () {
-    myF(); /*alka kaytan myF() funktio, kun kayta fullscreen mode tai pois fullscreen modesta*/
+	myF();
 }, false);
     </script>
 </div> <!-- md-9 -->
 </div> <!-- row -->    
-<script src="/~jonashandelin/bs_2015/bower_components/bootstrap/dist/js//bootstrap.min.js"></script>
 <?php
 	$my->close();
 ?>
@@ -671,8 +713,9 @@ var rLeft = [];
 var rUp = [];
 var rDown = [];
 
-for(ia=0; ia<2; ia++) {
+for(ia=0; ia< 20; ia++) {
 dragnimi[ia] = "dragDiv" + ia;
+if(document.getElementById(dragnimi[ia])){
 rRightDown[ia]= "rRightDown" + ia;
 rLeftDown[ia]= "rLeftDown" + ia;
 rRightUp[ia]= "rRightUp" + ia;
@@ -695,8 +738,10 @@ rs.Set(rLeft[ia], "left");
 rs.Set(rUp[ia], "up");
 rs.Set(rDown[ia], "down");
 new Drag(dragnimi[ia], { Limit: true, mxContainer: "bgDiv" });
-}
+}}
 </script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="/~jonashandelin/bs_2015/bower_components/bootstrap/dist/js//bootstrap.min.js"></script>
 
 </body>
 </html>
