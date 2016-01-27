@@ -486,7 +486,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
               
               if($_COOKIE[$ok]) {
                 $okok = $_COOKIE[$ok];
-                    echo "<div onmousedown=\"changeZIndex(this.id)\" id=\"dragDiv$i\"style=\"width:160px; height:120px;position:absolute; left: ".$dragdivleft."px; top: ".$dragdivtop."px; z-index:1;\">";
+                    echo "<div ondblclick=\"borderdisplay(this.id)\" onmousedown=\"changeZIndex(this.id)\" id=\"dragDiv$i\"style=\"width:160px; height:120px;position:absolute; left: ".$dragdivleft."px; top: ".$dragdivtop."px; z-index:1;\">";
                     echo "<div id=\"rRightDown$i\"></div>";
                     echo "<div id=\"rLeftDown$i\"></div>";
                     echo "<div id=\"rRightUp$i\"></div>";
@@ -572,6 +572,14 @@ function changeZIndex(element) {
     }
     document.getElementById(element).style.zIndex = maxindex;
 }
+
+function borderdisplay(element) {
+	if(document.getElementById(element).style.border == "1px solid black") {
+		document.getElementById(element).style.border = "0px";
+	}else 
+	document.getElementById(element).style.border = "1px solid black";
+}
+
 function myF(){
   document.getElementById("parts").style.display="none";
   document.getElementById("paa").style.display="none";
@@ -585,7 +593,7 @@ function myF(){
  
 	if (windows) {
 	    var screenheight= window.outerHeight;
-		var fullheight= window.innerHeight;
+		var fullheight= screen.height;
 	}
 	else if (mac) {
 		var screenheight= window.outerHeight;
@@ -671,7 +679,7 @@ function myF(){
           kuvawidth[i] = document.getElementById(divid[i]).style.width;
           kuvaheight[i] = document.getElementById(divid[i]).style.height; 
           prowidth[i]  = parseInt(kuvawidth[i]) / window.innerWidth / 2;
-          proheight[i] = parseInt(kuvaheight[i]) / fullheight;
+          proheight[i] = parseInt(kuvaheight[i]) / (fullheight - 10);
           uusix[i] = bBoxx * prox[i];
           uusiy[i] = bBoxy * proy[i];
           
@@ -679,12 +687,12 @@ function myF(){
           if(document.getElementById(divid[i]).style.height == "0px"){
               document.getElementById(divid[i]).style.height = oheight[i];
           } else {
-              document.getElementById(divid[i]).style.left =  uusix[i] + "0px";
+              document.getElementById(divid[i]).style.left =  uusix[i] + "px";
               document.getElementById(divid[i]).style.top = uusiy[i] + "px";
-              document.getElementById(divid[i]).style.width="160px";
-              document.getElementById(divid[i]).style.height="120px";
-              //document.getElementById(divid[i]).style.left = uusix[i]+"px";
-              //document.getElementById(divid[i]).style.top = uusiy[i]+"px";
+              //document.getElementById(divid[i]).style.width="160px";
+              //document.getElementById(divid[i]).style.height="120px";
+              document.getElementById(divid[i]).style.width = prowidth[i]*bBoxx+"px";
+              document.getElementById(divid[i]).style.height = proheight[i]*bBoxy+"px";
           }
           
           
