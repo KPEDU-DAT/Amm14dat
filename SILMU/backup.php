@@ -117,9 +117,8 @@
             if($pkttulos = $my->query($sqlpkt)) {
               while($pktt = $pkttulos->fetch_object()) {
                   $pkttt = $pktt->pklink;
-                  setcookie($abc,$pkttt, time() + 3600); }
-
-
+                  setcookie($abc,$pkttt, time() + 3); 
+              }
           }}
           $lol--;
           }
@@ -166,8 +165,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
       } }
         echo $k; echo $a;
     ?>
-
-
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -204,10 +202,9 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 	    table {
         margin-top: 10px;
  	    }
-	    /*.ruutu {  
-	    border-top: 2px solid #bbbbbb;
-	    width:90%;   
-	    }*/
+ 	    body, html {
+        height: 100%;
+ 	    }
     </style>
 
     <link rel="stylesheet" href="resizetest.css">
@@ -226,51 +223,52 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
     <script type="text/javascript" src="resize.js"></script>
     <script type="text/javascript" src="drag22.js"></script>
 
-     <div dragable="false"class="row" style="margin:0px; height:100%;">
-          <div dragable="false"class="col-md-3" id="parts">
-            <div dragable="false"class="lista2">
-            <div dragable="false"class="lista1" style="height:600px;">
-            <div dragable="false"class="table-responsive" style="height:600px;">  
-            <table dragable="false"class="table">
-            <tbody dragable="false">
+     <div class="row" style="margin:0px; height:100%;">
+          <div class="col-md-3" id="parts">
+            <div class="lista2">
+            <div  class="lista1" style="height:600px;">
+            <div class="table-responsive" style="height:600px;">  
+            
             <!--  <h1>SIVU</h1> -->
              <?php
-            echo "<form action='backup.php' method='post'>";
+            //echo "<form action='backup.php' method='post'>
+            echo "<table class='table'><tbody>";
         foreach($rows as $i) {
             echo #"<div class='col-lg-3 col-md-4 col-xs-6 thumb'>
-                           "<tr><td> <a class='thumbnail' href='#'>
-               <input dragable='false'type='image'  src='$i[1]' alt='kuvak' height='200' width='50%' name='kuvak' value='k$cko'><input dragable='false'type='image' src='$i[2]' alt='kuvak' height='200' width='50%' name='kuvak' value='k$cko'> 
-                                 </a></td></tr>";
-           $cko = $cko + 1;
+                           "<tr><td>
+               <input onclick='nayk(\"$i[1]\",\"$i[2]\")' type='image'  src='$i[1]' alt='kuvak' style=' height:150px; width:50%;' name='kuvak' value='k$cko'><input onclick='nayk(\"$i[1]\",\"$i[2]\")' type='image' src='$i[2]' alt='kuvak' style=' height:150px; width:50%;' name='kuvak' value='k$cko'>
+            </td></tr>";
+           $cko++;
             }
         foreach($rivit as $i) {
             echo
-            "<tr><td><a class='thumbnail' href='#'>
-            <input dragable='false'type='image' src='$i[1]' alt='kuvak' height='200' width='100%' name='kuvak' value='v$cy'>";
+            "<tr><td>
+            <input onclick='nay(\"$i[1]\")' type='image' src='$i[1]' alt='kuvak' style=' height:150px; width:100%;'  name='kuvak' value='v$cy'>";
         $cy = $cy + 1;
             }
         foreach($rivii as $i) {
-            echo "<tr><td><a class='thumbnail' href='#'>
-            <input dragable='false'type='image' src='$i[1]' alt='kuvak' height='200' width='100%' name='kuvak' value='o$ck'>";
+            echo "<tr><td>
+            <input onclick='nay(\"$i[1]\") 'type='image' src='$i[1]' alt='kuvak' style=' height:150px; width:100%;'  name='kuvak' value='o$ck'>";
         $ck = $ck + 1;
         }
 
-    echo "</form>";
     $idk = $_POST['kuvak'];
     if ($idk)
     $num = $idk;
     ?>
         </tbody>
         </table>
+        <!</form>
             </div>
             </div>
             </div>
           </div>
-<div class="col-md-9" id="row1"style="padding:0px;">
+
+<div class="col-md-9" id="row1" style="padding:0px;">
 <div class="row paa" id="paa" style="padding: 10px 0px 10px 0px;">
     <div class="col-md-2">
 	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#kuval">Lisää kuva</button>
-    </div>
+	</div>
     <div class="modal fade" id="kuval" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog">
     <div class="modal-content">
@@ -279,17 +277,15 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
       </div>
       <div class="modal-body">
     <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-6">
     <h2> Kuva 1</h2>
-        <form enctype="multipart/form-data" role="form" action="kkkv.php" method="post">
-    <div class="form-group">
-    <input name="kuva" class="aanil btn btn-default" type="file" type="button"><br>
-    </div>
+        <form enctype="multipart/form-data" action="kkkv.php" method="post">
+    <input name="kuva" class="aanil btn btn-default" type="file"><br>
     </div>
     <div class="col-xs-6">
     <h2> Kuva 2</h2>
     <div class="form-group">
-    <input class="aanil btn btn-default" name="kuva2" type="file" type="button"><br>
+    <input class="aanil btn btn-default" name="kuva2" type="file"><br>
     <input type="submit" class="btn btn-primary btn-md" value="Send Files">
     </div>
     </form>
@@ -348,6 +344,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
   }
   }
     ?>
+    
     <div class="col-md-4">
 	                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#aaniModal">
                 Lisää ääni
@@ -377,7 +374,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                                       }
                                       echo "<input type='submit' class='btn btn-primary' value='Toista'>";
                               ?>
-                              </form><hr>
+                              </form>
 
                                 <form enctype="multipart/form-data" method="POST">
                                     <div class="form-group">
@@ -402,7 +399,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                                        if($_GET['aanitoisto']) {
                                          echo $akrows[$aanitoisto][1];
                                        } else {
-                                       echo $_FILES['aani']['name'];}     ?>" type="audio/mpeg">
+                                       echo $_FILES['aani']['name'];}?>" type="audio/mpeg">
                  </audio>
 		
 	           </div>
@@ -414,47 +411,34 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 
 </div> <!-- row paa-->
 <div class="row">
-    <!<div class="ruutu">
     <div id="hBox">
     <div id="bBox" style="width:1000px; position:absolute; height:400px; margin:0px; left:0px; "> 
         <?php
         $muuu = $rows[$num][1];
         $muuuk = $rows[$num][2];
         $substr = substr($num, 0, 1);
-        if ($substr == 'v'){
+       /* if ($substr == 'v'){
         $telu = substr($num, 1);
         $muu = $rivit[$telu][1];
-        echo "<img class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%; margin:0px;border:0px;'>";
+        echo "<img id=\"isokuva\" class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%; margin:0px;border:0px;'>";
         }
         else if ($substr == 'o'){
         $telu = substr($num, 1);
         $muu = $rivii[$telu][1];
-         echo "<img class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%; margin:0px;border:0px;'>";
-        }
-        else if ($substr == 'k') {
+         echo "<img id=\"isokuva\" class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%; margin:0px;border:0px;'>";
+        }*/
+        //else if ($substr == 'k') {
         $telu = substr($num, 1);
         $muu = $rows[$telu][1];
         $muuk = $rows[$telu][2];
-        echo "<img dragable='false' class='img' src='$muu' alt='kuva' style='width:50%;height:100%;'><img dragable='false'class='img' src='$muuk' alt='kuva' style='width:50%;height:100%;'>";
-        }
+        echo "<img id=\"isokuva1\" class='img' src='$muu' alt='kuva' style='width:50%;height:100%;'><img id=\"isokuva2\" class='img' src='$muuk' alt='kuva' style='width:50%;height:100%;'>";
+        //}
         ?>
     </div>
     </div>
-</div> <!-- row mid -->
-
+</div>
 <div class="row" style="margin:0px; ">
-    <div class="box" id="box"><!--
-	    <div id="dragDiv1" style="width:160px; height:120px;position:absolute;">     
-            <div id="rRightDown1"> </div>
-            <div id="rLeftDown1"> </div>
-            <div id="rRightUp1"> </div>
-            <div id="rLeftUp1"> </div>
-            <div id="rRight1"> </div>
-            <div id="rLeft1"> </div>
-            <div id="rUp1"> </div>
-            <div id="rDown1"></div>
-            <img id="kuva1" src="http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/IMG_0016.jpg" style="width:100%;height:100%;">                               
-	    </div>	-->
+    <div class="box" id="box">
 		<?php
           $krows = array();
           $abk = $_FILES['pkuva']['name'];
@@ -475,7 +459,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
               
               if($_COOKIE[$ok]) {
                 $okok = $_COOKIE[$ok];
-                    echo "<div ondblclick=\"borderdisplay(this.id)\" onmousedown=\"changeZIndex(this.id)\" id=\"dragDiv$i\"style=\"width:160px; height:120px;position:absolute; left: ".$dragdivleft."px; top: ".$dragdivtop."px; z-index:1;\">";
+                    echo "<div alt=\"$ok\"  ondblclick=\"borderdisplay(this.id)\" onmousedown=\"changeZIndex(this.id)\" id=\"dragDiv$i\" style=\"width:160px; height:120px;position:absolute; left: ".$dragdivleft."px; top: ".$dragdivtop."px; z-index:1;\">";
                     echo "<div id=\"rRightDown$i\"></div>";
                     echo "<div id=\"rLeftDown$i\"></div>";
                     echo "<div id=\"rRightUp$i\"></div>";
@@ -484,7 +468,9 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                     echo "<div id=\"rLeft$i\"></div>";
                     echo "<div id=\"rUp$i\"></div>";
                     echo "<div id=\"rDown$i\"></div>";
-                    echo "<img src='$okok' alt='kuva'style='width:100%;height:100%;'>";
+                    echo "<div id=\"rDel$i\" onclick=\"removeDragDiv(this.id, '$ok')\"></div>";
+                    echo "<div id=\"rCopy$i\" onclick=\"copyDragDiv(this.id)\"></div>";
+                    echo "<img id=\"rKuva$i\" alt=\"$ok\"   src='$okok' style='width:100%;height:100%;'>";
                     echo "</div>";
                     
                     $i++;  
@@ -497,7 +483,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
             }
             }
            ?>
-		<button id="lknappi" type="button" class="btn aaaaa btn-default" data-toggle="modal" data-target="#pkmodal" id="nappibutton" style="left:0px;position:absolute;top:450px;">Lisää kuvia</button>
+		<button id="lknappi" type="button" class="btn aaaaa btn-default" data-toggle="modal" data-target="#pkmodal" style="left:0px;position:absolute;top:450px;">Lisää kuvia</button>
             </div>
                 <div class="modal fade" id="pkmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
@@ -507,7 +493,8 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                            <h3>Lisää kuvaobjekteja</h3>
                           </div>
                           <div class="modal-body">
-                           <div class="row"><form action="backup.php" method="post">
+                           <div class="row">
+                           <form>
                            <?php
                                    $sqlkg = "SELECT DISTINCT pklink, pkid FROM silmuj;";
                                     if($ktulos = $my->query($sqlkg)) {
@@ -516,14 +503,19 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                                             }
                                     }
                                foreach ($krows as $i) {
-                                  echo "<div class=\"col-xs-4 col-md-4\"><label class='klik'><input type='checkbox' name='pkuva$i[0]' value='$i[0]'style='background-image: url($i[1]); width: 500px; height: 50px;'> <img style='width: 200px; height: 200px;' class='klik' src='$i[1]' alt='kuva'></label></div>";
+                                  echo "<div class=\"col-xs-4 col-md-4\"><label class='klik'><input id='check$i' type='checkbox' name='pkuva$i[0]' value='$i[0]' style='background-image: url($i[1]); width:50px;height: 50px;'> <img style='width: 200px; height: 200px;' class='klik' src='$i[1]' alt='kuva'></label></div>";
                               }
-                           ?></div><hr><input type="submit" name="nappi" class="btn btn-default kek" value="Lisää kuvat"></form>
+                           ?>
+                           
+                               </div>
+
+                               <button class="btn btn-default kek">Lisää kuvat</button>
+                           </form>
                             <form enctype="multipart/form-data" role="form" action="backup.php" method="post">
                                 <input name="pkuva" type="file" class="aanil btn btn-default"> <br>
                                 <input type="submit" class="btn btn-default kek" value="Send File">
                             </form>
-                         </div>
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -532,7 +524,28 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 </div> <!-- row bot -->
 <script>
 </script>
+
+<script>
+function nayk(kuva1, kuva2) {
+    
+    document.getElementById("isokuva1").style.width = "50%";
+    document.getElementById("isokuva2").style.width = "50%";
+    document.getElementById("isokuva1").src = kuva1;
+    document.getElementById("isokuva2").src = kuva2;
+    
+}
+function nay(kuva1) {    
+    document.getElementById("isokuva1").src = kuva1;
+    document.getElementById("isokuva1").style.width = "100%";
+    document.getElementById("isokuva2").style.width = "0px";
+}  
+
+
+</script>  
     <script>
+
+    
+    
 function launchFullscreen(element) {
   if(element.requestFullscreen) {
     element.requestFullscreen();
@@ -548,6 +561,24 @@ owidth = [];
 oheight = [];
 bBoxx=1000;
 bBoxy=400;
+
+
+function removeDragDiv(element, cookiename) {
+    var divid = $("#" + element).parents().attr('id');
+    //document.cookie = cookiename+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    $("#" + divid).remove();
+}
+function copyDragDiv(element) {
+    var divid = $("#" + element).parents().attr('id');
+    var i = 0;
+    while (document.getElementById("rKuva" + i)) {
+        i++;
+    }
+    //var divs = document.getElementById('dragDiv0').innerHTML;
+    document.write(i);
+    
+    //document.getElementById('dragDiv5').innerHTML= divs;
+}
 
 function changeZIndex(element) {
     var i  = 0;
@@ -576,25 +607,28 @@ function myF(){
   
 
 	windows = (navigator.userAgent.indexOf("Windows",0) != -1)?1:0;
-	mac = (navigator.userAgent.indexOf("mac",0) != -1)?1:0;
+	mac = (navigator.userAgent.indexOf("Mac",0) != -1)?1:0;
 	linux = (navigator.userAgent.indexOf("Linux",0) != -1)?1:0;
 	unix = (navigator.userAgent.indexOf("X11",0) != -1)?1:0;
  
 	if (windows) {
-	    var screenheight= window.outerHeight;
+	    var screenheight= screen.height;
 		var fullheight= screen.height;
 		var screenwidth = screen.width;
 		var fullwidth = screen.width;
 	}
 	else if (mac) {
-		var screenheight= window.outerHeight;
-		var fullheight=window.innerHeight;
+	    var screenheight = 1140;
+		var fullheight = 1140;	
+		var screenwidth = 2048;
+		var fullwidth = 2048;
 	}
 	else {
-		var screenheight = window.innerHeight + 77;
-		var fullheight = window.innerHeight + 0;	
-		var screenwidth = window.outerWidth - 60;
-		var fullwidth = window.innerWidth;
+	    var screenheight= screen.height;
+		var fullheight= screen.height;
+		var screenwidth = screen.width;
+		var fullwidth = screen.width;
+	
 	}
 
     if(document.getElementById('bBox').style.width == "1000px") {
@@ -609,10 +643,15 @@ function myF(){
         var prowidth = [];
         var proheight = [];
         
+      
+            
       document.getElementById('row1').style.width= "200%";
       document.getElementById('row1').style.height="100%";
       document.getElementById('bBox').style.width= "100%";
       document.getElementById('bBox').style.height= "100%";
+      
+      //width: 4096; height: 1140;
+      //document.write(screenheight +","+ window.innerHeight +","+ window.outerHeight +","+screen.height);
         for(i = 0; i<20; i++) {
             divid[i] = "dragDiv" + i;
             
@@ -629,12 +668,12 @@ function myF(){
             
             owidth[i] = kuvawidth[i];
             oheight[i] = kuvaheight[i];
-            
             if(parseInt(x[i])>"-100" && parseInt(x[i])<"1000" && parseInt(y[i])>"-50" && parseInt(y[i])<"450"){
                 document.getElementById(divid[i]).style.left=screenwidth* 2 * prox[i] + "px";
                 document.getElementById(divid[i]).style.top=screenheight * proy[i] + "px";
                 document.getElementById(divid[i]).style.width=screenwidth *prowidth[i] * 2+"px";
                 document.getElementById(divid[i]).style.height=screenheight * proheight[i]  + "px";
+                
             } else {
                 document.getElementById(divid[i]).style.height = "0px";
             }     
@@ -671,7 +710,7 @@ function myF(){
           proy[i] = parseInt(y[i]) / (fullheight);
           kuvawidth[i] = document.getElementById(divid[i]).style.width;
           kuvaheight[i] = document.getElementById(divid[i]).style.height; 
-          prowidth[i]  = parseInt(kuvawidth[i]) / window.innerWidth / 2;
+          prowidth[i]  = parseInt(kuvawidth[i]) / fullwidth / 2;
           proheight[i] = parseInt(kuvaheight[i]) / (fullheight - 10);
           uusix[i] = bBoxx * prox[i];
           uusiy[i] = bBoxy * proy[i];
@@ -697,8 +736,7 @@ document.addEventListener("webkitfullscreenchange", function () {
 	myF();
 }, false);
     </script>
-</div> <!-- md-9 -->
-</div> <!-- row -->    
+</div>     
 <?php
 	$my->close();
 ?>

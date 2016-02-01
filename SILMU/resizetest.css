@@ -15,6 +15,19 @@
   width: 100%;
   z-index: 5; }
 
+#rDel0, #rCopy0 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy0 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
+
 #rLeftDown0, #rRightUp0 {
   cursor: ne-resize; }
 
@@ -85,6 +98,19 @@
   left: 6px;
   width: 100%;
   z-index: 5; }
+
+#rDel1, #rCopy1 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy1 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
 
 #rLeftDown1, #rRightUp1 {
   cursor: ne-resize; }
@@ -157,6 +183,19 @@
   width: 100%;
   z-index: 5; }
 
+#rDel2, #rCopy2 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy2 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
+
 #rLeftDown2, #rRightUp2 {
   cursor: ne-resize; }
 
@@ -227,6 +266,19 @@
   left: 6px;
   width: 100%;
   z-index: 5; }
+
+#rDel3, #rCopy3 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy3 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
 
 #rLeftDown3, #rRightUp3 {
   cursor: ne-resize; }
@@ -299,6 +351,19 @@
   width: 100%;
   z-index: 5; }
 
+#rDel4, #rCopy4 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy4 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
+
 #rLeftDown4, #rRightUp4 {
   cursor: ne-resize; }
 
@@ -369,6 +434,19 @@
   left: 6px;
   width: 100%;
   z-index: 5; }
+
+#rDel5, #rCopy5 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy5 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
 
 #rLeftDown5, #rRightUp5 {
   cursor: ne-resize; }
@@ -441,6 +519,19 @@
   width: 100%;
   z-index: 5; }
 
+#rDel6, #rCopy6 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy6 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
+
 #rLeftDown6, #rRightUp6 {
   cursor: ne-resize; }
 
@@ -511,6 +602,19 @@
   left: 6px;
   width: 100%;
   z-index: 5; }
+
+#rDel7, #rCopy7 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy7 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
 
 #rLeftDown7, #rRightUp7 {
   cursor: ne-resize; }
@@ -583,6 +687,19 @@
   width: 100%;
   z-index: 5; }
 
+#rDel8, #rCopy8 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy8 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
+
 #rLeftDown8, #rRightUp8 {
   cursor: ne-resize; }
 
@@ -653,6 +770,19 @@
   left: 6px;
   width: 100%;
   z-index: 5; }
+
+#rDel9, #rCopy9 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy9 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
 
 #rLeftDown9, #rRightUp9 {
   cursor: ne-resize; }
@@ -725,6 +855,19 @@
   width: 100%;
   z-index: 5; }
 
+#rDel10, #rCopy10 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy10 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
+
 #rLeftDown10, #rRightUp10 {
   cursor: ne-resize; }
 
@@ -795,6 +938,19 @@
   left: 6px;
   width: 100%;
   z-index: 5; }
+
+#rDel11, #rCopy11 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy11 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
 
 #rLeftDown11, #rRightUp11 {
   cursor: ne-resize; }
@@ -867,6 +1023,19 @@
   width: 100%;
   z-index: 5; }
 
+#rDel12, #rCopy12 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy12 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
+
 #rLeftDown12, #rRightUp12 {
   cursor: ne-resize; }
 
@@ -937,6 +1106,19 @@
   left: 6px;
   width: 100%;
   z-index: 5; }
+
+#rDel13, #rCopy13 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy13 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
 
 #rLeftDown13, #rRightUp13 {
   cursor: ne-resize; }
@@ -1009,6 +1191,19 @@
   width: 100%;
   z-index: 5; }
 
+#rDel14, #rCopy14 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy14 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
+
 #rLeftDown14, #rRightUp14 {
   cursor: ne-resize; }
 
@@ -1079,6 +1274,19 @@
   left: 6px;
   width: 100%;
   z-index: 5; }
+
+#rDel15, #rCopy15 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy15 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
 
 #rLeftDown15, #rRightUp15 {
   cursor: ne-resize; }
@@ -1151,6 +1359,19 @@
   width: 100%;
   z-index: 5; }
 
+#rDel16, #rCopy16 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy16 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
+
 #rLeftDown16, #rRightUp16 {
   cursor: ne-resize; }
 
@@ -1221,6 +1442,19 @@
   left: 6px;
   width: 100%;
   z-index: 5; }
+
+#rDel17, #rCopy17 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy17 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
 
 #rLeftDown17, #rRightUp17 {
   cursor: ne-resize; }
@@ -1293,6 +1527,19 @@
   width: 100%;
   z-index: 5; }
 
+#rDel18, #rCopy18 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy18 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
+
 #rLeftDown18, #rRightUp18 {
   cursor: ne-resize; }
 
@@ -1364,6 +1611,19 @@
   width: 100%;
   z-index: 5; }
 
+#rDel19, #rCopy19 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy19 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
+
 #rLeftDown19, #rRightUp19 {
   cursor: ne-resize; }
 
@@ -1434,6 +1694,19 @@
   left: 6px;
   width: 100%;
   z-index: 5; }
+
+#rDel20, #rCopy20 {
+  background-color: red;
+  width: 30px;
+  height: 15px;
+  right: 0px;
+  top: -20px;
+  position: absolute; }
+
+#rCopy20 {
+  background-color: yellow;
+  left: 0px;
+  top: -20px; }
 
 #rLeftDown20, #rRightUp20 {
   cursor: ne-resize; }
