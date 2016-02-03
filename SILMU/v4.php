@@ -1,4 +1,6 @@
-<?php $l = 0;
+<?php 
+  $lomo = $_POST['ayylmao'];
+    $l = 0;
     $cy = 0;
     $ck = 0;
     $cko = 0;
@@ -328,7 +330,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
     }
     if ($k && $kk) {
         $sql = "INSERT INTO SILMU(krid, kuva1, kuva2) VALUES('$id','http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/$k', 'http://cosmo.kpedu.fi/~jonashandelin/Amm14dat/SILMU/$kk' )";
-            if($tulos = $my->query($sql)){  
+   if($tulos = $my->query($sql)){  
       echo '<p> linkit tallennettu</p>';
   }
       else{
@@ -422,7 +424,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 
 </div> <!-- row paa-->
 <div id="bBox">
-<div class="row bBox" id="toproflmao">
+<div class="row bBox aa" id="toproflmao">
     <!<div class="ruutu">
              <?php
         $muuu = $rows[$num][1];
@@ -526,6 +528,7 @@ function launchFullscreen(element) {
 var elem = document.getElementById("bBox");
 document.getElementById("bBox").style.width="100%";
 document.getElementById("bBox").style.height="100%";
+document.getElementById("toproflmao").style.margin="0px";
 document.getElementById("toproflmao").style.width="100%";
 document.getElementById("toproflmao").style.height="100%";
 if (testi == 'k') {
@@ -592,7 +595,7 @@ for(i = 0; i<100; i++) {
 
 
             document.getElementById(kuvaid[i]).style.left = 1994 * prox[i] / 1.05 + "px";
-            document.getElementById(kuvaid[i]).style.top = window.innerHeight * proy[i] / 1.24 + 250 + "px";
+            document.getElementById(kuvaid[i]).style.top = -500 + "px";/*window.innerHeight * proy[i] / 1.24 + 250 + "px";*/
   /*          document.getElementById(kuvaid[i]).style.width=window.innerWidth * prowidth[i] * 2+"px";
             document.getElementById(kuvaid[i]).style.height=window.innerHeight * proheight[i] + 10 + "px";*/
             document.getElementById(kuvaid[i]).style.width = las + "px";
@@ -609,8 +612,7 @@ function myF(){
   $("#paa").toggle();
   $("#nappibutton").toggle();
   $("#okok").toggle();
-
-  var w = window.innerWidth * prox * 2;
+   var w = window.innerWidth * prox * 2;
   var h = window.innerHeight * proy;
 
 
@@ -867,13 +869,16 @@ document.addEventListener("webkitfullscreenchange", function () {
             if($_POST[$uuu]) {
                 $lol = $selaskurialussa; } }
           $lol++;
+          $xz = 0;
           if($_COOKIE['pkuva1'] || $_COOKIE['pkuva2'] || $_COOKIE['pkuva3'] || $_COOKIE['pkuva4'] || $_COOKIE['pkuva5'] || $_COOKIE['pkuva6'] || $_COOKIE['pkuva7'] || $_COOKIE['pkuva8'] || $_COOKIE['pkuva9'] || $_COOKIE['pkuva10'] ) {
             for($xy = 1; $xy < 20; $xy++) {
               $ok = 'pkuva'.$xy;
-              $xx = $xy - 1; 
+              $xx = $xy - 1;
+             
               if($_COOKIE[$ok]) {
                 $okok = $_COOKIE[$ok];
-                echo "<img src='$okok' alt='kuva' class='dragme' id='kuva$xx'>";
+                echo "<img src='$okok' class='dragme' alt='kuva' id='kuva$xz'>";
+                $xz++;
                 }}
             }
 
