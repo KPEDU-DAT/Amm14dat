@@ -231,7 +231,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
             
             <!--  <h1>SIVU</h1> -->
              <?php
-            echo "<form action='backup.php' method='post'>";
+            echo "<form action='backtest.php' method='post'>";
             echo "<table class='table'><tbody>";
             $numnum = 1;
         foreach($rows as $i) {
@@ -363,7 +363,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                                 <h3>Lisää ääniä</h3>
                             </div>
                             <div class="modal-body">
-                              <form action="backup.php" method="get">
+                              <form action="backtest.php" method="get">
                               <?php
                                 $akrows= array();
                                       $sqlag = "SELECT DISTINCT alink, aaid, nimi FROM silmuaani;";
@@ -428,18 +428,18 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
         if ($substr == 'v'){
         $telu = substr($num, 1);
         $muu = $rivit[$telu][1];
-        echo "<img draggable=\"false\"  id=\"isokuva\" class='kuva'  src='$muu' style='width:100%;height:100%; margin:0px;border:0px;'>";
+        echo "<img draggable='false' id=\"isokuva\" class='kuva'  src='$muu' style='width:100%;height:100%; margin:0px;border:0px;'>";
         }
         else if ($substr == 'o'){
         $telu = substr($num, 1);
         $muu = $rivii[$telu][1];
-        echo "<img draggable=\"false\"  id=\"isokuva\" class='kuva' src='$muu' style='width:100%;height:100%; margin:0px;border:0px;'>";
+        echo "<img draggable='false' id=\"isokuva\" class='kuva' src='$muu' style='width:100%;height:100%; margin:0px;border:0px;'>";
         }
-        else if ($substr == 'k') {	
+        else if ($substr == 'k') {
         $telu = substr($num, 1);
         $muu = $rows[$telu][1];
         $muuk = $rows[$telu][2];
-        echo "<img draggable=\"false\" id=\"isokuva1\" class='img' alt=\"1\" src='$muu' style='width:50%;height:100%;'><img draggable=\"false\" id=\"isokuva2\" class='img' alt=\"1\" src='$muuk' alt='kuva' style='width:50%;height:100%;'>";
+        echo "<img draggable='false' id=\"isokuva1\" class='img' alt=\"1\" src='$muu' style='width:50%;height:100%;'><img draggable='false' id=\"isokuva2\" class='img' alt=\"1\" src='$muuk' alt='kuva' style='width:50%;height:100%;'>";
         }
         ?>
     </div>
@@ -472,8 +472,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                   
               if($_COOKIE[$ok]) {
                     $okok = $_COOKIE[$ok];
-                for($temp=0; $temp<$num[$temp];$temp++)   {
-                	echo "test";  
+                for($temp=0; $temp<$num[$xy];$temp++)   {   
                     echo "<div alt=\"$ok\"  ondblclick=\"borderdisplay(this.id)\" onmousedown=\"changeZIndex(this.id)\" id=\"dragDiv$i\" style=\"width:160px; height:120px;position:absolute; left:".$dragdivleft."px; top:".$dragdivtop."px; z-index:1;\">";
                     echo "<div class='rRightDown' id=\"rRightDown$i\"></div>";
                     echo "<div class='rLeftDown' id=\"rLeftDown$i\"></div>";
@@ -566,11 +565,13 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                           <div class="modal-header">
                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                            <h3>Lisää kuvaobjekteja</h3>
+                           <button onclick="reset()">Tyhjentä lomake</button>
+                           <script> function reset() { document.getElementById("myForm").reset(); } </script>
                           </div>
                           <div class="modal-body">
                            <div class="row">
-                           <!<form action="backup.php" method="get" >
-                           <form action="backup.php" method="post">
+                           <!<form action="backtest.php" method="post" >
+                           <form action="backtest.php" method="post" id="myForm">
                            <?php
                                    $sqlkg = "SELECT DISTINCT pklink, pkid FROM silmuj;";
                                     if($ktulos = $my->query($sqlkg)) {
@@ -583,14 +584,13 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                                foreach ($krows as $i) {
                                   echo "<div class=\"col-xs-4 col-md-4\">
                                           <label class='klik'>
-                                              <input id=\"check$num\" type='checkbox' name='pkuva$i[0]' style='background-image: url($i[1]); width:50px;height: 50px;'> 
+                                              <input id=\"check$num\" type='checkbox' name='pkuva$i[0]' value='$i[0]' style='background-image: url($i[1]); width:50px;height: 50px;'> 
                                               <img style='width: 200px; height: 200px;' class='klik' src='$i[1]' alt='kuva'>
                                               
                                           </label>
                                           <input name=\"num$num\" id=\"num$num\" value='0'>
                                           <button onclick=\"plus($num)\" type='button' class='btn btn-default'>+</button>
                                           <button onclick=\"minus($num)\" type='button' class='btn btn-default'>-</button>
-                                          
                                         </div>";
                                         $num++;
                               }
@@ -599,20 +599,24 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                            function plus(num){
                                document.getElementById("num"+num).value = parseInt(document.getElementById("num"+num).value) + 1; 
                                //document.getElementById("check"+num).value = parseInt(document.getElementById("check"+num).value) + 1; 
-                               //document.getElementById("check"+num).checked = true;
+                               if( !document.getElementById("check"+num).checked )	{
+								document.getElementById("check"+num).checked = "ture";
+                               }
                            }    
                            function minus(num){
                                if(document.getElementById("num"+num).value > 0 ) {
                                    document.getElementById("num"+num).value = parseInt(document.getElementById("num"+num).value) - 1; 
                                    //ocument.getElementById("check"+num).value = parseInt(document.getElementById("check"+num).value) - 1; 
-                               }
-                           }   
+                               } else if(document.getElementById("num"+num.value == "1")) {
+							       //document.getElementById("check"+num).checked = "false";
+							   }
+                           }    
                            </script>
                                </div>
 
                                <button class="btn btn-default kek">OK!</button>
                            </form>
-                            <form enctype="multipart/form-data" role="form" action="backup.php" method="post">
+                            <form enctype="multipart/form-data" role="form" action="backtest.php" method="post">
                                 <input name="pkuva" type="file" class="aanil btn btn-default"> <br>
                                 <input type="submit" class="btn btn-default kek" value="Send File">
                             </form>
@@ -698,7 +702,7 @@ oheight = [];
 bBoxx=1000;
 bBoxy=400;
 
-/*
+
 function removeDragDiv(element, cookiename) {
     var divid = $("#" + element).parents().attr('id');
     //document.cookie = cookiename+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
@@ -714,7 +718,7 @@ function copyDragDiv(element) {
     document.write(i);
     
     //document.getElementById('dragDiv5').innerHTML= divs;
-}*/
+}
 
 function changeZIndex(element) {
     var i  = 0;

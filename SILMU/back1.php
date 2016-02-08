@@ -404,6 +404,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
         <div class="col-md-2">
             <!--<button id="nappi" style="margin:0px;" class="btn btn-default">Start</button>-->
             <button onclick="launchFullscreen(document.documentElement);" type="button" class="btn btn-default">Nayta</button>
+            <input id="check" type="checkbox" name="test" value="test" checked="checked"/>
 		</div>
              <!--<div class="col-md-2 col-md-offset-2"> <p id="nappi">Aloita esitys</p></div>-->
 
@@ -581,7 +582,8 @@ function myF(){
   document.getElementById("parts").style.display="none";
   document.getElementById("paa").style.display="none";
   document.getElementById("lknappi").style.display="none";
-  
+
+  var check = document.getElementById("check").checked;
 
 	windows = (navigator.userAgent.indexOf("Windows",0) != -1)?1:0;
 	mac = (navigator.userAgent.indexOf("Mac",0) != -1)?1:0;
@@ -620,9 +622,11 @@ function myF(){
         var prowidth = [];
         var proheight = [];
         
-      
-            
+      if(!check){  
       document.getElementById('row1').style.width= "200%";
+      } else {
+      document.getElementById('row1').style.width= "100%";
+      } 
       document.getElementById('row1').style.height="100%";
       document.getElementById('bBox').style.width= "100%";
       document.getElementById('bBox').style.height= "100%";
@@ -646,9 +650,15 @@ function myF(){
             owidth[i] = kuvawidth[i];
             oheight[i] = kuvaheight[i];
             if(parseInt(x[i])>"-100" && parseInt(x[i])<"1000" && parseInt(y[i])>"-50" && parseInt(y[i])<"450"){
+                if(!check){
                 document.getElementById(divid[i]).style.left=screenwidth* 2 * prox[i] + "px";
-                document.getElementById(divid[i]).style.top=screenheight * proy[i] + "px";
                 document.getElementById(divid[i]).style.width=screenwidth *prowidth[i] * 2+"px";
+                } else {
+                document.getElementById(divid[i]).style.left=screenwidth * prox[i] + "px";
+                document.getElementById(divid[i]).style.width=screenwidth *prowidth[i]+"px";
+                }
+
+                document.getElementById(divid[i]).style.top=screenheight * proy[i] + "px";
                 document.getElementById(divid[i]).style.height=screenheight * proheight[i]  + "px";
                 
             } else {
@@ -669,6 +679,8 @@ function myF(){
       var proheight = [];
       var uusix = [];
       var uusiy = [];
+      
+      //var check = document.getElementById("check").checked;
 	  document.getElementById("parts").style.display="block";
   	  document.getElementById("paa").style.display="block";
  	  document.getElementById("lknappi").style.display="block";  
@@ -681,13 +693,21 @@ function myF(){
           divid[i] = "dragDiv" + i;
           
           if(document.getElementById(divid[i])){          
-          y[i] = document.getElementById(divid[i]).style.top;
-          x[i] = document.getElementById(divid[i]).style.left;
-          prox[i] = parseInt(x[i]) / (window.innerWidth * 2);
-          proy[i] = parseInt(y[i]) / (fullheight);
+          
           kuvawidth[i] = document.getElementById(divid[i]).style.width;
           kuvaheight[i] = document.getElementById(divid[i]).style.height; 
-          prowidth[i]  = parseInt(kuvawidth[i]) / fullwidth / 2;
+          
+          y[i] = document.getElementById(divid[i]).style.top;
+          x[i] = document.getElementById(divid[i]).style.left;
+          if(!check){
+              prox[i] = parseInt(x[i]) / (window.innerWidth * 2);
+              prowidth[i]  = parseInt(kuvawidth[i]) / fullwidth / 2;
+          } else {
+              prox[i] = parseInt(x[i]) / (window.innerWidth);
+              prowidth[i]  = parseInt(kuvawidth[i]) / (fullwidth);
+          }
+          proy[i] = parseInt(y[i]) / (fullheight);
+          
           proheight[i] = parseInt(kuvaheight[i]) / (fullheight - 10);
           uusix[i] = bBoxx * prox[i];
           uusiy[i] = bBoxy * proy[i];
