@@ -1,5 +1,11 @@
 <?php
     $ghsz = $_GET['ghsz'];
+    if($_COOKIE['curdia']) {$jokujuttu = 1;}
+    if($ghsz) {
+    setcookie("curdia", $ghsz);
+    }
+    $curdia = $_COOKIE['curdia'];
+    $ghsz = $_GET['ghsz'];
 	$aanitoisto = $_GET['aanitoisto'] - 1; 
      if($_POST['clga']) 
      $clga = $_POST['clga'] - 2;
@@ -25,19 +31,36 @@
     
      
     
-    $sqlpa = "UPDATE 574U_SILMUdia SET tk='$ugh', aa='$fsm' WHERE id='$cc';";
-    echo $sqlpa;
-    if ($ergebnis = $my->query($sqlpa)){
-        echo "Neat";
+   # $sqlpa = "UPDATE 574U_SILMUdia SET tk='$ugh', aa='$fsm' WHERE id='$cc';";
+    #echo $sqlpa;
+    #if ($ergebnis = $my->query($sqlpa)){
+     #   echo "Neat";
+      #  }
+       # else {
+        #    echo "rip";
+         #   }
+    $neim = $_POST['namae']; 
+      if($neim){
+      $sqlnimi = "UPDATE 574U_SILMUdia SET Nimi='$neim' WHERE id='$curdia';";
+      if($nimikys = $my->query($sqlnimi)) {
+        echo "nimi muutettu";
         }
-        else {
-            echo "rip";
-            }
-   # $neim = $_POST['namae'];
-   # $sqlnimi = "UPDATE 574U_SILMUdia SET Nimi='$neim' WHERE id='$ghsz';";
-   # if($tulovero = $my->query($sqlnimi)) {
-   #  echo "nimetty";         
-   #else { echo "ayy";}
+        else {echo "ei";
+        }
+        }
+   # if($cc == 1) {  
+   # $sqlnim = "UPDATE 574U_SILMUdia SET Nimi='$'";
+    if($ugh > 0 || $fsm > 0){
+    if($ugh && $fsm)
+    $sqlupd = "UPDATE 574U_SILMUdia SET tk='$ugh', aa='$fsm' WHERE id='$curdia';";
+      else if($ugh)
+    $sqlupd = "UPDATE 574U_SILMUdia SET tk='$ugh' WHERE id='$curdia';";
+    else if($fsm)
+    $sqlupd = "UPDATE 574U_SILMUdia SET  aa='$fsm' WHERE id='$curdia';";
+    
+    if($tulovero = $my->query($sqlupd)) {
+     echo "päivitetty";         
+  } else { echo "ayy";}}
     $sqll = "SELECT krid FROM SILMU";
     if ($tuulos = $my->query($sqll)) {
         while($p=$tuulos->fetch_object()) {
@@ -109,18 +132,41 @@ $laskuric = 0;
 #	else{
 #	 $msg = "VIRHE";
 #	}
+if($ghsz) { 
+$sqlpkk = "SELECT * FROM silmudiapk, silmuj WHERE silmuj.pkid=silmudiapk.pkid AND did='$ghsz';";
+if($concl = $my->query($sqlpkk)){
+  while($huya=$concl->fetch_object()){
+  $asfo[] = array($huya->did, $huya->pkid, $huya->pkx, $huya->pky, $huya->pkw, $huya->pkh, $huya->pklink);
+  }
+  }
+  }
+else if($curdia) {
+  $sqlpkk = "SELECT * FROM silmudiapk, silmuj WHERE silmuj.pkid=silmudiapk.pkid AND pkid='$curdia';";
+  if($concl = $my->query($sqlpkk)){
+    while($huya=$concl->fetch_object()){
+    $asfo[] = array($huya->did, $huya->pkid, $huya->pkx, $huya->pky, $huya->pkw, $huya->pkh, $huya->pklink);
+    }
+    }
+    }
+          
+$toinenlaskuri = 0;
 	   $sqlmaokai = "SELECT * FROM 574U_SILMUdia, SILMU WHERE 574U_SILMUdia.tk = SILMU.krid";  
     if($erd = $my->query($sqlmaokai)){
         while($hjuy=$erd->fetch_object()){
             $jeff[] = array($hjuy->kuva1, $hjuy->kuva2, $hjuy->id, $hjuy->tk, $hjuy->aa, $hjuy->Nimi);
        $hltv = $hjuy->id;
-       if($hjuy->id == $ghsz){
-       $vall = $hjuy->tk;
-       $knk = $hjuy->aa;
-       $namae = $hjuy->Nimi;
-       
-       }
-}
+       if($ghsz == $hjuy->id) {
+      $vall = $hjuy->tk;   
+      $knk = $hjuy->aa;
+      $namae = $hjuy->Nimi;
+      $toinenlaskuri = 1;      }
+                                             
+      else  if($toinenlaskuri == 0) if($curdia == $hjuy->id) {
+              $vall = $hjuy->tk;
+              $knk = $hjuy->aa;
+              $namae = $hjuy->Nimi;
+      }
+    }
 }
 
     else{
@@ -476,14 +522,13 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
               <div class="col-md-4">
 				 <audio controls loop="loop">
                      <source src="<?php
-                                       if($dso) {
-                                       echo $dso; }
-                                       else if($clga) {
+                                       if($clga) {
                                          echo $akrows[$clga + 1][1];
                                        } else {
                                        if($_GET['aanitoisto']) {
                                          echo $akrows[$aanitoisto][1];
-                                       } else {
+                                       } else if($dso) {
+                                          echo $dso; }else{
                                        echo $_FILES['aani']['name'];}}
 									$clg = $aanitoisto + 1;     ?>" type="audio/mpeg">
                  </audio>
@@ -494,7 +539,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
 	           <div class="form-group"><label for="namae">Dian nimi</label>
 	           <input type="text" name="namae" id="namae" placeholder="Dian nimi" value='<?php echo $namae;?>'>
 	           </div>
-	           <button name="ayyyyyyyyy">sn</button>
+	           <button class="btn btn-info" name="ayyyyyyyyy">sn</button>
 	           </form>
 	           </div>
         <div class="col-md-1">
@@ -575,7 +620,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                 $lol = $selaskurialussa; } }
           $lol++;
           $i = 0;
-          
+          $muuttuja = 0;
           $dragdivleft = 110;
           $dragdivtop = 451;
           
@@ -595,19 +640,30 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                     echo "<div id=\"rLeft$i\"></div>";
                     echo "<div id=\"rUp$i\"></div>";
                     echo "<div id=\"rDown$i\"></div>";
-                    echo "<img src='$okok' alt='kuva'style='width:100%;height:100%;'>";
+					$esquul = "SELECT * FROM silmuj WHERE pklink='$okok';";
+					if($jmuut = $my->query($esquul)) {
+					while($huij=$jmuut->fetch_object()){
+					$kuvaiid  = $huij->pkid;
+					}
+					}
+                    echo "<img src='$okok' alt='$kuvaiid' id='rKuva$i' style='width:100%;height:100%;'>";
                     echo "</div>";
                     
                     $i++;  
+					$muuttuja++;
                     $dragdivleft += 170;
                     if($i % 5 == 0) {
                          $dragdivtop += 130;
                          $dragdivleft = 110;
-                    }
+					}
                 }
             }
             }
+		  echo "<div id=\"test\" value=\"100\" class=\"test\" style=\"width:".$i."px; height:0px; display:none\" ></div><br>";
            ?>
+			 <script>
+               dragDivMaara = parseInt(document.getElementById("test").style.width);
+           </script>
            <script>
             function paivita() {
             var tsm = '<?php echo $tsm; ?>';
@@ -621,16 +677,44 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
             </script>
             <!<form action="euu.php" method="post">
        <button class="btn btn-info" onclick="paivita()" name="a2z" value="1">Save</button>
-        <!</form>
+        <button onclick="save()" class="btn btn-info">save2</button><!</form>
 		<button id="lknappi" type="button" class="btn aaaaa btn-default" data-toggle="modal" data-target="#pkmodal" id="nappibutton" style="left:0px;position:absolute;top:450px;">Lisää kuvia</button>
-           <div style="left:0px;position:absolute;top:550px;">
-           <?php 
+                     <?php
+		$lassku = $muuttuja+1;;
+           foreach($asfo as $i) {
+               echo "<div ondblclick=\"borderdisplay(this.id)\" onmousedown=\"changeZIndex(this.id)\" id=\"dragDiv$lassku\"style=\"width:$i[4]; height:$i[5];position:absolute; left: ".$i[2]."; top: ".$i[3]."; z-index:1;\">";
+					 echo "<div id=\"rRightDown$lassku\"></div>";
+                    echo "<div id=\"rLeftDown$lassku\"></div>";
+                    echo "<div id=\"rRightUp$lassku\"></div>";
+                    echo "<div id=\"rLeftUp$lassku\"></div>";
+                    echo "<div id=\"rRight$lassku\"></div>";
+                    echo "<div id=\"rLeft$lassku\"></div>";
+                    echo "<div id=\"rUp$lassku\"></div>";
+                    echo "<div id=\"rDown$lassku\"></div>";
+             echo "<img src='$i[6]' id='rKuva$lassku' alt='$i[1]' style='width:100%; height:100%'>";
+			echo "</div>";
+             $lassku++;
+				}
+			echo "<div style='left:0px;position:absolute;top:550px;'>";
            echo "<form action='euu.php' method='get'>";
            echo "<div class='btn-toolbar'>";
            foreach($jeff as $i){
-               echo "<button name='ghsz' class ='btn btn-warning btn-group' value='$i[2]'><abbr title='$i[5]'>$i[2]</abbr></button>";
+           $laskujuttu = 0;
+               if($ghsz) {
+               if($ghsz == $i[2]) {
+                echo "<button name='ghsz' class ='btn btn-success btn-group' value='$i[2]'><abbr title='$i[5]'>$i[2]</abbr></button>";
+                $laskujuttu = 1;
+                }
                }
-               echo "<button name='liss' class='btn btn-group' value=1>+</button>";
+               else
+               if($curdia == $i[2]) {
+               echo "<button name='ghsz' class='btn btn-success btn-group' value='$i[2]'><abbr title='$i[5]'>$i[2]</abbr></button>";
+               $laskujuttu = 1;
+               }
+               if($laskujuttu == 0)
+               echo "<button name='ghsz' class='btn btn-warning btn-group' value='$i[2]'><abbr title='$i[5]'>$i[2]</abbr></button>";
+               }
+               echo "<button name='liss' class='btn btn-group btn-primary' value=1>+</button>";
                echo "</div> </form>";
                ?>
             </div>
@@ -676,8 +760,45 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
     #$sqlcs = "UPDATE 574U_SILMUdia VALUES ('$tsm', '$clg') WHERE id='$dia';";
     ?>
 <script>
-
+function save() {
+    var pkuvaid = [];
+    var pkuvawidth = [];
+    var pkuvaheight = [];
+    var pkuvax = [];
+    var pkuvay = [];
+    var ikuvaoneid = null;
+    var ikuvatwoid=null;
+        
+    for(var i=0; i<100; i++) {
+        if(document.getElementById("dragDiv"+i)) {
+            comm = document.getElementById("dragDiv"+i);
+            pkuvaid[i] = document.getElementById("rKuva"+i).alt;
+            pkuvawidth[i] = comm.style.width;
+            pkuvaheight[i] = comm.style.height;
+            pkuvax[i] = comm.style.left;
+            pkuvay[i] = comm.style.top;
+        }    
+    } 
+    
+    //ikuvaoneid = document.getElementById("isokuva1").alt;
+    //ikuvatwoid = document.getElementById("isokuva2").alt;
+    
+    var numnum = 0;
+    
+    $.post( "deletedb.php" , { did:'<?php if($ghsz) echo $ghsz; else if($curdia) echo $curdia; ?>'});
+    while(document.getElementById("dragDiv"+numnum)) {
+	/*			if(parseInt(pkuvax[numnum])< 400 && parseInt(pkuvax[numnum])> 0){
+				if(parseInt(pkuvay[numnum])< 1000 && parseInt(pkuvay[numnum])> 0)*/
+        $.post( "userInfo.php", { did:'<?php if($ghsz) echo $ghsz; else if($curdia) echo $curdia; ?>', pkid: pkuvaid[numnum], pkx: pkuvax[numnum], pky: pkuvay[numnum], pkw: pkuvawidth[numnum], pkh: pkuvaheight[numnum] } );
+/*}
+}*/       
+ numnum++;
+	}
+    alert("Tanlentettu");
+}
 </script>
+ <?#php if($ghsz) echo $ghsz;
+   # else if ($curdia) echo $curdia; ?>
     <script>
 function launchFullscreen(element) {
   if(element.requestFullscreen) {
@@ -853,7 +974,7 @@ var rRight = [];
 var rLeft = [];
 var rUp = [];
 var rDown = [];
-for(ia=0; ia< 20; ia++) {
+for(ia=0; ia< 100; ia++) { 
 dragnimi[ia] = "dragDiv" + ia;
 if(document.getElementById(dragnimi[ia])){
 rRightDown[ia]= "rRightDown" + ia;
@@ -878,6 +999,6 @@ new Drag(dragnimi[ia], { Limit: true, mxContainer: "bgDiv" });
 </script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <script src="/~jonashandelin/bs_2015/bower_components/bootstrap/dist/js//bootstrap.min.js"></script>
-<?php echo $clg; echo $clga;?>
+<?php echo $curdia;?>
 </body>
 </html>

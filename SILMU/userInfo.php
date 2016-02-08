@@ -8,7 +8,7 @@
         $pkw = $_POST["pkw"];
         $pkh = $_POST["pkh"];
         
-        $pkid = mb_substr($pkid, 5);
+//        $pkid = mb_substr($pkid, 5);
          
         /*mysql_query("DELETE FROM silmudiapk WHERE did = \"$did\" ");*/
 
