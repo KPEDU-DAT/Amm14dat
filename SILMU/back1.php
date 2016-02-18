@@ -235,8 +235,9 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
             echo "<form action='back1.php' method='post'><table class='table'><tbody>";
         foreach($rows as $i) {
             echo #"<div class='col-lg-3 col-md-4 col-xs-6 thumb'>
-                           "<tr><td>
+               "<trr><td>
                <input type='image'  src='$i[1]' alt='kuvak' style=' height:150px; width:50%;' name='kuvak' value='k$cko'><input type='image' src='$i[2]' alt='kuvak' style=' height:150px; width:50%;' name='kuvak' value='k$cko'>
+               
 						  </td></tr>";
            $cko = $cko + 1;
             }
@@ -404,7 +405,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
         <div class="col-md-2">
             <!--<button id="nappi" style="margin:0px;" class="btn btn-default">Start</button>-->
             <button onclick="launchFullscreen(document.documentElement);" type="button" class="btn btn-default">Nayta</button>
-            <input id="check" type="checkbox" name="test" value="test" checked="checked"/>
+            <input id="check" type="checkbox" name="test" value="test">
 		</div>
              <!--<div class="col-md-2 col-md-offset-2"> <p id="nappi">Aloita esitys</p></div>-->
 
@@ -419,18 +420,18 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
         if ($substr == 'v'){
         $telu = substr($num, 1);
         $muu = $rivit[$telu][1];
-        echo "<img class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%; margin:0px;border:0px;'>";
+        echo "<img id='isokuva1' class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%; margin:0px;border:0px;'>";
         }
         else if ($substr == 'o'){
         $telu = substr($num, 1);
         $muu = $rivii[$telu][1];
-         echo "<img class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%; margin:0px;border:0px;'>";
+         echo "<img id='isokuva1' class='kuva' src='$muu' alt='kuva' style='width:100%;height:100%; margin:0px;border:0px;'>";
         }
         else if ($substr == 'k') {
         $telu = substr($num, 1);
         $muu = $rows[$telu][1];
         $muuk = $rows[$telu][2];
-        echo "<img class='img' src='$muu' alt='kuva' style='width:50%;height:100%;'><img class='img' src='$muuk' alt='kuva' style='width:50%;height:100%;'>";
+        echo "<img id='isokuva1' class='img' src='$muu' alt='kuva' style='width:50%;height:100%;'><img class='img' src='$muuk' alt='kuva' style='width:50%;height:100%;'>";
         }
         ?>
     </div>
@@ -459,7 +460,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
               
               if($_COOKIE[$ok]) {
                 $okok = $_COOKIE[$ok];
-                    echo "<div alt=\"$ok\"  ondblclick=\"borderdisplay(this.id)\" onmousedown=\"changeZIndex(this.id)\" id=\"dragDiv$i\" style=\"width:160px; height:120px;position:absolute; left: ".$dragdivleft."px; top: ".$dragdivtop."px; z-index:1;\">";
+                    echo "<div alt=\"$ok\"  ondblclick=\"borderdisplay(this.id, 'rDel$i')\" onmousedown=\"changeZIndex(this.id)\" id=\"dragDiv$i\" style=\"width:160px; height:120px;position:absolute; left: ".$dragdivleft."px; top: ".$dragdivtop."px; z-index:1;\">";
                     echo "<div id=\"rRightDown$i\"></div>";
                     echo "<div id=\"rLeftDown$i\"></div>";
                     echo "<div id=\"rRightUp$i\"></div>";
@@ -468,8 +469,7 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                     echo "<div id=\"rLeft$i\"></div>";
                     echo "<div id=\"rUp$i\"></div>";
                     echo "<div id=\"rDown$i\"></div>";
-                    echo "<div id=\"rDel$i\" onclick=\"removeDragDiv(this.id, '$ok')\"></div>";
-                    echo "<div id=\"rCopy$i\" onclick=\"copyDragDiv(this.id)\"></div>";
+                    echo "<div id=\"rDel$i\" onclick=\"removeDragDiv(this.id, '$ok')\" style=\"display:none; padding:0px; \"></div>";
                     echo "<img id=\"rKuva$i\" alt=\"$ok\"   src='$okok' style='width:100%;height:100%;'>";
                     echo "</div>";
                     
@@ -503,10 +503,28 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                                             }
                                     }
                                foreach ($krows as $i) {
-                                  echo "<div class=\"col-xs-4 col-md-4\"><label class='klik'><input type='checkbox' name='pkuva$i[0]' value='$i[0]' style='background-image: url($i[1]); width: 500px; height: 50px;'> <img style='width: 200px; height: 200px;' class='klik' src='$i[1]' alt='kuva'></label></div>";
+                                  echo "<div class=\"col-xs-4 col-md-4\">
+                                          <button style='background-color:red; width:50px; height:50px; position:relative;top:55px;' name='delpk' value='$i[0]'>DEL</button>
+                                          <label class='klik'>
+                                              <input type='checkbox' name='pkuva$i[0]' value='$i[0]' style='background-image: url($i[1]); width: 500px; height: 50px;'> 
+                                              <img style='width: 200px; height: 200px;' class='klik' src='$i[1]' alt='kuva'>
+                                              
+                                          </label>
+                                        </div>";
                               }
                            ?>
-                           
+                           <?php
+                               $delpk = $_POST['delpk'];
+                               if($delpk) {
+                                   $sql = "DELETE FROM silmuj WHERE pkid='$delpk';";
+                                   if($tulos = $my->query($sql)) {
+                                      /*echo '<script>
+                                          	location.reload();
+                                      </script>';*/
+                                      //$delpk = "null";
+                                   }
+                               }
+                           ?>
                            </div>
                                <input type="submit" name="nappi" class="btn btn-default kek" value="Lisää kuvat">
                            </form>
@@ -571,11 +589,15 @@ function changeZIndex(element) {
     document.getElementById(element).style.zIndex = maxindex;
 }
 
-function borderdisplay(element) {
+function borderdisplay(element, rDel) {
 	if(document.getElementById(element).style.border == "1px solid black") {
 		document.getElementById(element).style.border = "0px";
-	}else 
-	document.getElementById(element).style.border = "1px solid black";
+		document.getElementById(rDel).style.display = "none";
+		
+	} else { 
+	    document.getElementById(element).style.border = "1px solid black";
+	    document.getElementById(rDel).style.display = "block";
+    }
 }
 
 function myF(){
@@ -609,6 +631,7 @@ function myF(){
 		var fullwidth = screen.width;
 	
 	}
+	
 
     if(document.getElementById('bBox').style.width == "1000px") {
         var x = [];
@@ -623,14 +646,26 @@ function myF(){
         var proheight = [];
         
       if(!check){  
-      document.getElementById('row1').style.width= "200%";
+          document.getElementById('row1').style.width= "200%";
+    
+          screenwidth = document.getElementById("row1").offsetWidth / 2; /**/
+          fullwidth = document.getElementById("row1").offsetWidth / 2; /**/
       } else {
-      document.getElementById('row1').style.width= "100%";
+          document.getElementById('row1').style.width= "100%";
+    
+          screenwidth = document.getElementById("row1").offsetWidth; /**/
+          fullwidth = document.getElementById("row1").offsetWidth; /**/
       } 
       document.getElementById('row1').style.height="100%";
-      document.getElementById('bBox').style.width= "100%";
-      document.getElementById('bBox').style.height= "100%";
-      
+    screenheight= document.getElementById("row1").clientHeight; /**/
+    fullheight= document.getElementById("row1").clientHeight; /**/
+          
+          document.getElementById('bBox').style.width= "100%";
+          document.getElementById('bBox').style.height= "100%";
+
+    
+                                      
+
       //width: 4096; height: 1140;
       //document.write(screenheight +","+ window.innerHeight +","+ window.outerHeight +","+screen.height);
         for(i = 0; i<20; i++) {
@@ -699,6 +734,8 @@ function myF(){
           
           y[i] = document.getElementById(divid[i]).style.top;
           x[i] = document.getElementById(divid[i]).style.left;
+
+
           if(!check){
               prox[i] = parseInt(x[i]) / (window.innerWidth * 2);
               prowidth[i]  = parseInt(kuvawidth[i]) / fullwidth / 2;
@@ -706,6 +743,8 @@ function myF(){
               prox[i] = parseInt(x[i]) / (window.innerWidth);
               prowidth[i]  = parseInt(kuvawidth[i]) / (fullwidth);
           }
+
+
           proy[i] = parseInt(y[i]) / (fullheight);
           
           proheight[i] = parseInt(kuvaheight[i]) / (fullheight - 10);

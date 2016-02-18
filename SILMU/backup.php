@@ -754,10 +754,17 @@ function myF(){
 		var fullwidth = screen.width;
 	}
 	else if (mac) {
+		
 	    var screenheight = 1140;
-		var fullheight = 1140;	
+		var fullheight = 1140;
 		var screenwidth = 2048;
 		var fullwidth = 2048;
+		
+		//var wow = document.getElementById(hBox).style.height;
+		//$(document).ready(function(){
+		//	document.write($(window).width());
+		//});
+		
 	}
 	else {
 	    var screenheight= screen.height;

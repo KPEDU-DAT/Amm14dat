@@ -482,8 +482,6 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                     echo "<div class='rLeft' id=\"rLeft$i\"></div>";
                     echo "<div class='rUp' id=\"rUp$i\"></div>";
                     echo "<div class='rDown' id=\"rDown$i\"></div>";
-                    echo "<div id=\"rDel$i\" onclick=\"removeDragDiv(this.id, '$ok')\"></div>";
-                    echo "<div id=\"rCopy$i\" onclick=\"copyDragDiv(this.id)\"></div>";
                     echo "<img id=\"rKuva$i\" alt=\"$ok\"   src='$okok' style='width:100%;height:100%;'>";
                     echo "</div>";
 					                    
@@ -497,10 +495,10 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                 }
             }
             //}
-            echo "<div id=\"test\" value=\"100\" class=\"test\" style=\"width:".$i."px; height:0px; display:none\" ></div><br>";
+
            ?>
            <script>
-               dragDivMaara = parseInt(document.getElementById("test").style.width);
+               dragDivMaara = '<?php echo $i?>';
            </script>
                <?php
                    for($numnum=1; $numnum<11; $numnum++) {
@@ -513,50 +511,6 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                        pagenro = page;
                    }
                </script>
-
-         <?php
-     /*               $num = 0;
-                    for($i=0; $i<20; $i++) {
-                    $pkuva[$i] = $_GET["pkuva$i"];    
-   */                 
-		  /*$krows = array();
-          $abk = $_FILES['pkuva']['name'];
-          for($selaskurialussa=1;$selaskurialussa<100;$selaskurialussa++) {
-          $uuu = 'pkuva'.$selaskurialuusa;
-            if($_POST[$uuu]) {
-                $lol = $selaskurialussa; } }
-          $lol++;
-          $i = 0;*/
-
-	        	/*  $dragdivleft = 110;
-    		      $dragdivtop = 451;
-*//*
-					echo $_COOKIE[$ok];
-                    
-                    if($pkuva[$i]){
-                    for($j=0; $j<$pkuva[$i]; $j++){                                    
-                    echo "<div alt=\"$ok\"  ondblclick=\"borderdisplay(this.id)\" onmousedown=\"changeZIndex(this.id)\" id=\"dragDiv$num\" style=\"width:160px; height:120px;position:absolute; left: ".$dragdivleft."px; top: ".$dragdivtop."px; z-index:1;\">";
-                    echo "<div id=\"rRightDown$num\"></div>";
-                    echo "<div id=\"rLeftDown$num\"></div>";
-                    echo "<div id=\"rRightUp$num\"></div>";
-                    echo "<div id=\"rLeftUp$num\"></div>";
-                    echo "<div id=\"rRight$num\"></div>";
-                    echo "<div id=\"rLeft$num\"></div>";
-                    echo "<div id=\"rUp$num\"></div>";
-                    echo "<div id=\"rDown$num\"></div>";
-                    echo "<div id=\"rDel$num\" onclick=\"removeDragDiv(this.id, '$ok')\"></div>";
-                    echo "<div id=\"rCopy$num\" onclick=\"copyDragDiv(this.id)\"></div>";
-                    echo "<img id=\"rKuva$num\" alt=\"$ok\"   src='$okok' style='width:100%;height:100%;'>";
-                    echo "</div>";
-
-                    $dragdivleft += 170;
-                    if($num % 5 == 0) {
-                         $dragdivtop += 130;
-                         $dragdivleft = 110;
-                    }
-                    $num++;
-                    }}}*/
-         ?>
 		<button id="lknappi" type="button" class="btn aaaaa btn-default" data-toggle="modal" data-target="#pkmodal" style="left:0px;position:absolute;top:450px;">Lisää kuvia</button>
             </div>
                 <div class="modal fade" id="pkmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -667,8 +621,8 @@ function save() {
         }    
     } 
     
-    ikuvaoneid = document.getElementById("isokuva1").alt;
-    ikuvatwoid = document.getElementById("isokuva2").alt;
+//    ikuvaoneid = document.getElementById("isokuva1").alt;
+//    ikuvatwoid = document.getElementById("isokuva2").alt;
     
     var numnum = 0;
     
