@@ -518,10 +518,9 @@ $sqlyi = "SELECT pkid FROM silmuj ORDER BY pkid DESC";
                                if($delpk) {
                                    $sql = "DELETE FROM silmuj WHERE pkid='$delpk';";
                                    if($tulos = $my->query($sql)) {
-                                      /*echo '<script>
-                                          	location.reload();
-                                      </script>';*/
-                                      //$delpk = "null";
+                                      echo '<script>
+                                          alert("Poistunut");
+                                      </script>';
                                    }
                                }
                            ?>
@@ -695,7 +694,7 @@ function myF(){
 
                 document.getElementById(divid[i]).style.top=screenheight * proy[i] + "px";
                 document.getElementById(divid[i]).style.height=screenheight * proheight[i]  + "px";
-                
+                    
             } else {
                 document.getElementById(divid[i]).style.height = "0px";
             }     
